@@ -1,104 +1,74 @@
 #!/bin/bash
 
 # =============================================================================
-# PYTHON MASTERY - Script d'Installation des Dépendances
+# PYTHON MASTERY - Script d'Installation des Dépendances (avec uv)
 # =============================================================================
 # Ce script installe toutes les dépendances nécessaires pour le projet
 # Usage: ./install.sh
+# Prérequis: uv doit être installé (https://github.com/astral-sh/uv)
+# Installation rapide: curl -LsSf https://astral.sh/uv | sh
 # =============================================================================
 
-set -e  # Arrêter en cas d'erreur
+set -e
 
 echo "🐍 Python Mastery - Installation des dépendances"
 echo "================================================"
 echo ""
 
-# Couleurs pour l'affichage
 VERT='\033[0;32m'
 BLEU='\033[0;34m'
 JAUNE='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# Fonction pour afficher les messages
 info() { echo -e "${BLEU}[INFO]${NC} $1"; }
 success() { echo -e "${VERT}[OK]${NC} $1"; }
 warning() { echo -e "${JAUNE}[ATTENTION]${NC} $1"; }
 
-# Vérification de Python
+info "Vérification de uv..."
+if ! command -v uv &> /dev/null; then
+    warning "uv non trouvé. Installation en cours..."
+    curl -LsSf https://astral.sh/uv | sh
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+UV_VERSION=$(uv --version 2>&1)
+success "uv installé: $UV_VERSION"
+
 info "Vérification de Python..."
-if command -v python3 &> /dev/null; then
-    PYTHON_VERSION=$(python3 --version 2>&1)
-    success "Python installé: $PYTHON_VERSION"
-else
+if ! command -v python3 &> /dev/null; then
     warning "Python non trouvé. Veuillez l'installer depuis python.org"
     exit 1
 fi
 
-# Mise à jour de pip
-info "Mise à jour de pip..."
-python3 -m pip install --upgrade pip
-success "pip à jour"
+PYTHON_VERSION=$(python3 --version 2>&1)
+success "Python installé: $PYTHON_VERSION"
 
-# Création de l'environnement virtuel
-info "Création de l'environnement virtuel..."
-if [ -d "venv" ]; then
-    warning "L'environnement virtuel existe déjà"
-else
-    python3 -m venv venv
-    success "Environnement virtuel créé"
-fi
+info "Création/Synchronisation de l'environnement virtuel..."
+uv venv
+success "Environnement virtuel prêt"
 
-# Activation et installation
-info "Activation de l'environnement virtuel..."
-source venv/bin/activate
-success "Environnement virtuel activé"
+info "Installation des dépendances..."
+uv sync
 
-echo ""
-echo "📦 Installation des dépendances..."
-echo "=================================="
-
-# Phase 1-4: Core - Fondations
-echo ""
-info "Installation des packages Core..."
-pip install --quiet numpy pandas matplotlib
-
-# Phase 5-6: Avancé - Outils de développement
-echo ""
 info "Installation des outils de développement..."
-pip install --quiet pytest black flake8 mypy
-
-# Phase 7: Spécialisations - Web & Automation
-echo ""
-info "Installation des packages Web & Automation..."
-pip install --quiet requests beautifulsoup4 selenium webdriver-manager
-
-# Phase 7: Spécialisations - Data Science & ML
-echo ""
-info "Installation des packages Data Science & ML..."
-pip install --quiet scikit-learn torch torchvision
-
-# Phase 7: Spécialisations - Web Dev
-echo ""
-info "Installation des packages Web Dev..."
-pip install --quiet flask fastapi uvicorn jinja2
-
-# Phase 7: Spécialisations - Autres outils
-echo ""
-info "Installation des outils supplémentaires..."
-pip install --quiet openpyxl pillow pyyaml tabulate tqdm
-
-# Nettoyage
-pip install --quiet --upgrade pip setuptools wheel 2>/dev/null || true
+uv sync --extra dev
 
 echo ""
 echo "✅ Installation terminée !"
 echo "================================================"
 echo ""
-echo "Prochaine étape: Activer l'environnement virtuel"
+echo "Pour activer l'environnement virtuel:"
 echo ""
-echo "  Linux/Mac:  source venv/bin/activate"
-echo "  Windows:     .\\venv\\Scripts\\activate"
+echo "  Linux/Mac:  source .venv/bin/activate"
+echo "  Windows:     .venv\\Scripts\\activate"
 echo ""
 echo " puis commencer avec:"
 echo "  cd CHAPITRES/01_premiers_pas && cat README.md"
+echo ""
+echo "Commandes utiles:"
+echo "  uv run python script.py        # Exécuter un script"
+echo "  uv run pytest                  # Lancer les tests"
+echo "  uv run black .                 # Formater le code"
+echo "  uv run flake8                  # Vérifier le code"
+echo "  uv run mypy                    # Vérifier les types"
 echo ""

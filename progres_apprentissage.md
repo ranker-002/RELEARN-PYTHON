@@ -80,10 +80,10 @@ _________________________________________________________________
 ```
 
 ### Chapitre 6: Listes & Tuples
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [x] README.md créé
+- [x] exercices.py créé (15 exercices)
+- [x] solutions.py créé
+- [x] verification.py créé
 
 **Notes/Observations:**
 ```
@@ -91,10 +91,10 @@ _________________________________________________________________
 ```
 
 ### Chapitre 7: Dictionnaires & Sets
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [x] README.md créé
+- [x] exercices.py créé (15 exercices)
+- [x] solutions.py créé
+- [x] verification.py créé
 
 **Notes/Observations:**
 ```
@@ -106,10 +106,10 @@ _________________________________________________________________
 ## Phase 3: Fonctions & Modularité
 
 ### Chapitre 8: Fonctions
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [x] README.md créé
+- [x] exercices.py créé (15 exercices)
+- [x] solutions.py créé
+- [x] verification.py créé
 
 **Notes/Observations:**
 ```

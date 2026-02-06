@@ -143,6 +143,17 @@ Appliquez vos connaissances avec des projets **réels et utiles** pour votre por
 
 ### Installation
 
+**Option 1 : Script interactif (recommandé)**
+
+```bash
+chmod +x install.sh
+./install.sh
+```
+
+Le script vous guidera pour installer uv et choisir vos dépendances.
+
+**Option 2 : Installation manuelle**
+
 ```bash
 cd relearn-python
 
@@ -178,6 +189,9 @@ just run script.py
 | Vérif complète | `just check` |
 | Ouvrir shell | `just shell` |
 | Lister deps | `just deps` |
+| Mettre à jour | `just update` |
+| Nettoyer | `just clean` |
+| Exécuter fichier | `just run script.py` |
 
 ---
 

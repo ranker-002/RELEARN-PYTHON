@@ -16,7 +16,13 @@ if ! command -v uv &> /dev/null; then
     echo "[INFO] Installation de uv..."
     curl -LsSf https://astral.sh/uv/install.sh | sh
     export PATH="$HOME/.local/bin:$PATH"
-    source "$HOME/.local/bin/env" 2>/dev/null || true
+
+    # Activer uv pour la session courante
+    for env_file in "$HOME/.local/bin/env" "$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.profile"; do
+        if [ -f "$env_file" ]; then
+            source "$env_file" 2>/dev/null || true
+        fi
+    done
 fi
 
 echo "[INFO] uv version: $(uv --version)"

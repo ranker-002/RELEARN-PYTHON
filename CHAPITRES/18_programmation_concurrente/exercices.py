@@ -302,7 +302,8 @@ def exercice_18_13():
             executor.submit(tache, "C", 0.2),
         ]
         
-        for future in concurrent.futures.as_completed(futures):
+        from concurrent.futures import as_completed
+        for future in as_completed(futures):
             print(f"Terminé: {future.result()}")
 
 

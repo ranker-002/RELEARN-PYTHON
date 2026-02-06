@@ -4,6 +4,7 @@
 
 import threading
 import time
+import queue
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
@@ -11,7 +12,7 @@ def exercice_18_1():
     """Thread simple."""
     def dire_bonjour():
         time.sleep(0.5)
-        print("!")
+        print("Bonjour depuis le thread!")
     
     t = threading.Thread(target=dire_bonjour)
     t.start()
@@ -84,7 +85,7 @@ def exercice_18_5():
     for t in threads:
         t.join()
     
-    print(f"Compteur: {compteur} (40000 attendu)")
+    print(f"Compteur (devrait être 40000): {compteur}")
 
 
 def exercice_18_6():
@@ -113,7 +114,7 @@ def exercice_18_6():
     file.join()
     t_consommateur.join()
     
-    print("Terminé")
+    print("Producteur-consommateur terminé")
 
 
 def exercice_18_7():
@@ -126,9 +127,12 @@ def exercice_18_7():
         donnees_locales.compteur += 1
         print(f"{nom}: {donnees_locales.compteur}")
     
-    threads = [threading.Thread(target=worker, args=(f"T-{i}",)) for i in range(3)]
-    for t in threads:
+    threads = []
+    for i in range(3):
+        t = threading.Thread(target=worker, args=(f"T-{i}",))
+        threads.append(t)
         t.start()
+    
     for t in threads:
         t.join()
 
@@ -138,10 +142,10 @@ def exercice_18_8():
     barrier = threading.Barrier(3)
     
     def phase1():
-        print(f"Phase 1 début ({threading.current_thread().name})")
+        print("Phase 1 début")
         time.sleep(0.1)
         barrier.wait()
-        print(f"Phase 1 fin ({threading.current_thread().name})")
+        print("Phase 1 fin")
     
     threads = [threading.Thread(target=phase1) for _ in range(3)]
     for t in threads:
@@ -154,18 +158,18 @@ def exercice_18_9():
     """Event."""
     event = threading.Event()
     
-    def attendent():
-        print("En attente...")
+    def attendre():
+        print("En attente de l'event...")
         event.wait()
         print("Event reçu!")
     
-    def declenche():
+    def declencher():
         time.sleep(1)
+        print("Déclenchement de l'event!")
         event.set()
-        print("Event déclenché")
     
-    t1 = threading.Thread(target=attendents)
-    t2 = threading.Thread(target=declenche)
+    t1 = threading.Thread(target=attendre)
+    t2 = threading.Thread(target=declencher)
     
     t1.start()
     t2.start()
@@ -176,11 +180,11 @@ def exercice_18_9():
 
 def exercice_18_10():
     """Timer."""
-    def message():
-        print("Message différé!")
+    def message_differe():
+        print("Ce message apparaît après 0.5 secondes!")
     
-    print("Démarrage timer...")
-    timer = threading.Timer(0.5, message)
+    print("Démarrage du timer...")
+    timer = threading.Timer(0.5, message_differe)
     timer.start()
     timer.join()
 
@@ -189,31 +193,34 @@ def exercice_18_11():
     """Semaphore."""
     semaphore = threading.Semaphore(2)
     
-    def acces(num):
+    def acces_ressource(num):
         with semaphore:
-            print(f"Thread {num}: Accès")
+            print(f"Thread {num}: Accès à la ressource")
             time.sleep(0.2)
-            print(f"Thread {num}: Fin")
+            print(f"Thread {num}: Fin de l'accès")
     
-    threads = [threading.Thread(target=acces, args=(i,)) for i in range(5)]
-    for t in threads:
+    threads = []
+    for i in range(5):
+        t = threading.Thread(target=acces_ressource, args=(i,))
+        threads.append(t)
         t.start()
+    
     for t in threads:
         t.join()
 
 
 def exercice_18_12():
-    """Future."""
-    def calcul(duree, nom):
+    """Callable Future."""
+    def calcul_long(duree, nom):
         time.sleep(duree)
-        return f"{nom}: {duree}s"
+        return f"{nom}: terminé après {duree}s"
     
     with ThreadPoolExecutor(max_workers=2) as executor:
-        f1 = executor.submit(calcul, 0.3, "T1")
-        f2 = executor.submit(calcul, 0.1, "T2")
+        f1 = executor.submit(calcul_long, 0.3, "Tâche 1")
+        f2 = executor.submit(calcul_long, 0.1, "Tâche 2")
         
-        print(f"T2: {f2.result()}")
-        print(f"T1: {f1.result()}")
+        print(f"Tâche 2 terminée: {f2.result()}")
+        print(f"Tâche 1 terminée: {f1.result()}")
 
 
 def exercice_18_13():
@@ -223,7 +230,11 @@ def exercice_18_13():
         return nom
     
     with ThreadPoolExecutor(max_workers=3) as executor:
-        futures = [executor.submit(tache, c, 0.1 * i) for i, c in enumerate("ABC")]
+        futures = [
+            executor.submit(tache, "A", 0.3),
+            executor.submit(tache, "B", 0.1),
+            executor.submit(tache, "C", 0.2),
+        ]
         
         for future in as_completed(futures):
             print(f"Terminé: {future.result()}")
@@ -236,12 +247,13 @@ def exercice_18_14():
         return "Résultat"
     
     def callback(future):
-        print(f"Callback: {future.result()}")
+        print(f"Callback: {future.result()} a terminé")
     
     with ThreadPoolExecutor() as executor:
-        f = executor.submit(tache)
-        f.add_done_callback(callback)
-        print(f"Main: {f.result()}")
+        future = executor.submit(tache)
+        future.add_done_callback(callback)
+        resultat = future.result()
+        print(f"Résultat: {resultat}")
 
 
 def exercice_18_15():
@@ -251,17 +263,26 @@ def exercice_18_15():
             self.fichiers = []
             self.lock = threading.Lock()
         
-        def telecharger(self, nom):
-            time.sleep(0.1)
+        def telecharger(self, nom, duree):
+            print(f"Téléchargement de {nom}...")
+            time.sleep(duree)
             with self.lock:
                 self.fichiers.append(nom)
-            print(f"{nom} téléchargé")
+            print(f"{nom} téléchargé!")
+        
+        def lister_fichiers(self):
+            with self.lock:
+                return self.fichiers.copy()
     
-    tel = Telechargeur()
-    threads = [threading.Thread(target=tel.telecharger, args=(f"f{i}.mp4",)) for i in range(3)]
-    for t in threads:
+    telechargeur = Telechargeur()
+    
+    threads = []
+    for i in range(3):
+        t = threading.Thread(target=telechargeur.telecharger, args=(f"fichier{i}.mp4", 0.2))
+        threads.append(t)
         t.start()
+    
     for t in threads:
         t.join()
     
-    print(f"Fichiers: {tel.fichiers}")
+    print(f"Fichiers téléchargés: {telechargeur.lister_fichiers()}")

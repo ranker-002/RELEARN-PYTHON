@@ -1,325 +1,285 @@
-# 📊 Python Mastery - Suivi de Progression
+# Python Mastery - Suivi de Progression
 
 ## Votre Parcours d'Apprentissage
 
 Cochez les chapitres terminés et notez vos observations.
 
+
 ---
 
-## Phase 1: Fondations
+## Module 1: Fondations Core
+
+**Prérequis**: Aucun | **Emplacement**: `MODULES/01_core_fondations/`
 
 ### Chapitre 1: Premiers Pas
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/01_core_fondations/01_premiers_pas/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 2: Variables & Types
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/01_core_fondations/02_variables_types/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 3: Opérateurs
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/01_core_fondations/03_operateurs/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 4: Contrôle de Flux
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/01_core_fondations/04_controle_flux/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
-
----
-
-## Phase 2: Structures de Données
+**Notes:**
 
 ### Chapitre 5: Boucles
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/01_core_fondations/05_boucles/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 6: Listes & Tuples
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/01_core_fondations/06_listes_tuples/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 7: Dictionnaires & Sets
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/01_core_fondations/07_dictionnaires_sets/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ---
 
-## Phase 3: Fonctions & Modularité
+## Module 2: Fonctions & POO
+
+**Prérequis**: Module 1 | **Emplacement**: `MODULES/02_fonctions_poo/`
 
 ### Chapitre 8: Fonctions
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/08_fonctions/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 9: Arguments Avancés
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/09_arguments_avances/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 10: Modules & Packages
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/10_modules_packages/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
-
----
-
-## Phase 4: Programmation Orientée Objet
+**Notes:**
 
 ### Chapitre 11: Classes & Objets
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/11_classes_objets/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 12: Héritage & Polymorphisme
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/12_heritage_polymorphisme/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 13: Propriétés & Méthodes Spéciales
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/13_proprietes_methodes_speciales/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ---
 
-## Phase 5: Gestion des Erreurs & Fichiers
+## Module 3: Robustesse & Fichiers
+
+**Prérequis**: Modules 1-2 | **Emplacement**: `MODULES/03_robustesse_fichiers/`
 
 ### Chapitre 14: Exceptions
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/14_exceptions/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 15: Fichiers I/O
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/15_fichiers_io/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
+**Notes:**
 
-```
-
-### Chapitre 16: Serialisation
-- [ ] Terminélire README.md
+### Chapitre 16: Sérialisation
+- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/16_serialisation/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ---
 
-## Phase 6: Concepts Avancés
+## Module 4: Concepts Avancés
+
+**Prérequis**: Modules 1-3 | **Emplacement**: `MODULES/04_concepts_avances/`
 
 ### Chapitre 17: Décorateurs & Générateurs
-- [ ] Terminélire README.md
+- [ ] Lu README.md (`MODULES/04_concepts_avances/17_decorateurs_generateurs/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 18: Programmation Concurrente
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/04_concepts_avances/18_programmation_concurrente/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ### Chapitre 19: Type Hinting
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/04_concepts_avances/19_type_hinting/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
-**Notes/Observations:**
-```
-
-```
+**Notes:**
 
 ---
 
-## Phase 7: Domaines Spécialisés
+## Module 5: Domaines Spécialisés
+
+**Prérequis**: Modules 1-4 | **Emplacement**: `MODULES/05_domaines_specifies/`
 
 ### Chapitre 20: Automation
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/20_automation_i/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 ### Chapitre 21: Web Scraping
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/21_web_scraping/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 ### Chapitre 22: Data Science
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/22_data_science/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 ### Chapitre 23: Visualisation
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/23_visualisation/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 ### Chapitre 24: Web Dev
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/24_web_dev/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 ### Chapitre 25: Machine Learning
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/25_machine_learning/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 ### Chapitre 26: Deep Learning
-- [ ] README.md créé
-- [ ] exercices.py créé
-- [ ] solutions.py créé
-- [ ] verification.py créé
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/26_deep_learning/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 ---
 
-## 📈 Projets Terminés
+## 🚀 PROJETS Terminés
 
-### Débutant
-- [ ] Calculatrice interactive
-- [ ] Convertisseur de devises
-- [ ] Générateur de mots de passe
-- [ ] Todo list CLI
-- [ ] Quiz interactif
+**Emplacement**: `PROJETS/`
 
-### Amateur
-- [ ] Gestionnaire de contacts
-- [ ] Convertisseur de fichiers
-- [ ] Programme de facturation
-- [ ] Carnet d'adresses
-- [ ] Analyseur de logs
+### Module 1: Fondations Core
+| Projet | Difficulté | Statut |
+|--------|------------|--------|
+| [Calculatrice CLI](./PROJETS/core_fondations/projet_01_calculatrice_cli/) | Débutant | [ ] |
+| [Gestionnaire de Tâches CLI](./PROJETS/core_fondations/projet_02_gestionnaire_taches_cli/) | Intermédiaire | [ ] |
 
-### Intermédiaire
-- [ ] Système de blog CLI
-- [ ] Jeu RPG textuel
-- [ ] Gestionnaire de tâches
-- [ ] Parser de configuration
+### Module 2: Fonctions & POO
+| Projet | Difficulté | Statut |
+|--------|------------|--------|
+| [Système Bancaire](./PROJETS/fonctions_poo/projet_01_systeme_bancaire/) | Intermédiaire | [ ] |
+| [Gestionnaire de Contacts](./PROJETS/fonctions_poo/projet_02_gestionnaire_contacts/) | Intermédiaire | [ ] |
 
-### Avancé
-- [ ] API REST complète
-- [ ] Bot Discord
-- [ ] Scraper intelligent
+### Module 3: Robustesse & Fichiers
+| Projet | Difficulté | Statut |
+|--------|------------|--------|
+| [Gestionnaire de Fichiers](./PROJETS/robustesse_fichiers/projet_01_gestionnaire_fichiers/) | Intermédiaire | [ ] |
+| [Sauvegarde Automatique](./PROJETS/robustesse_fichiers/projet_02_sauvegarde_automatique/) | Intermédiaire | [ ] |
 
-### Expert
-- [ ] Dashboard Data Science
-- [ ] Système de recommandation
-- [ ] Classification d'images
+### Module 4: Concepts Avancés
+| Projet | Difficulté | Statut |
+|--------|------------|--------|
+| [Générateur de Rapports](./PROJETS/concepts_avances/projet_01_generateur_rapports/) | Avancé | [ ] |
+| [Pipeline de Données](./PROJETS/concepts_avances/projet_02_pipeline_donnees/) | Avancé | [ ] |
+
+### Module 5: Domaines Spécialisés
+| Projet | Difficulté | Statut |
+|--------|------------|--------|
+| [Automatisation Rapports](./PROJETS/automation/projet_01_automatisation_rapports/) | Avancé | [ ] |
+| [Suivi Compétitions](./PROJETS/automation/projet_02_suivi_competitions/) | Avancé | [ ] |
+| [Agrégateur d'Actualités](./PROJETS/web_scraping/projet_01_aggregateur_actualites/) | Avancé | [ ] |
+| [Analyseur de Prix](./PROJETS/web_scraping/projet_02_analyseur_prix/) | Avancé | [ ] |
+| [Analyse Exploratoire](./PROJETS/data_science/projet_01_analyse_exploratoire/) | Avancé | [ ] |
+| [Dashboard Analytique](./PROJETS/data_science/projet_02_tableau_bord_analytique/) | Expert | [ ] |
+| [Visualisation de Données](./PROJETS/visualisation/projet_01_visualisation_donnees/) | Avancé | [ ] |
+| [Rapports Graphiques](./PROJETS/visualisation/projet_02_rapports_graphiques/) | Expert | [ ] |
+| [API REST](./PROJETS/web_dev/projet_01_api_rest/) | Avancé | [ ] |
+| [Application Todo](./PROJETS/web_dev/projet_02_application_todo/) | Intermédiaire | [ ] |
+| [Modèle Prédiction](./PROJETS/machine_learning/projet_01_modele_prediction/) | Expert | [ ] |
+| [Classification](./PROJETS/machine_learning/projet_02_classification/) | Expert | [ ] |
+| [Réseau Neurones](./PROJETS/deep_learning/projet_01_reseau_neurones/) | Expert | [ ] |
+| [Classification Images](./PROJETS/deep_learning/projet_02_classification_images/) | Expert | [ ] |
 
 ---
 
-## 🎯 Compétences Acquises
+## 📈 Compétences Acquises
 
 ### Langage Python
 - [ ] Syntaxe de base
@@ -341,36 +301,35 @@ Cochez les chapitres terminés et notez vos observations.
 
 ---
 
+## 🎉 Objectifs Atteints
+
+- [ ] Terminer Module 1 (Fondations Core)
+- [ ] Terminer Module 2 (Fonctions & POO)
+- [ ] Terminer Module 3 (Robustesse & Fichiers)
+- [ ] Terminer Module 4 (Concepts Avancés)
+- [ ] Terminer Module 5 (Domaines Spécialisés)
+- [ ] Compléter au moins 5 projets
+- [ ] Compléter au moins 10 projets
+- [ ] Compléter tous les projets
+- [ ] Devenir Expert Python !
+
+---
+
 ## 📅 Historique de Progression
 
-| Date | Chapitre | Temps consacré | Difficulté |
-|------|----------|----------------|------------|
-|      |          |                |            |
-|      |          |                |            |
-|      |          |                |            |
-|      |          |                |            |
-|      |          |                |            |
+| Date | Module/Chapitre | Temps | Difficulté |
+|------|----------------|-------|-----------|
+|      |                |       |           |
+|      |                |       |           |
+|      |                |       |           |
 
 ---
 
 ## 💪 Points à Revisiter
 
-Notez les chapitres ou concepts à réviser:
-
 ```
-
 ```
 
 ---
 
-## 🎉 Objectifs Atteints
-
-- [ ] Terminer Phase 1 (Fondations)
-- [ ] Terminer Phase 2 (Structures de données)
-- [ ] Terminer Phase 3 (Fonctions & Modularité)
-- [ ] Terminer Phase 4 (POO)
-- [ ] Terminer Phase 5 (Erreurs & Fichiers)
-- [ ] Terminer Phase 6 (Concepts avancés)
-- [ ] Terminer Phase 7 (Spécialisations)
-- [ ] Compléter tous les projets
-- [ ] Devenir Expert Python !
+*Dernière mise à jour: Structure migrée vers MODULES + PROJETS*

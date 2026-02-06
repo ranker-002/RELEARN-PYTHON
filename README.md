@@ -6,65 +6,100 @@ Ce projet est conçu pour vous accompagner d'un niveau débutant jusqu'à une ex
 
 ---
 
-## 🗺️ Structure du Parcours
+## Structure du Projet
 
-### Phase 1: Fondations (Chapitres 1-4)
-*Comprendre les bases du langage*
+```
+RELEARN-PYTHON/
+├── MODULES/              # Contenu pédagogique structuré
+│   ├── 01_core_fondations/       # Phases 1-2: Bases + Structures
+│   ├── 02_fonctions_poo/        # Phases 3-4: Fonctions + OOP
+│   ├── 03_robustesse_fichiers/   # Phase 5: Exceptions + I/O
+│   ├── 04_concepts_avances/      # Phase 6: Techniques expertes
+│   └── 05_domaines_specifies/    # Phase 7: Applications pro
+│
+├── PROJETS/              # Projets concrets et utiles
+│   ├── core_fondations/
+│   ├── fonctions_poo/
+│   ├── robustesse_fichiers/
+│   ├── concepts_avances/
+│   ├── automation/
+│   ├── web_scraping/
+│   ├── data_science/
+│   ├── visualisation/
+│   ├── web_dev/
+│   ├── machine_learning/
+│   └── deep_learning/
+│
+├── relearn_python/       # Package utilitaire
+├── progres_apprentissage.md  # Suivi de progression
+└── README.md
+```
 
-| Chapitre | Titre | Objectif |
-|----------|-------|----------|
-| 01 | Premiers Pas | Installer Python, configurer VS Code, écrire votre premier script |
-| 02 | Variables & Types | Manipuler les types de données fondamentaux |
-| 03 | Opérateurs | Effectuer des calculs et comparisons |
-| 04 | Contrôle de Flux | Prendre des décisions dans votre code |
+---
 
-### Phase 2: Structures de Données (Chapitres 5-7)
-*Organiser et manipuler des collections*
+## Parcours en 5 Modules
 
-| Chapitre | Titre | Objectif |
-|----------|-------|----------|
-| 05 | Boucles | Répéter des actions efficacement |
-| 06 | Listes & Tuples | Stocker des séquences ordonnées |
-| 07 | Dictionnaires & Sets | Utiliser des associations clé-valeur |
+### Module 1: Fondations Core
+*Comprendre les bases absolues du langage*
 
-### Phase 3: Fonctions & Modularité (Chapitres 8-10)
-*Écrire du code réutilisable et organisé*
+| Chapitre | Titre | Contenu |
+|----------|-------|---------|
+| 01 | Premiers Pas | Installation, premier script, variables |
+| 02 | Variables & Types | int, float, str, bool |
+| 03 | Opérateurs | Arithmétiques, comparisons, logiques |
+| 04 | Contrôle de Flux | if, elif, else |
+| 05 | Boucles | for, while, range |
+| 06 | Listes & Tuples | Séquences ordonnées |
+| 07 | Dictionnaires & Sets | Associations clé-valeur |
 
-| Chapitre | Titre | Objectif |
-|----------|-------|----------|
-| 08 | Fonctions | Créer des blocs de code réutilisables |
-| 09 | Arguments Avancés | Maîtriser les paramètres flexibles |
-| 10 | Modules & Packages | Organiser et importer du code |
+[**Accéder au module**](MODULES/01_core_fondations/README_MODULE.md)
 
-### Phase 4: Programmation Orientée Objet (Chapitres 11-13)
-*Modéliser des objets du monde réel*
+---
 
-| Chapitre | Titre | Objectif |
-|----------|-------|----------|
-| 11 | Classes & Objets | Définir vos propres types de données |
-| 12 | Héritage & Polymorphisme | Créer des relations entre classes |
-| 13 | Propriétés & Méthodes Spéciales | Person le comportement des objets |
+### Module 2: Fonctions & Programmation Orientée Objet
+*Écrire du code réutilisable et modéliser le monde réel*
 
-### Phase 5: Gestion des Erreurs & Fichiers (Chapitres 14-16)
-*Manipuler les entrées/sorties robustement*
+| Chapitre | Titre | Contenu |
+|----------|-------|---------|
+| 08 | Fonctions | def, return, portée |
+| 09 | Arguments Avancés | *args, **kwargs |
+| 10 | Modules & Packages | import, __init__.py |
+| 11 | Classes & Objets | class, __init__, self |
+| 12 | Héritage | super(), polymorphism |
+| 13 | Méthodes Spéciales | __str__, __eq__, properties |
 
-| Chapitre | Titre | Objectif |
-|----------|-------|----------|
-| 14 | Exceptions | Gérer les erreurs gracieusement |
-| 15 | Fichiers I/O | Lire et écrire des fichiers |
-| 16 | Serialisation | Stocker et partager des données |
+[**Accéder au module**](MODULES/02_fonctions_poo/README_MODULE.md)
 
-### Phase 6: Concepts Avancés (Chapitres 17-19)
-*Techniques expertes*
+---
 
-| Chapitre | Titre | Objectif |
-|----------|-------|----------|
-| 17 | Décorateurs & Générateurs | Patterns avancés |
-| 18 | Programmation Concurrente | Paralléliser les tâches |
-| 19 | Type Hinting | Annotations de types |
+### Module 3: Robustesse & Gestion de Fichiers
+*Manipuler les entrées/sorties de manière professionnelle*
 
-### Phase 7: Domaines Spécialisés (Chapitres 20-26)
-*Applications professionnelles*
+| Chapitre | Titre | Contenu |
+|----------|-------|---------|
+| 14 | Exceptions | try, except, raise, finally |
+| 15 | Fichiers I/O | open, read, write, pathlib |
+| 16 | Sérialisation | JSON, CSV, Pickle |
+
+[**Accéder au module**](MODULES/03_robustesse_fichiers/README_MODULE.md)
+
+---
+
+### Module 4: Concepts Avancés
+*Techniques qui différencient un développeur expert*
+
+| Chapitre | Titre | Contenu |
+|----------|-------|---------|
+| 17 | Décorateurs & Générateurs | @decorator, yield, itertools |
+| 18 | Programmation Concurrente | threading, asyncio |
+| 19 | Type Hinting | annotations, mypy |
+
+[**Accéder au module**](MODULES/04_concepts_avances/README_MODULE.md)
+
+---
+
+### Module 5: Domaines Spécialisés
+*Applications professionnelles de Python*
 
 | Chapitre | Domaine | Contenu |
 |----------|---------|---------|
@@ -76,14 +111,39 @@ Ce projet est conçu pour vous accompagner d'un niveau débutant jusqu'à une ex
 | 25 | Machine Learning | Scikit-learn |
 | 26 | Deep Learning | PyTorch |
 
+[**Accéder au module**](MODULES/05_domaines_specifies/README_MODULE.md)
+
+---
+
+## 🚀 Projets Concrets
+
+Appliquez vos connaissances avec des projets **réels et utiles** pour votre portfolio.
+
+| Module | Projet | Difficulté | Prérequis |
+|--------|--------|------------|-----------|
+| **Core** | [Calculatrice CLI](./PROJETS/core_fondations/projet_01_calculatrice_cli/) | Débutant | Ch. 01-04 |
+| **Core** | [Gestionnaire de Tâches](./PROJETS/core_fondations/projet_02_gestionnaire_taches_cli/) | Intermédiaire | Ch. 01-07 |
+| **Fonctions POO** | [Système Bancaire](./PROJETS/fonctions_poo/projet_01_systeme_bancaire/) | Intermédiaire | Ch. 08-11 |
+| **Fonctions POO** | [Gestionnaire Contacts](./PROJETS/fonctions_poo/projet_02_gestionnaire_contacts/) | Intermédiaire | Ch. 08-13 |
+| **Robustesse** | [Gestionnaire Fichiers](./PROJETS/robustesse_fichiers/projet_01_gestionnaire_fichiers/) | Intermédiaire | Ch. 14-15 |
+| **Robustesse** | [Sauvegarde Auto](./PROJETS/robustesse_fichiers/projet_02_sauvegarde_automatique/) | Intermédiaire | Ch. 14-16 |
+| **Concepts** | [Générateur Rapports](./PROJETS/concepts_avances/projet_01_generateur_rapports/) | Avancé | Ch. 17-19 |
+| **Automation** | [Automatisation Rapports](./PROJETS/automation/projet_01_automatisation_rapports/) | Avancé | Ch. 20 |
+| **Web Scraping** | [Agrégateur Actualités](./PROJETS/web_scraping/projet_01_aggregateur_actualites/) | Avancé | Ch. 21 |
+| **Data Science** | [EDA Dataset](./PROJETS/data_science/projet_01_analyse_exploratoire/) | Avancé | Ch. 22 |
+| **Web Dev** | [API REST](./PROJETS/web_dev/projet_01_api_rest/) | Avancé | Ch. 24 |
+| **ML** | [Modèle Prédiction](./PROJETS/machine_learning/projet_01_modele_prediction/) | Expert | Ch. 25 |
+| **DL** | [Classification Images](./PROJETS/deep_learning/projet_02_classification_images/) | Expert | Ch. 26 |
+
+[**Voir tous les projets**](PROJETS/README_GLOBAL.md)
+
 ---
 
 ## 🚀 Démarrage Rapide
 
-### 1. Installation
+### Installation
 
 ```bash
-# Cloner ou télécharger le projet
 cd relearn-python
 
 # Installer uv (gestionnaire Python ultra-rapide)
@@ -93,12 +153,11 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv sync
 ```
 
-### 2. Utilisation
+### Utilisation
 
 ```bash
-# Activer l'environnement virtuel (optionnel)
+# Activer l'environnement virtuel
 source .venv/bin/activate  # Linux/Mac
-# .venv\Scripts\activate     # Windows
 
 # Exécuter un fichier Python
 uv run python script.py
@@ -107,7 +166,7 @@ uv run python script.py
 just run script.py
 ```
 
-### 3. Commandes Utiles
+### Commandes Utiles
 
 | Action | Commande |
 |--------|----------|
@@ -119,68 +178,6 @@ just run script.py
 | Vérif complète | `just check` |
 | Ouvrir shell | `just shell` |
 | Lister deps | `just deps` |
-| Mettre à jour | `just update` |
-| Nettoyer | `just clean` |
-
----
-
-## 📚 Structure des Chapitres
-
-Chaque chapitre suit cette structure:
-
-```
-CHAPITRE_XX/
-├── README.md              # Théorie + exemples
-├── exercices.py           # Énoncés vierges
-├── solutions.py           # Corrections commentées
-├── exemples/              # Scripts supplémentaires
-└── verification.py       # Tests optionnels
-```
-
----
-
-## 📊 Suivi de Progression
-
-Editez le fichier `progres_apprentissage.md` pour suivre votre avancement:
-
-```markdown
-## Votre Progression
-
-### Phase 1: Fondations
-- [x] Chapitre 1: Premiers Pas
-- [ ] Chapitre 2: Variables & Types
-- [ ] Chapitre 3: Opérateurs
-- [ ] Chapitre 4: Contrôle de Flux
-```
-
----
-
-## 🎯 Projets par Niveau
-
-### Débutant
-- Calculatrice interactive
-- Convertisseur de devises
-- Générateur de mots de passe
-
-### Amateur
-- Todo list CLI
-- Gestionnaire de contacts
-- Analyseur de texte
-
-### Intermédiaire
-- Jeu RPG textuel
-- Système de blog avec sauvegardes
-- Parser de configuration
-
-### Avancé
-- API REST complète
-- Bot Discord
-- Scraper intelligent
-
-### Expert
-- Dashboard Data Science
-- Système de recommandation
-- Classification d'images IA
 
 ---
 
@@ -188,13 +185,7 @@ Editez le fichier `progres_apprentissage.md` pour suivre votre avancement:
 
 Les dépendances sont gérées via `uv` et définies dans `pyproject.toml`.
 
-### Installation minimale (recommandé pour commencer)
-
-```bash
-uv sync
-```
-
-### Installation par phase
+### Installation par groupe
 
 ```bash
 # Core - numpy, pandas, matplotlib
@@ -206,7 +197,7 @@ uv sync --extra web
 # Automation - beautifulsoup4, selenium
 uv sync --extra automation
 
-# Data - scikit-learn, openpyxl, pillow
+# Data - scikit-learn, openpyxl
 uv sync --extra data
 
 # AI - torch, torchvision (lourd!)
@@ -219,64 +210,36 @@ uv sync --extra core --extra web --extra automation --extra data --extra ai
 uv sync --extra dev
 ```
 
-### Dépendances par Groupe
-
-| Groupe | Packages | Chapitres |
-|--------|----------|-----------|
-| **Core** | requests, pyyaml, tabulate, tqdm | 1-4 |
-| **+Data** | numpy, pandas, matplotlib | 22-23 |
-| **+Web** | flask, fastapi, uvicorn, jinja2 | 24 |
-| **+Automation** | beautifulsoup4, selenium, webdriver-manager | 20-21 |
-| **+ML/AI** | scikit-learn, torch, torchvision | 25-26 |
-| **Dev** | pytest, black, ruff | Tous |
-
 ---
 
-### Utiliser le package `relearn_python`
+## 📊 Suivi de Progression
 
-Après installation, importez les utilitaires:
-
-```python
-from relearn_python import (
-    demander_nombre,
-    demander_float,
-    afficher_titre,
-    valider_email,
-    est_entier,
-)
-```
+Éditez `progres_apprentissage.md` pour suivre votre avancement dans les modules et projets.
 
 ---
 
 ## 📖 Conventions de Code
 
 ### Nommage
-- **Variables/Fonctions**: `snake_case` (ex: `calculate_total`, `user_name`)
-- **Classes**: `PascalCase` (ex: `BankAccount`, `GamePlayer`)
+- **Variables/Fonctions**: `snake_case` (ex: `calculate_total`)
+- **Classes**: `PascalCase` (ex: `BankAccount`)
 - **Constantes**: `UPPER_SNAKE_CASE` (ex: `MAX_CONNECTIONS`)
-
-### Commentaires
-- Comments en **français** acceptés
-- Docstrings pour toutes les fonctions publiques
-- Expliquer le "pourquoi", pas le "quoi"
 
 ### Style
 - Suivre PEP 8
 - Longueur de ligne max: 88 caractères (Black)
-- Type hints recommandés à partir du Chapitre 19
+- Type hints recommandés à partir du Module 4
 
 ---
 
 ## 🆘 Aide et Ressources
 
-### Si vous êtes bloqué
-
 1. Relire la section "Points Clés à Retenir" du chapitre
-2. Examiner les exemples dans `exemples/`
-3. Consulter la solution dans `solutions/`
+2. Examiner les exemples dans le dossier du chapitre
+3. Consulter la solution dans `solutions.py`
 4. Utiliser `verification.py` pour valider votre code
 
-### Ressources Externes
+**Ressources externes**:
 - [Documentation Python](https://docs.python.org/fr/3/)
 - [Real Python](https://realpython.com/)
 - [Stack Overflow](https://stackoverflow.com/)
@@ -289,4 +252,4 @@ Ce projet est fait pour l'apprentissage personnel. Partagez-le librement !
 
 ---
 
-**Bonne chance dans votre apprentissage Python ! 🐍
+**Bonne chance dans votre apprentissage Python ! 🐍**

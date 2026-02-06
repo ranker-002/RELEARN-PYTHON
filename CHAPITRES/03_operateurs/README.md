@@ -1,18 +1,22 @@
-# Chapitre 3: Opérateurs
+# Chapitre 3 : Les Opérateurs - Faire des Calculs et des Comparaisons
 
-## Ce que vous allez apprendre
+## Introduction : C'est quoi un opérateur ?
 
-- Opérateurs arithmétiques
-- Opérateurs de comparaison
-- Opérateurs d'appartenance
-- Opérateurs logiques
-- Opérateurs bit à bit
-- Priorité des opérateurs
-- Combinaison d'opérateurs
+Un opérateur est comme un verbe en français : il décrit une action à effectuer. Par exemple, "+" est l'opérateur qui dit "additionne ces deux nombres".
+
+Python a plusieurs kinds d'opérateurs :
+- **Arithmétiques** : pour faire des calculs
+- **Comparaison** : pour comparer des valeurs
+- **Logiques** : pour combiner des conditions
+- **Appartenance** : pour vérifier si quelque chose est dans une liste
 
 ---
 
-## 1. Opérateurs Arithmétiques
+## 1. Les opérateurs arithmétiques
+
+Ce sont les opérateurs mathématiques de base, ceux que tu connais de l'école !
+
+### Les opérateurs de base
 
 ```python
 # Addition
@@ -24,274 +28,164 @@ b = 10 - 5    # 5
 # Multiplication
 c = 10 * 5    # 50
 
-# Division (toujours float)
-d = 10 / 5    # 2.0
+# Division
+d = 10 / 5    # 2.0 (toujours un nombre décimal en Python !)
+```
 
-# Division entière (arrondi vers le bas)
-e = 10 // 3   # 3
+### La division entière et le modulo
 
-# Modulo (reste de la division)
-f = 10 % 3    # 1
+```python
+# Division entière (arrondit vers le bas)
+e = 10 // 3   # 3 (ignorer le reste)
 
-# Puissance
-g = 2 ** 10   # 1024
+# Modulo (le reste de la division)
+f = 10 % 3    # 1 (car 10 = 3×3 + 1)
 
-# Opérateurs augmentés
-x = 10
-x += 5        # x = x + 5 (équivalent à x = 15)
-x -= 3        # x = x - 3
-x *= 2        # x = x * 2
-x /= 4        # x = x / 4
-x //= 2       # x = x // 2
-x %= 3        # x = x % 3
-x **= 2       # x = x ** 2
+# Puissance (exponentiation)
+g = 2 ** 10   # 1024 (2 à la puissance 10)
+h = 5 ** 2    # 25 (5 au carré)
+```
+
+### À quoi ça sert dans la vraie vie ?
+
+```python
+# Vérifier si un nombre est pair
+nombre = 17
+if nombre % 2 == 0:
+    print(f"{nombre} est pair")
+else:
+    print(f"{nombre} est impair")
+
+# Faire des groupes
+total = 23
+groupes_de_5 = total // 5    # 4 groupes complets
+reste = total % 5           # 3 éléments restants
 ```
 
 ---
 
-## 2. Opérateurs de Comparaison
+## 2. Les opérateurs de comparaison
+
+Ces opérateurs comparent deux valeurs et renvoient `True` ou `False`.
 
 ```python
 a = 10
 b = 5
 
-# Égal
-a == b        # False
+# Égal à
+print(a == b)    # False
 
-# Différent
-a != b        # True
+# Différent de
+print(a != b)    # True
 
-# Strictement supérieur
-a > b         # True
+# Plus grand que
+print(a > b)     # True
 
-# Strictement inférieur
-a < b         # False
+# Plus petit que
+print(a < b)     # False
 
-# Supérieur ou égal
-a >= b        # True
+# Plus grand ou égal
+print(a >= 10)   # True
 
-# Inférieur ou égal
-a <= b        # False
+# Plus petit ou égal
+print(a <= 10)   # True
+```
 
-# Comparaison de chaînes
-"apple" < "banana"  # True (ordre alphabétique)
-"Python" == "python"  # False (sensibilité à la casse)
+### Comparer des chaînes
+
+```python
+# Les chaînes se comparent par ordre alphabétique
+print("apple" < "banana")   # True (a < b)
+print("chat" == "Chien")   # False (les majuscules comptent !)
+
+# Pour comparer sans tenir compte de la casse
+print("apple".lower() == "Apple".lower())  # True
 ```
 
 ---
 
-## 3. Opérateurs d'Appartenance
+## 3. Les opérateurs logiques
+
+Ces opérateurs combinent plusieurs conditions.
 
 ```python
-# Vérifie si une valeur est dans une séquence
-fruits = ["pomme", "orange", "banane"]
+a = True
+b = False
 
-"pomme" in fruits        # True
-"raisin" in fruits       # False
+# ET (and) : Les deux doivent être vrais
+print(a and b)    # False (un seul est vrai)
 
-# Avec negation
-"raisin" not in fruits   # True
+# OU (or) : Au moins un doit être vrai
+print(a or b)     # True
 
-# Dans une chaîne
-mot = "programmation"
-"gram" in mot            # True
-"z" in mot               # False
-
-# Dans un dictionnaire (vérifie les clés)
-scores = {"Alice": 85, "Bob": 92}
-"Alice" in scores        # True
-85 in scores             # False (85 est une valeur, pas une clé)
+# NON (not) : Inverse la valeur
+print(not a)      # False
 ```
 
----
-
-## 4. Opérateurs Logiques
+### Exemple concret
 
 ```python
-x = True
-y = False
-
-# AND: True si les deux sont True
-x and y          # False
-
-# OR: True si au moins un est True
-x or y           # True
-
-# NOT: inverse la valeur
-not x            # False
-not y            # True
-
-# Utilisation pratique
 age = 25
-revenu = 50000
+avec_permis = True
 
-if age >= 18 and revenu >= 30000:
-    print("Éligible")
+# Peut-il conduire ?
+peut_conduire = age >= 18 and avec_permis  # True
 
-if age < 18 or age > 65:
-    print("Catégorie speciale")
-
-if not (age < 18):
-    print("Adulte")
+# Peut-il voter ? (18+ ET citoyen)
+peut_voter = age >= 18  # et citizen == True (simplifié)
 ```
 
 ---
 
-## 5. Opérateurs Bit à Bit
+## 4. Les opérateurs d'appartenance
+
+Ces opérateurs vérifient si une valeur est présente dans une séquence.
 
 ```python
-# Travaillent sur les représentations binaires
+# in : Est présent dans
+fruits = ["pomme", "banane", "orange"]
+print("pomme" in fruits)     # True
+print("raisin" in fruits)    # False
 
-a = 5      # 0b0101
-b = 3      # 0b0011
-
-# AND bit à bit
-a & b      # 0b0001 = 1
-
-# OR bit à bit
-a | b      # 0b0111 = 7
-
-# XOR (OU exclusif)
-a ^ b      # 0b0110 = 6
-
-# NOT (inversion bit à bit)
-~a         # -6 (complément à deux)
-
-# Décalage à gauche (multiplication par 2^n)
-a << 1     # 0b1010 = 10
-
-# Décalage à droite (division par 2^n)
-a >> 1     # 0b0010 = 2
-
-# Cas d'usage: vérifier si un bit est activé
-def check_bit(n, bit_position):
-    return (n >> bit_position) & 1 == 1
-
-check_bit(5, 0)  # True (bit 0 de 5 est 1)
-check_bit(5, 1)  # False (bit 1 de 5 est 0)
+# not in : N'est pas présent dans
+print("raisin" not in fruits)  # True
 ```
 
 ---
 
-## 6. Priorité des Opérateurs
+## 5. Priorité des opérateurs
+
+Python évalue les opérateurs dans un ordre précis (comme en maths) :
 
 ```python
-# De la plus haute à la plus basse priorité:
+# La multiplication avant l'addition
+resultat = 2 + 3 * 4   # 14 (2 + 12), pas 20 !
 
-# 1. ()
-# 2. **
-# 3. +x, -x, ~x (unaire)
-# 4. *, /, //, %
-# 5. +, - (binaire)
-# 6. <<, >>
-# 7. &
-# 8. ^
-# 9. |
-# 10. ==, !=, >, <, >=, <=, is, is not, in, not in
-# 11. not
-# 12. and
-# 13. or
+# Forcer l'ordre avec parenthèses
+resultat = (2 + 3) * 4   # 20
 
-# Exemples
-resultat = 2 + 3 * 4        # 14 (multiplication avant addition)
-resultat = (2 + 3) * 4      # 20 (parentèses prioritaires)
-resultat = 10 - 2 + 5       # 13 (même priorité: gauche à droite)
-resultat = 2 ** 3 ** 2      # 512 (droite à gauche: 2 ** (3 ** 2))
+# Priorité (de la plus haute à la plus basse) :
+# 1. ** (puissance)
+# 2. * / // % (multiplication, division)
+# 3. + - (addition, soustraction)
 ```
 
 ---
 
-## 7. Valeurs "Truthy" et "Falsy"
+## Erreurs courantes
 
 ```python
-# Valeurs considérées comme False:
-bool(False)      # False
-bool(None)       # False
-bool(0)          # False
-bool(0.0)        # False
-bool("")         # False
-bool([])         # False
-bool({})         # False
-bool(set())      # False
-bool(range(0))   # False
-
-# Toutes les autres valeurs sont True:
-bool(1)          # True
-bool(-1)         # True
-bool("a")        # True
-bool([1, 2])     # True
-bool({"a": 1})   # True
-
-# Utilisation pratique
-def afficher_si_non_vide(texte):
-    if texte:  # Équivalent à "if texte != ''"
-        print(f"Texte: {texte}")
-```
-
----
-
-## 8. Combinaison Pratique
-
-```python
-# Vérifier si un nombre est dans une plage
-def dans_plage(valeur, min_val, max_val):
-    return min_val <= valeur <= max_val
-
-# Vérifier les conditions multiples
-def peut_conduire(age, permis):
-    return age >= 18 and permis
-
-# Chaîne de comparaisons (Python 3)
-score = 75
-10 < score < 100        # True
--5 < score < 0          # False
-
-# Opérateurs ternaires combinés
-statut = "Adulte" if 18 <= age < 65 else "Senior" if age >= 65 else "Mineur"
-```
-
----
-
-## Points Clés à Retenir
-
-| Catégorie | Opérateurs |
-|-----------|------------|
-| Arithmétiques | `+`, `-`, `*`, `/`, `//`, `%`, `**` |
-| Comparaison | `==`, `!=`, `>`, `<`, `>=`, `<=` |
-| Appartenance | `in`, `not in` |
-| Logiques | `and`, `or`, `not` |
-| Bit à bit | `&`, `|`, `^`, `~`, `<<`, `>>` |
-| Augmentés | `+=`, `-=`, `*=`, etc. |
-
----
-
-## Erreurs Courantes
-
-```python
-# ERREUR: Confondre = et ==
-if x = 5:      # SyntaxError!
+# ERREUR : Confondre = et ==
+if age = 18:   # ERREUR !
     pass
 
-# CORRECT
-if x == 5:
+if age == 18:  # CORRECT
     pass
-
-# ERREUR: Comparer des types différents
-"5" == 5       # False (string vs int)
-
-# CORRECT
-int("5") == 5  # True
-"5" == "5"     # True
-
-# ERREUR: Oublier la priorité
-total = 10 + 5 * 2   # 20 (pas 30!)
-
-# CORRECT
-total = (10 + 5) * 2  # 30
 ```
 
 ---
 
-## Prochain Chapitre
+## Exercices
 
-Dans le chapitre suivant, vous découvrirez le **contrôle de flux** avec les conditions if/elif/else et le matching.
+1. Calcule l'aire d'un cercle (π × r²)
+2. Vérifie si un nombre est divisible par 3 et par 5

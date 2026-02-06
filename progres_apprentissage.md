@@ -16,30 +16,18 @@ Cochez les chapitres terminés et notez vos observations.
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 2: Variables & Types
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
-
-### Chapitre 3: Opérateurs
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
-
-### Chapitre 4: Contrôle de Flux
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
+- [ ] Terminélire README.md
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 3: Opérateurs
@@ -50,7 +38,7 @@ _________________________________________________________________
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 4: Contrôle de Flux
@@ -61,7 +49,7 @@ _________________________________________________________________
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ---
@@ -69,36 +57,36 @@ _________________________________________________________________
 ## Phase 2: Structures de Données
 
 ### Chapitre 5: Boucles
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
+- [ ] Terminélire README.md
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 6: Listes & Tuples
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
+- [ ] Terminélire README.md
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 7: Dictionnaires & Sets
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
+- [ ] Terminélire README.md
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ---
@@ -106,36 +94,36 @@ _________________________________________________________________
 ## Phase 3: Fonctions & Modularité
 
 ### Chapitre 8: Fonctions
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
+- [ ] Terminélire README.md
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 9: Arguments Avancés
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
+- [ ] Terminélire README.md
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 10: Modules & Packages
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
+- [ ] Terminélire README.md
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ---
@@ -143,17 +131,14 @@ _________________________________________________________________
 ## Phase 4: Programmation Orientée Objet
 
 ### Chapitre 11: Classes & Objets
-- [x] README.md créé
-- [x] exercices.py créé (15 exercices)
-- [x] solutions.py créé
-- [x] verification.py créé
+- [ ] Terminélire README.md
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
 
-### Chapitre 12: Héritage & Polymorphisme
-- [ ] À faire
+**Notes/Observations:**
+```
 
-### Chapitre 13: Propriétés & Méthodes Spéciales
-- [ ] À faire
-_________________________________________________________________
 ```
 
 ### Chapitre 12: Héritage & Polymorphisme
@@ -164,7 +149,7 @@ _________________________________________________________________
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 13: Propriétés & Méthodes Spéciales
@@ -173,9 +158,9 @@ _________________________________________________________________
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-**Notes/Obsenvations:**
+**Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ---
@@ -190,7 +175,7 @@ _________________________________________________________________
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 15: Fichiers I/O
@@ -201,7 +186,7 @@ _________________________________________________________________
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 16: Serialisation
@@ -212,7 +197,7 @@ _________________________________________________________________
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ---
@@ -227,111 +212,76 @@ _________________________________________________________________
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 18: Programmation Concurrente
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ### Chapitre 19: Type Hinting
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
 **Notes/Observations:**
 ```
-_________________________________________________________________
+
 ```
 
 ---
 
 ## Phase 7: Domaines Spécialisés
 
-### Chapitre 20: Automation I
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
-
-**Notes/Observations:**
-```
-_________________________________________________________________
-```
+### Chapitre 20: Automation
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
 ### Chapitre 21: Web Scraping
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
-**Notes/Observations:**
-```
-_________________________________________________________________
-```
-
-### Chapitre 22: Data Science I
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
-
-**Notes/Observations:**
-```
-_________________________________________________________________
-```
+### Chapitre 22: Data Science
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
 ### Chapitre 23: Visualisation
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
-
-**Notes/Observations:**
-```
-_________________________________________________________________
-```
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
 ### Chapitre 24: Web Dev
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
-
-**Notes/Observations:**
-```
-_________________________________________________________________
-```
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
 ### Chapitre 25: Machine Learning
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
-
-**Notes/Observations:**
-```
-_________________________________________________________________
-```
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
 ### Chapitre 26: Deep Learning
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
-
-**Notes/Observations:**
-```
-_________________________________________________________________
-```
+- [ ] README.md créé
+- [ ] exercices.py créé
+- [ ] solutions.py créé
+- [ ] verification.py créé
 
 ---
 
@@ -408,10 +358,7 @@ _________________________________________________________________
 Notez les chapitres ou concepts à réviser:
 
 ```
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
-_________________________________________________________________
+
 ```
 
 ---

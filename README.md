@@ -87,7 +87,7 @@ Ce projet est conçu pour vous accompagner d'un niveau débutant jusqu'à une ex
 cd relearn-python
 
 # Installer uv (gestionnaire Python ultra-rapide)
-curl -LsSf https://astral.sh/uv | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Installer les dépendances
 uv sync
@@ -188,26 +188,63 @@ Editez le fichier `progres_apprentissage.md` pour suivre votre avancement:
 
 Les dépendances sont gérées via `uv` et définies dans `pyproject.toml`.
 
-### Installation
+### Installation minimale (recommandé pour commencer)
 
 ```bash
-# Core (inclus par défaut)
 uv sync
+```
 
-# Avec outils de développement
+### Installation par phase
+
+```bash
+# Core - numpy, pandas, matplotlib
+uv sync --extra core
+
+# Web - flask, fastapi, jinja2, uvicorn
+uv sync --extra web
+
+# Automation - beautifulsoup4, selenium
+uv sync --extra automation
+
+# Data - scikit-learn, openpyxl, pillow
+uv sync --extra data
+
+# AI - torch, torchvision (lourd!)
+uv sync --extra ai
+
+# Tout installer
+uv sync --extra core --extra web --extra automation --extra data --extra ai
+
+# Outils de développement
 uv sync --extra dev
 ```
 
-### Dépendances par Phase
+### Dépendances par Groupe
 
-| Phase | Packages |
-|-------|----------|
-| Core | numpy, pandas, matplotlib |
-| Web & Automation | requests, beautifulsoup4, selenium, webdriver-manager |
-| Data Science & ML | scikit-learn, torch, torchvision |
-| Web Dev | flask, fastapi, uvicorn, jinja2 |
-| Utils | openpyxl, pillow, pyyaml, tabulate, tqdm |
-| Dev (optionnel) | pytest, black, flake8, mypy |
+| Groupe | Packages | Chapitres |
+|--------|----------|-----------|
+| **Core** | requests, pyyaml, tabulate, tqdm | 1-4 |
+| **+Data** | numpy, pandas, matplotlib | 22-23 |
+| **+Web** | flask, fastapi, uvicorn, jinja2 | 24 |
+| **+Automation** | beautifulsoup4, selenium, webdriver-manager | 20-21 |
+| **+ML/AI** | scikit-learn, torch, torchvision | 25-26 |
+| **Dev** | pytest, black, ruff | Tous |
+
+---
+
+### Utiliser le package `relearn_python`
+
+Après installation, importez les utilitaires:
+
+```python
+from relearn_python import (
+    demander_nombre,
+    demander_float,
+    afficher_titre,
+    valider_email,
+    est_entier,
+)
+```
 
 ---
 

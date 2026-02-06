@@ -10,10 +10,10 @@ Guide pour configurer votre environnement avec le standard moderne (uv).
 
 ```bash
 # Linux/macOS
-curl -LsSf https://astral.sh/uv | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Windows (PowerShell)
-irm https://astral.sh/uv | iex
+irm https://astral.sh/uv/install.ps1 | iex
 
 # Ajouter au PATH
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -157,9 +157,9 @@ relearn-python/
 
 **"uv: command not found"**
 ```bash
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # ou réinstaller uv
-curl -LsSf https://astral.sh/uv | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 **"Externally managed environment"**

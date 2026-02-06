@@ -3,7 +3,7 @@ name = "relearn-python"
 version = "1.0.0"
 description = "Python Mastery - Apprentissage complet de Python"
 readme = "README.md"
-requires-python = ">= 3.10"
+requires-python = ">= 3.13"
 authors = [
     { name = "Ranker", email = "ranker@example.com" }
 ]

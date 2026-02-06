@@ -84,40 +84,43 @@ Ce projet est conçu pour vous accompagner d'un niveau débutant jusqu'à une ex
 
 ```bash
 # Cloner ou télécharger le projet
-cd PYTHON_MASTRY
+cd relearn-python
 
-# Lancer l'installation des dépendances
-./install.sh
+# Installer uv (gestionnaire Python ultra-rapide)
+curl -LsSf https://astral.sh/uv | sh
 
-# Créer l'environnement virtuel
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# ou
-.\venv\Scripts\activate   # Windows
+# Installer les dépendances
+uv sync
 ```
 
-### 2. Configuration VS Code
-
-1. Ouvrir le dossier dans VS Code
-2. Installer l'extension "Python" (Microsoft)
-3. Sélectionner l'interpréteur: `venv/bin/python`
-4. Installer les extensions recommandées:
-   - Pylance
-   - Jupyter
-   - AutoDocstring
-
-### 3. Commencer le Parcours
+### 2. Utilisation
 
 ```bash
-# Ouvrir le premier chapitre
-cd CHAPITRES/01_premiers_pas
-cat README.md
+# Activer l'environnement virtuel (optionnel)
+source .venv/bin/activate  # Linux/Mac
+# .venv\Scripts\activate     # Windows
 
-# Lire les exercices
-cat exercices.py
+# Exécuter un fichier Python
+uv run python script.py
 
-# Pratiquer dans le dossier EXERCICES/projets/
+# Ou avec just (commandes simplifiées)
+just run script.py
 ```
+
+### 3. Commandes Utiles
+
+| Action | Commande |
+|--------|----------|
+| Installer | `uv sync` |
+| Installer + dev | `just install-dev` |
+| Lancer tests | `just test` |
+| Formatter code | `just format` |
+| Vérifier code | `just lint` |
+| Vérif complète | `just check` |
+| Ouvrir shell | `just shell` |
+| Lister deps | `just deps` |
+| Mettre à jour | `just update` |
+| Nettoyer | `just clean` |
 
 ---
 
@@ -181,20 +184,30 @@ Editez le fichier `progres_apprentissage.md` pour suivre votre avancement:
 
 ---
 
-## 📦 Dépendances par Phase
+## 📦 Dépendances
+
+Les dépendances sont gérées via `uv` et définies dans `pyproject.toml`.
+
+### Installation
 
 ```bash
-# Phase 1-4: Core
-pip install numpy pandas matplotlib
+# Core (inclus par défaut)
+uv sync
 
-# Phase 5-6: Avancé
-pip install pytest black flake8 mypy
-
-# Phase 7: Spécialisations
-pip install requests beautifulsoup4 selenium
-pip install scikit-learn torch torchvision
-pip install flask fastapi uvicorn openpyxl pillow
+# Avec outils de développement
+uv sync --extra dev
 ```
+
+### Dépendances par Phase
+
+| Phase | Packages |
+|-------|----------|
+| Core | numpy, pandas, matplotlib |
+| Web & Automation | requests, beautifulsoup4, selenium, webdriver-manager |
+| Data Science & ML | scikit-learn, torch, torchvision |
+| Web Dev | flask, fastapi, uvicorn, jinja2 |
+| Utils | openpyxl, pillow, pyyaml, tabulate, tqdm |
+| Dev (optionnel) | pytest, black, flake8, mypy |
 
 ---
 

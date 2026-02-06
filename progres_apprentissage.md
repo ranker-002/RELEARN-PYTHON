@@ -117,10 +117,10 @@ _________________________________________________________________
 ```
 
 ### Chapitre 9: Arguments Avancés
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [x] README.md créé
+- [x] exercices.py créé (15 exercices)
+- [x] solutions.py créé
+- [x] verification.py créé
 
 **Notes/Observations:**
 ```
@@ -128,10 +128,10 @@ _________________________________________________________________
 ```
 
 ### Chapitre 10: Modules & Packages
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [x] README.md créé
+- [x] exercices.py créé (15 exercices)
+- [x] solutions.py créé
+- [x] verification.py créé
 
 **Notes/Observations:**
 ```
@@ -143,13 +143,16 @@ _________________________________________________________________
 ## Phase 4: Programmation Orientée Objet
 
 ### Chapitre 11: Classes & Objets
-- [ ] Terminélire README.md
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
+- [x] README.md créé
+- [x] exercices.py créé (15 exercices)
+- [x] solutions.py créé
+- [x] verification.py créé
 
-**Notes/Observations:**
-```
+### Chapitre 12: Héritage & Polymorphisme
+- [ ] À faire
+
+### Chapitre 13: Propriétés & Méthodes Spéciales
+- [ ] À faire
 _________________________________________________________________
 ```
 

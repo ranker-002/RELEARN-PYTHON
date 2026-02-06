@@ -1,8 +1,8 @@
-# Python Mastery - De Débutant à Expert en Intelligence Artificielle
+# Python Mastery - De Débutant à Expert dans un domaine spécifique
 
 ## Bienvenue dans votre parcours d'apprentissage Python
 
-Ce projet est conçu pour vous accompagner d'un niveau débutant jusqu'à une expertise solide en Python, en passant par tous les concepts essentiels et en culminant avec une spécialisation en Intelligence Artificielle.
+Ce projet est conçu pour vous accompagner d'un niveau débutant jusqu'à une expertise solide en Python, en passant par tous les concepts essentiels et en culminant avec une spécialisation dans un domaine spécifique.
 
 ---
 

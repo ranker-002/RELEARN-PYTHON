@@ -36,5 +36,7 @@ Thumbs.db
 # Local agent directories
 .agents/
 .kilocode/
+agents/
+kilocode/
 
 

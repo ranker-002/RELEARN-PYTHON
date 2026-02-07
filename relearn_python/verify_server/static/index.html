@@ -17,14 +17,14 @@
         <div class="chapter-title" id="chapter-title">Chargement...</div>
       </div>
       <div class="header-right">
-        <button class="theme-toggle" id="theme-toggle" title="Changer de thème">
-          <span class="theme-icon" id="theme-icon">🌙</span>
+        <button class="theme-toggle" id="theme-toggle" title="Changer de thème" aria-label="Changer entre mode clair et sombre" aria-pressed="false">
+          <span class="theme-icon" id="theme-icon" aria-hidden="true">🌙</span>
           <span id="theme-text">Sombre</span>
         </button>
-        <div class="score-section">
-          <div class="score">
+        <div class="score-section" aria-label="Progression des exercices" role="region">
+          <div class="score" aria-live="polite" aria-atomic="true">
             <span class="passed" id="score-passed">0</span>
-            <span class="separator">/</span>
+            <span class="separator" aria-hidden="true">/</span>
             <span class="total" id="score-total">0</span>
           </div>
         </div>
@@ -35,23 +35,23 @@
       <aside class="sidebar">
         <div class="sidebar-header">
           <div class="sidebar-title">Exercices</div>
-          <button class="verify-all-btn" id="verify-all-btn" title="Vérifier tous les exercices">
+          <button class="verify-all-btn" id="verify-all-btn" title="Vérifier tous les exercices" aria-label="Vérifier tous les exercices">
             Tout vérifier
           </button>
         </div>
-        <div class="exercises-list" id="exercises-list">
+        <div class="exercises-list" id="exercises-list" role="list" aria-label="Liste des exercices">
           <!-- Liste générée dynamiquement -->
         </div>
       </aside>
 
       <section class="detail-view" id="detail-view">
-        <div class="loading-container" id="loading-state">
+        <div class="loading-container" id="loading-state" role="status" aria-live="polite" aria-label="Chargement en cours">
           <div class="spinner"></div>
           <div class="loading-text">Vérification en cours...</div>
         </div>
 
-        <div class="empty-state" id="empty-state" style="display: none;">
-          <div class="empty-icon">📚</div>
+        <div class="empty-state" id="empty-state" style="display: none;" role="status">
+          <div class="empty-icon" aria-hidden="true">📚</div>
           <div class="empty-title">Sélectionnez un exercice</div>
           <div class="empty-text">Cliquez sur un exercice dans la liste pour voir les détails et commencer à coder</div>
         </div>
@@ -62,14 +62,14 @@
             <p class="detail-subtitle" id="detail-subtitle">Nom de l'exercice</p>
           </div>
 
-          <div class="tabs">
-            <button class="tab active" data-tab="description">📋 Énoncé</button>
-            <button class="tab" data-tab="code">💻 Code</button>
-            <button class="tab" data-tab="result">✓ Résultat</button>
+          <div class="tabs" role="tablist" aria-label="Sections de l'exercice">
+            <button class="tab active" data-tab="description" role="tab" aria-selected="true" aria-controls="panel-description" id="tab-description">📋 Énoncé</button>
+            <button class="tab" data-tab="code" role="tab" aria-selected="false" aria-controls="panel-code" id="tab-code">💻 Code</button>
+            <button class="tab" data-tab="result" role="tab" aria-selected="false" aria-controls="panel-result" id="tab-result">✓ Résultat</button>
           </div>
 
           <!-- Panel Description -->
-          <div class="content-panel active" id="panel-description">
+          <div class="content-panel active" id="panel-description" role="tabpanel" aria-labelledby="tab-description">
             <div class="description-panel">
               <div class="description-content" id="description-content">
                 <!-- Description chargée dynamiquement -->
@@ -78,7 +78,7 @@
           </div>
 
           <!-- Panel Code -->
-          <div class="content-panel" id="panel-code">
+          <div class="content-panel" id="panel-code" role="tabpanel" aria-labelledby="tab-code">
             <div class="code-panel">
               <div class="code-panel-header">
                 <span class="code-panel-title user">
@@ -86,7 +86,7 @@
                   Votre code
                 </span>
                 <div class="code-actions">
-                  <button class="code-action-btn" id="btn-copy-code" title="Copier le code">
+                  <button class="code-action-btn" id="btn-copy-code" title="Copier le code" aria-label="Copier le code">
                     📋 Copier
                   </button>
                 </div>
@@ -99,14 +99,68 @@
             <div class="code-panel hidden" id="solution-panel">
               <div class="code-panel-header">
                 <span class="code-panel-title solution">
-                  <span class="icon">✓</span>
+                  <span class="icon" aria-hidden="true">✓</span>
                   Solution
                 </span>
                 <div class="code-actions">
-                  <button class="code-action-btn" id="btn-copy-solution" title="Copier la solution">
+                  <button class="code-action-btn" id="btn-copy-solution" title="Copier la solution" aria-label="Copier la solution">
                     📋 Copier
                   </button>
                 </div>
+              </div>
+              <div class="code-content">
+                <pre><code class="language-python" id="solution-code"></code></pre>
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button class="btn btn-secondary" id="btn-show-solution" aria-label="Afficher la solution">
+                <span class="icon" aria-hidden="true">👁</span>
+                <span>Voir la solution</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Panel Result -->
+          <div class="content-panel" id="panel-result" role="tabpanel" aria-labelledby="tab-result">
+            <div class="result-panel" id="result-panel" aria-live="polite">
+              <div class="status-card" id="status-card" style="display: none;" role="status" aria-live="polite">
+                <div class="status-icon" id="status-icon" aria-hidden="true">✓</div>
+                <div class="status-content">
+                  <div class="status-title" id="status-title">En attente</div>
+                  <div class="status-message" id="status-message">
+                    Cliquez sur "Vérifier" pour tester votre solution
+                  </div>
+                </div>
+              </div>
+
+              <div class="suggestion-card" id="suggestion-card" style="display: none;" role="alert">
+                <div class="suggestion-header">
+                  <span class="suggestion-icon" aria-hidden="true">💡</span>
+                  <span class="suggestion-title">Suggestion</span>
+                </div>
+                <div class="suggestion-text" id="suggestion-text"></div>
+              </div>
+
+              <div class="output-panel" id="output-panel" style="display: none;" aria-label="Sortie du programme">
+                <div class="output-header">
+                  <span class="output-title">Sortie du programme</span>
+                </div>
+                <div class="output-content" id="output-content"></div>
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button class="btn btn-primary" id="btn-verify-single" aria-label="Vérifier cet exercice">
+                <span class="icon" aria-hidden="true">▶</span>
+                <span>Vérifier cet exercice</span>
+              </button>
+              <button class="btn btn-secondary" id="btn-rerun-all" aria-label="Vérifier tous les exercices">
+                <span class="icon" aria-hidden="true">🔄</span>
+                <span>Tout vérifier</span>
+              </button>
+            </div>
+          </div>
               </div>
               <div class="code-content">
                 <pre><code class="language-python" id="solution-code"></code></pre>
@@ -120,54 +174,4 @@
             </div>
           </div>
 
-          <!-- Panel Result -->
-          <div class="content-panel" id="panel-result">
-            <div class="result-panel" id="result-panel">
-              <div class="status-card" id="status-card" style="display: none;">
-                <div class="status-icon" id="status-icon">✓</div>
-                <div class="status-content">
-                  <div class="status-title" id="status-title">En attente</div>
-                  <div class="status-message" id="status-message">
-                    Cliquez sur "Vérifier" pour tester votre solution
-                  </div>
-                </div>
-              </div>
-
-              <div class="suggestion-card" id="suggestion-card" style="display: none;">
-                <div class="suggestion-header">
-                  <span class="suggestion-icon">💡</span>
-                  <span class="suggestion-title">Suggestion</span>
-                </div>
-                <div class="suggestion-text" id="suggestion-text"></div>
-              </div>
-
-              <div class="output-panel" id="output-panel" style="display: none;">
-                <div class="output-header">
-                  <span class="output-title">Sortie du programme</span>
-                </div>
-                <div class="output-content" id="output-content"></div>
-              </div>
-            </div>
-
-            <div class="button-group">
-              <button class="btn btn-primary" id="btn-verify-single">
-                <span class="icon">▶</span> Vérifier cet exercice
-              </button>
-              <button class="btn btn-secondary" id="btn-rerun-all">
-                <span class="icon">🔄</span> Tout vérifier
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="global-error" id="global-error" style="display: none;">
-          <div class="global-error-title">❌ Une erreur s'est produite</div>
-          <div class="global-error-message" id="global-error-message"></div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script src="/static/app.js"></script>
-</body>
-</html>
+          <!--                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          

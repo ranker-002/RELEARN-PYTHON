@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RELEARN-PYTHON - Vérification</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="header-left">
+        <div class="brand">RELEARN-PYTHON</div>
+        <div class="chapter-title" id="chapter-title">Chargement...</div>
+      </div>
+      <div class="header-right">
+        <button class="theme-toggle" id="theme-toggle" title="Changer de thème">
+          <span class="theme-icon" id="theme-icon">🌙</span>
+          <span id="theme-text">Sombre</span>
+        </button>
+        <div class="score-section">
+          <div class="score">
+            <span class="passed" id="score-passed">0</span>
+            <span class="separator">/</span>
+            <span class="total" id="score-total">0</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-title">Exercices</div>
+          <button class="verify-all-btn" id="verify-all-btn" title="Vérifier tous les exercices">
+            Tout vérifier
+          </button>
+        </div>
+        <div class="exercises-list" id="exercises-list">
+          <!-- Liste générée dynamiquement -->
+        </div>
+      </aside>
+
+      <section class="detail-view" id="detail-view">
+        <div class="loading-container" id="loading-state">
+          <div class="spinner"></div>
+          <div class="loading-text">Vérification en cours...</div>
+        </div>
+
+        <div class="empty-state" id="empty-state" style="display: none;">
+          <div class="empty-icon">📚</div>
+          <div class="empty-title">Sélectionnez un exercice</div>
+          <div class="empty-text">Cliquez sur un exercice dans la liste pour voir les détails et commencer à coder</div>
+        </div>
+
+        <div id="exercise-detail" style="display: none;">
+          <div class="detail-header">
+            <h1 class="detail-title" id="detail-title">Exercice X.Y</h1>
+            <p class="detail-subtitle" id="detail-subtitle">Nom de l'exercice</p>
+          </div>
+
+          <div class="tabs">
+            <button class="tab active" data-tab="description">📋 Énoncé</button>
+            <button class="tab" data-tab="code">💻 Code</button>
+            <button class="tab" data-tab="result">✓ Résultat</button>
+          </div>
+
+          <!-- Panel Description -->
+          <div class="content-panel active" id="panel-description">
+            <div class="description-panel">
+              <div class="description-content" id="description-content">
+                <!-- Description chargée dynamiquement -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel Code -->
+          <div class="content-panel" id="panel-code">
+            <div class="code-panel">
+              <div class="code-panel-header">
+                <span class="code-panel-title user">
+                  <span class="icon">📝</span>
+                  Votre code
+                </span>
+                <div class="code-actions">
+                  <button class="code-action-btn" id="btn-copy-code" title="Copier le code">
+                    📋 Copier
+                  </button>
+                </div>
+              </div>
+              <div class="code-content">
+                <pre><code class="language-python" id="user-code"></code></pre>
+              </div>
+            </div>
+
+            <div class="code-panel hidden" id="solution-panel">
+              <div class="code-panel-header">
+                <span class="code-panel-title solution">
+                  <span class="icon">✓</span>
+                  Solution
+                </span>
+                <div class="code-actions">
+                  <button class="code-action-btn" id="btn-copy-solution" title="Copier la solution">
+                    📋 Copier
+                  </button>
+                </div>
+              </div>
+              <div class="code-content">
+                <pre><code class="language-python" id="solution-code"></code></pre>
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button class="btn btn-secondary" id="btn-show-solution">
+                <span class="icon">👁</span> Voir la solution
+              </button>
+            </div>
+          </div>
+
+          <!-- Panel Result -->
+          <div class="content-panel" id="panel-result">
+            <div class="result-panel" id="result-panel">
+              <div class="status-card" id="status-card" style="display: none;">
+                <div class="status-icon" id="status-icon">✓</div>
+                <div class="status-content">
+                  <div class="status-title" id="status-title">En attente</div>
+                  <div class="status-message" id="status-message">
+                    Cliquez sur "Vérifier" pour tester votre solution
+                  </div>
+                </div>
+              </div>
+
+              <div class="suggestion-card" id="suggestion-card" style="display: none;">
+                <div class="suggestion-header">
+                  <span class="suggestion-icon">💡</span>
+                  <span class="suggestion-title">Suggestion</span>
+                </div>
+                <div class="suggestion-text" id="suggestion-text"></div>
+              </div>
+
+              <div class="output-panel" id="output-panel" style="display: none;">
+                <div class="output-header">
+                  <span class="output-title">Sortie du programme</span>
+                </div>
+                <div class="output-content" id="output-content"></div>
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button class="btn btn-primary" id="btn-verify-single">
+                <span class="icon">▶</span> Vérifier cet exercice
+              </button>
+              <button class="btn btn-secondary" id="btn-rerun-all">
+                <span class="icon">🔄</span> Tout vérifier
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="global-error" id="global-error" style="display: none;">
+          <div class="global-error-title">❌ Une erreur s'est produite</div>
+          <div class="global-error-message" id="global-error-message"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

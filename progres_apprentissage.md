@@ -332,4 +332,4 @@ Cochez les chapitres terminés et notez vos observations.
 
 ---
 
-*Dernière mise à jour: Structure migrée vers MODULES + PROJETS*
+*Dernière mise à jour: Structure migrée vers MODULES + PROJETS .*

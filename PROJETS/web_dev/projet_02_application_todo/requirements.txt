@@ -1,0 +1,6 @@
+# projet_02_application_todo
+# Install: uv sync --extra web-dev
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

@@ -1,0 +1,34 @@
+{
+  "produits": [
+    {
+      "id": 1,
+      "nom": "Ordinateur portable",
+      "prix": 999.99,
+      "stock": 50
+    },
+    {
+      "id": 2,
+      "nom": "Souris sans fil",
+      "prix": 29.99,
+      "stock": 200
+    },
+    {
+      "id": 3,
+      "nom": "Clavier mécanique",
+      "prix": 89.99,
+      "stock": 75
+    },
+    {
+      "id": 4,
+      "nom": "Écran 27 pouces",
+      "prix": 349.99,
+      "stock": 30
+    },
+    {
+      "id": 5,
+      "nom": "Casque audio",
+      "prix": 149.99,
+      "stock": 100
+    }
+  ]
+}

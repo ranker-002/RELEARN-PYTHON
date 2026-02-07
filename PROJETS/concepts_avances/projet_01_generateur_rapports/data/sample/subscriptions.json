@@ -1,0 +1,35 @@
+{
+  "abonnements": [
+    {
+      "nom": "Le Monde - Technologie",
+      "url": "https://example.com/tech.xml",
+      "categorie": "technologie"
+    },
+    {
+      "nom": "GitHub Blog",
+      "url": "https://example.com/github.xml",
+      "categorie": "programmation"
+    },
+    {
+      "nom": "Science & Vie",
+      "url": "https://example.com/science.xml",
+      "categorie": "science"
+    }
+  ],
+  "filtres": {
+    "mots_cles_inclure": [],
+    "mots_cles_exclure": [
+      "publicité",
+      "sponsorisé",
+      "abonnement"
+    ]
+  },
+  "preferences": {
+    "articles_par_page": 10,
+    "langue": [
+      "fr",
+      "en"
+    ],
+    "cache_duree_heures": 1
+  }
+}

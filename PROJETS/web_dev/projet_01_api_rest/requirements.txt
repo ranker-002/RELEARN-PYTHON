@@ -1,0 +1,6 @@
+# projet_01_api_rest
+# Install: uv sync --extra web-dev
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

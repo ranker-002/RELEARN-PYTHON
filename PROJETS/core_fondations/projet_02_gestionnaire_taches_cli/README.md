@@ -1,159 +1,219 @@
-# Projet: Gestionnaire de Tâches CLI
+# projet_02_gestionnaire_taches_cli
 
-Créez une todo list persistante en ligne de commande avec catégories et priorités.
+L'automatisation permet de programmer des tâches répétitives.
 
-## Objectif
+---
 
-Consolider les bases (variables, listes, dictionnaires, fichiers) dans un projet utile au quotidien.
+## Introduction
 
-## Difficulté
+Ce projet vous permet d'appliquer planification dans un projet réel et professionnel.
 
-**Intermédiaire** - Durée estimée: 4-6 heures
+**Concepts clés:** Planification, Emails, APIs, Logs
+
+**Outils:** jinja2, matplotlib, smtplib
+
+---
 
 ## Prérequis
 
-**Module 1 requis** : Chapitres 01-07
+- Module recommandé: Chapitres 20-26
 
-## Fonctionnalités Attendues
+---
 
-### CRUD Complet
-1. **Créer** une tâche avec:
-   - Titre (obligatoire)
-   - Description (optionnelle)
-   - Priorité (haute, moyenne, basse)
-   - Catégorie (travail, personnel, urgent)
-   - Date d'échéance (optionnelle)
-
-2. **Lister** les tâches avec:
-   - Filtre par statut (toutes, en cours, terminées)
-   - Filtre par priorité
-   - Tri par date ou priorité
-
-3. **Modifier** une tâche:
-   - Marquer comme terminée/non terminée
-   - Modifier le contenu
-
-4. **Supprimer** une tâche (individuelle ou toutes terminées)
-
-### Fonctionnalités Supplémentaires
-- Persistance JSON (les tâches survivent au redémarrage)
-- Recherche par mot-clé
-- Statistiques (nombre de tâches, % terminées)
-- Export JSON
-
-## Structure Suggérée
+## Structure
 
 ```
 projet_02_gestionnaire_taches_cli/
-├── README.md
 ├── src/
-│   ├── main.py           # Point d'entrée + boucle CLI
-│   ├── task.py           # Classe Task
-│   ├── storage.py        # Sauvegarde/chargement JSON
-│   └── cli.py            # Fonctions CLI
-├── solution/
 │   ├── main.py
-│   ├── task.py
-│   ├── storage.py
-│   └── cli.py
+│   ├── models/
+│   ├── services/
+│   └── utils/
+├── tests/
 ├── data/
-│   └── tasks.json        # Base de données
-└── tests/
-    └── test_task.py
+└── README.md
 ```
+
+---
+
+## Fonctionnalités
+
+### 1. Fonctionnalité principale
+
+- Implémentation de base
+- Tests associés
+- Documentation
+
+---
 
 ## Modèle de Données
 
 ```python
-class Task:
-    id: int
-    titre: str
-    description: str
-    priorite: str  # "haute", "moyenne", "basse"
-    categorie: str
-    date_echeance: Optional[str]
-    completed: bool
-    date_creation: str
+from dataclasses import dataclass
+from datetime import datetime
+from typing import Optional
+from enum import Enum
+
+class Status(Enum):
+    PENDING = "pending"
+    PROCESSING = "processing"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+@dataclass
+class Item:
+    id: str
+    name: str
+    status: Status = Status.PENDING
+    created_at: datetime = None
+    
+    def __post_init__(self):
+        if self.created_at is None:
+            self.created_at = datetime.now()
 ```
+
+---
 
 ## Indications
 
-### Indice 1: Structure de tâche
+### Niveau 1
+
 ```python
-tache = {
-    "id": 1,
-    "titre": "Apprendre Python",
-    "description": "Finir le chapitre 7",
-    "priorite": "haute",
-    "categorie": "apprentissage",
-    "completed": False,
-    "date_creation": "2024-01-15"
-}
+class Project:
+    def __init__(self):
+        self.data = []
+    
+    def run(self):
+        pass
 ```
 
-### Indice 2: Sauvegarde JSON
-```python
-import json
-
-def sauvegarder(taches, fichier="data/tasks.json"):
-    with open(fichier, "w", encoding="utf-8") as f:
-        json.dump(taches, f, indent=2, ensure_ascii=False)
-```
-
-### Indice 3: Menu CLI
-```python
-while True:
-    afficher_menu()
-    choix = input(">>> ")
-    if choix == "1":
-        creer_tache()
-    elif choix == "2":
-        lister_taches()
-    # ... autres options
-```
-
-## Exemple d'Exécution
-
-```
-=== GESTIONNAIRE DE TÂCHES ===
-
-1. Ajouter une tâche
-2. Lister les tâches
-3. Modifier une tâche
-4. Supprimer une tâche
-5. Rechercher
-6. Statistiques
-7. Quitter
-
->>> 1
-
-Titre: Apprendre les classes Python
-Description (enter pour none): Finir le module 2
-Priorité (haute/moyenne/basse): haute
-Catégorie: Apprentissage
-Date d'échéance (YYYY-MM-DD, enter pour none): 2024-02-01
-
-✓ Tâche ajoutée!
-
->>> 2
-
-=== TÂCHES ===
-[1] [HAUTE] Apprendre les classes Python (Apprentissage)
-     Finir le module 2 | Échéance: 2024-02-01
-     ❌ En cours
-
-[2] [BASSE] Acheter du lait (Personnel)
-     ❌ En cours
-
-```
+---
 
 ## Critères de Validation
 
-- [ ] CRUD complet fonctionne
-- [ ] Données persistées entre les sessions
-- [ ] Filtres et tris fonctionnels
-- [ ] Validation des entrées
-- [ ] Code structuré et documenté
+- [ ] Structure du projet
+- [ ] Fonctionnalités implémentées
+- [ ] Tests passent
+- [ ] Code documenté
+
+---
+
+
+---
+
+## Architecture et Diagrammes
+
+### Architecture du Projet
+
+```mermaid
+graph TD
+    subgraph src/
+        A[main.py] --> B[Services]
+        B --> C[Parser]
+        B --> D[Fetcher]
+        B --> E[Filter]
+        A --> F[Models]
+        F --> G[DataModel]
+        A --> H[Utils]
+    end
+    
+    subgraph data/
+        I[sample/data.csv] --> A
+    end
+    
+    subgraph tests/
+        J[test_*.py] --> A
+    end
+```
+
+### Flux de Données
+
+```mermaid
+sequenceDiagram
+    participant U as Utilisateur
+    participant C as CLI
+    participant S as Services
+    participant M as Models
+    participant D as Data
+    
+    U->>C: Lancer l'application
+    C->>S: Initialiser services
+    S->>M: Charger modèles
+    M->>D: Lire données
+    D-->>M: Retourner données
+    M-->>S: Modèles prêts
+    S-->>C: Services prêts
+    C->>U: Afficher menu
+```
+
+### Modèle de Données
+
+```mermaid
+classDiagram
+    class DataModel {
+        +str id
+        +str name
+        +created_at: datetime
+        +save(): bool
+        +load(): bool
+    }
+    
+    class Service {
+        +process(data: DataModel): dict
+        +validate(input: dict): bool
+    }
+    
+    Service --> DataModel: utilise
+```
+
+### Architecture Fonctionnelle
+
+```mermaid
+flowchart LR
+    subgraph Input
+        A[CLI Arguments]
+        B[Config File]
+        C[User Input]
+    end
+    
+    subgraph Processing
+        D[Main App]
+        E[Services Layer]
+        F[Models Layer]
+    end
+    
+    subgraph Output
+        G[Console Display]
+        H[File Export]
+        I[Log Results]
+    end
+    
+    A --> D
+    B --> D
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    F --> H
+    F --> I
+```
+## Installation
+
+```bash
+python src/main.py
+pytest tests/
+python verification.py
+```
+
+---
+
+## Ressources
+
+- Documentation Python: https://docs.python.org/fr/3/
+
+---
+
+*Durée estimée: 8-12 heures | Difficulté: Outils:*
 
 ---
 

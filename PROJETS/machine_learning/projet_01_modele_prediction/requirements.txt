@@ -1,0 +1,6 @@
+# projet_01_modele_prediction
+# Install: uv sync --extra machine-learning
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

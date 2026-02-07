@@ -1,0 +1,6 @@
+# projet_01_visualisation_donnees
+# Install: uv sync --extra visualisation
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

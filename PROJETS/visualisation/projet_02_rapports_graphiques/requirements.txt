@@ -1,0 +1,6 @@
+# projet_02_rapports_graphiques
+# Install: uv sync --extra visualisation
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

@@ -1,0 +1,6 @@
+# projet_01_systeme_bancaire
+# Install: uv sync --extra fonctions-poo
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

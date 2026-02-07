@@ -1,0 +1,6 @@
+# projet_02_pipeline_donnees
+# Install: uv sync --extra concepts-avances
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

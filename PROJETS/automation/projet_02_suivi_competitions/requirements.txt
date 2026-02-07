@@ -1,0 +1,6 @@
+# projet_02_suivi_competitions
+# Install: uv sync --extra automation
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

@@ -1,0 +1,6 @@
+# projet_01_generateur_rapports
+# Install: uv sync --extra concepts-avances
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

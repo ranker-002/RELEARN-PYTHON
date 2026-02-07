@@ -1,0 +1,6 @@
+# projet_02_classification
+# Install: uv sync --extra machine-learning
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

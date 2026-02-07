@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "email": "jean.dupont@email.com",
+      "role": "admin",
+      "actif": true
+    },
+    {
+      "id": 2,
+      "nom": "Martin",
+      "prenom": "Marie",
+      "email": "marie.martin@email.com",
+      "role": "utilisateur",
+      "actif": true
+    },
+    {
+      "id": 3,
+      "nom": "Bernard",
+      "prenom": "Pierre",
+      "email": "pierre.bernard@email.com",
+      "role": "utilisateur",
+      "actif": false
+    }
+  ]
+}

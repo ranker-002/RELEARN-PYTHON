@@ -1,0 +1,6 @@
+# projet_01_aggregateur_actualites
+# Install: uv sync --extra web-scraping
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

@@ -1,0 +1,6 @@
+# projet_02_tableau_bord_analytique
+# Install: uv sync --extra data-science
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

@@ -1,0 +1,6 @@
+# projet_02_sauvegarde_automatique
+# Install: uv sync --extra robustesse-fichiers
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

@@ -1,0 +1,6 @@
+# projet_02_classification_images
+# Install: uv sync --extra deep-learning
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

@@ -1,0 +1,6 @@
+# projet_01_automatisation_rapports
+# Install: uv sync --extra automation
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

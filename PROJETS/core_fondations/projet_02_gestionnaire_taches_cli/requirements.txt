@@ -1,0 +1,6 @@
+# projet_02_gestionnaire_taches_cli
+# Install: uv sync --extra core-fondations
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

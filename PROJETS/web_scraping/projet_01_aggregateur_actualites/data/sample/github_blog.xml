@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>GitHub Blog</title>
+  <subtitle>News, ideas, and perspective from GitHub.</subtitle>
+  <link href="https://github.blog/" rel="alternate"/>
+  <link href="https://github.blog/feed/" rel="self"/>
+  <id>https://github.blog/</id>
+  <updated>2026-02-07T10:30:00Z</updated>
+  
+  <entry>
+    <title>GitHub Actions: Nouvelles fonctionnalités CI/CD</title>
+    <link href="https://github.blog/2026-02-07-actions-update"/>
+    <id>tag:github.com,2008:entry/12345</id>
+    <published>2026-02-07T09:00:00Z</published>
+    <updated>2026-02-07T09:00:00Z</updated>
+    <summary>GitHub améliore ses workflows CI/CD avec de nouvelles fonctionnalités...</summary>
+  </entry>
+  
+  <entry>
+    <title>Copilot: 50% des développeurs l'utilisent</title>
+    <link href="https://github.blog/2026-02-06-copilot-stats"/>
+    <id>tag:github.com,2008:entry/12344</id>
+    <published>2026-02-06T14:00:00Z</published>
+    <updated>2026-02-06T14:00:00Z</updated>
+    <summary>Plus de la moitié des développeurs utilisent désormais Copilot...</summary>
+  </entry>
+</feed>

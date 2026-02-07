@@ -1,0 +1,4 @@
+Ceci est un fichier texte d'exemple.
+Il contient plusieurs lignes de texte.
+Chaque ligne peut contenir des informations différentes.
+Le but est de tester la lecture de fichiers texte.

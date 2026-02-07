@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Le Monde - Technologie</title>
+    <link>https://www.lemonde.fr/technologie/</link>
+    <description>Actualités technologie du Monde</description>
+    <language>fr</language>
+    <lastBuildDate>Sat, 07 Feb 2026 10:30:00 +0000</lastBuildDate>
+    
+    <item>
+      <title>Intelligence Artificielle : Les avancées de 2026</title>
+      <link>https://www.lemonde.fr/technologie/article/2026/02/07/ia-avancees</link>
+      <description>L'intelligence artificielle continue de transformer notre quotidien avec des innovations majeures...</description>
+      <pubDate>Sat, 07 Feb 2026 09:00:00 +0000</pubDate>
+      <guid isPermaLink="false">lemonde-tech-20260207-001</guid>
+      <category>Technologie</category>
+    </item>
+    
+    <item>
+      <title>Python 3.14 : Nouvelles fonctionnalités</title>
+      <link>https://www.lemonde.fr/technologie/article/2026/02/07/python-3-14</link>
+      <description>La nouvelle version de Python apporte des performances améliorées...</description>
+      <pubDate>Fri, 06 Feb 2026 14:30:00 +0000</pubDate>
+      <guid isPermaLink="false">lemonde-tech-20260206-002</guid>
+      <category>Programmation</category>
+    </item>
+    
+    <item>
+      <title>Crypto : Le Bitcoin dépasse les 100 000 euros</title>
+      <link>https://www.lemonde.fr/economie/article/2026/02/07/bitcoin-100000</link>
+      <description>La cryptomonnaie atteint de nouveaux sommets...</description>
+      <pubDate>Fri, 06 Feb 2026 11:00:00 +0000</pubDate>
+      <guid isPermaLink="false">lemonde-eco-20260206-003</guid>
+      <category>Economie</category>
+    </item>
+  </channel>
+</rss>

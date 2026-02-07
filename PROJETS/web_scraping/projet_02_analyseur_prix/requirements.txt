@@ -1,0 +1,6 @@
+# projet_02_analyseur_prix
+# Install: uv sync --extra web-scraping
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

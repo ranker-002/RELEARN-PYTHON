@@ -1,0 +1,6 @@
+# projet_01_analyse_exploratoire
+# Install: uv sync --extra data-science
+
+-r ../../requirements.txt
+
+# Dépendances spécifiques au projet

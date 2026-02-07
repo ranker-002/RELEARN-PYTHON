@@ -33,4 +33,8 @@ Thumbs.db
 # Config
 *.log
 
+# Local agent directories
+.agents/
+.kilocode/
+
 

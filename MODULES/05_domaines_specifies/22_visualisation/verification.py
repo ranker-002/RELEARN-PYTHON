@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 """
 CHAPITRE 23 - Script de Vérification Automatique
 =============================================
@@ -13,6 +14,48 @@ from unittest import mock
 class VerificationError(Exception):
     """Erreur lors de la vérification."""
     pass
+
+
+
+# =============================================================================
+# FONCTIONS DE VÉRIFICATION FLEXIBLE
+# =============================================================================
+
+def normaliser_sortie(sortie):
+    """Normalise une sortie pour comparaison flexible."""
+    if not sortie:
+        return ""
+    resultat = sortie.lower()
+    resultat = re.sub(r'\s+', ' ', resultat)
+    resultat = re.sub(r'[.,;:!?]', '', resultat)
+    return resultat.strip()
+
+
+def contient_nombre(sortie, attendu, tolerance=0.01):
+    """Vérifie que la sortie contient le nombre attendu."""
+    if not sortie:
+        return False
+    pattern = r'-?\d+(?:\.\d+)?'
+    matches = re.findall(pattern, sortie)
+    for m in matches:
+        n = float(m) if '.' in m else int(m)
+        if isinstance(attendu, int):
+            if isinstance(n, float) and n.is_integer() and int(n) == attendu:
+                return True
+            if n == attendu:
+                return True
+        else:
+            if abs(n - attendu) < tolerance:
+                return True
+    return False
+
+
+def contient_terme(sortie, terme):
+    """Vérifie qu'un terme est présent (insensible à la casse)."""
+    if not sortie:
+        return False
+    normalisee = normaliser_sortie(sortie)
+    return terme.lower() in normalisee
 
 
 def capturer_sortie(func):

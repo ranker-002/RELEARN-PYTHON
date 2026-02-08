@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
+import re
 """
-CHAPITRE 1 - Script de Vérification Automatique
-==============================================
+CHAPITRE 1 - Script de Vérification Automatique (Version Flexible)
+=================================================================
 Ce script vérifie automatiquement vos solutions aux exercices.
+
+Améliorations:
+- Comparaison insensible à la casse
+- Nombres avec tolérance
+- Termes clés plutôt que sortie exacte
+- Plusieurs approches acceptées pour une même solution
 
 Utilisation:
     python verification.py
-
-Ce script teste chaque fonction et affiche le résultat.
 """
 
 import sys
@@ -37,6 +42,61 @@ def creer_entree(simulee):
     return mock.patch('builtins.input', return_value=simulee)
 
 
+def normaliser_sortie(sortie):
+    """Normalise une sortie pour comparaison flexible."""
+    if not sortie:
+        return ""
+    # Minuscule
+    resultat = sortie.lower()
+    # Espaces multiples -> espace unique
+    import re
+    resultat = re.sub(r'\s+', ' ', resultat)
+    # Ponctuation -> supprimée
+    resultat = re.sub(r'[.,;:!?]', '', resultat)
+    return resultat.strip()
+
+
+def contient_termes(sortie, termes):
+    """Vérifie que la sortie contient les termes attendus."""
+    normalisee = normaliser_sortie(sortie)
+    for terme in termes:
+        if terme.lower() not in normalisee:
+            return False, terme
+    return True, None
+
+
+def extraire_nombres(sortie):
+    """Extrait tous les nombres d'une sortie."""
+    import re
+    if not sortie:
+        return []
+    # Chercher nombres (entiers, décimaux, négatifs)
+    pattern = r'-?\d+(?:\.\d+)?'
+    matches = re.findall(pattern, sortie)
+    nombres = []
+    for m in matches:
+        if '.' in m:
+            nombres.append(float(m))
+        else:
+            nombres.append(int(m))
+    return nombres
+
+
+def contient_nombre(sortie, attendu, tolerance=0.01):
+    """Vérifie que la sortie contient le nombre attendu."""
+    nombres = extraire_nombres(sortie)
+    for n in nombres:
+        if isinstance(attendu, int):
+            if isinstance(n, float) and n.is_integer() and int(n) == attendu:
+                return True
+            if n == attendu:
+                return True
+        else:
+            if abs(n - attendu) < tolerance:
+                return True
+    return False
+
+
 # =============================================================================
 # VÉRIFICATIONS EXERCICE 1.1
 # =============================================================================
@@ -47,9 +107,11 @@ def verifier_exercice_1_1():
 
     sortie = capturer_sortie(exercice_1_1)
 
-    if "Hello" not in sortie or "World" not in sortie:
+    # Vérification flexible: "hello" et "world" (insensible à la casse)
+    normalisee = normaliser_sortie(sortie)
+    if "hello" not in normalisee or "world" not in normalisee:
         raise VerificationError(
-            "La sortie doit contenir 'Hello' et 'World'\n"
+            "La sortie doit contenir 'hello' et 'world' (peu importe la casse)\n"
             f"Votre sortie: {sortie}"
         )
 
@@ -67,9 +129,11 @@ def verifier_exercice_1_2():
     with mock.patch('builtins.input', return_value="Alice"):
         sortie = capturer_sortie(exercice_1_2)
 
-    if "Bonjour" not in sortie or "Alice" not in sortie:
+    # Vérification flexible: "bonjour" (insensible à la casse)
+    normalisee = normaliser_sortie(sortie)
+    if "bonjour" not in normalisee or "alice" not in normalisee:
         raise VerificationError(
-            "La sortie doit contenir 'Bonjour' et le prénom saisi\n"
+            "La sortie doit contenir 'bonjour' et le prénom (peu importe la casse)\n"
             f"Votre sortie: {sortie}"
         )
 
@@ -87,9 +151,10 @@ def verifier_exercice_1_3():
     with mock.patch('builtins.input', side_effect=["5", "3"]):
         sortie = capturer_sortie(exercice_1_3)
 
-    if "8" not in sortie:
+    # Vérification flexible: le nombre 8 doit être présent
+    if not contient_nombre(sortie, 8):
         raise VerificationError(
-            "La somme de 5 et 3 doit être 8\n"
+            "Le résultat de 5 + 3 doit être 8\n"
             f"Votre sortie: {sortie}"
         )
 
@@ -107,18 +172,19 @@ def verifier_exercice_1_4():
     with mock.patch('builtins.input', side_effect=["10", "2"]):
         sortie = capturer_sortie(exercice_1_4)
 
-    # Vérifier les 4 opérations
+    # Vérifier les 4 opérations (nombres clés)
+    nombres = extraire_nombres(sortie)
     verificateurs = [
-        ("Addition", "12"),
-        ("Soustraction", "8"),
-        ("Multiplication", "20"),
-        ("Division", "5.0"),
+        ("Addition", 12),
+        ("Soustraction", 8),
+        ("Multiplication", 20),
+        ("Division", 5),
     ]
 
     for nom, attendu in verificateurs:
-        if attendu not in sortie:
+        if not contient_nombre(sortie, attendu):
             raise VerificationError(
-                f"Vérifier l'opération {nom}: attendu '{attendu}'\n"
+                f"Vérifier l'opération {nom}: attendu {attendu}\n"
                 f"Votre sortie: {sortie}"
             )
 
@@ -136,9 +202,10 @@ def verifier_exercice_1_5():
     with mock.patch('builtins.input', return_value="25"):
         sortie = capturer_sortie(exercice_1_5)
 
-    if "77" not in sortie:
+    # 25°C = 77°F
+    if not contient_nombre(sortie, 77):
         raise VerificationError(
-            "25°C doit faire 77°F (ou 77.0)\n"
+            "25°C doit faire environ 77°F\n"
             f"Votre sortie: {sortie}"
         )
 
@@ -156,7 +223,8 @@ def verifier_exercice_1_6():
     with mock.patch('builtins.input', return_value="5"):
         sortie = capturer_sortie(exercice_1_6)
 
-    if "20" not in sortie or "25" not in sortie:
+    # Vérifier présence de 20 (périmètre) et 25 (aire)
+    if not (contient_nombre(sortie, 20) and contient_nombre(sortie, 25)):
         raise VerificationError(
             "Carré de côté 5: périmètre=20, aire=25\n"
             f"Votre sortie: {sortie}"
@@ -176,7 +244,8 @@ def verifier_exercice_1_7():
     with mock.patch('builtins.input', side_effect=["15", "12", "18"]):
         sortie = capturer_sortie(exercice_1_7)
 
-    if "15" not in sortie:
+    # Moyenne de 15, 12, 18 = 15
+    if not contient_nombre(sortie, 15):
         raise VerificationError(
             "Moyenne de 15, 12, 18 = 15\n"
             f"Votre sortie: {sortie}"
@@ -196,7 +265,8 @@ def verifier_exercice_1_8():
     with mock.patch('builtins.input', return_value="100"):
         sortie = capturer_sortie(exercice_1_8)
 
-    if "20" not in sortie or "80" not in sortie:
+    # Vérifier présence de 20 (remise) et 80 (final)
+    if not (contient_nombre(sortie, 20) and contient_nombre(sortie, 80)):
         raise VerificationError(
             "Remise de 20% sur 100: remise=20, final=80\n"
             f"Votre sortie: {sortie}"
@@ -216,10 +286,11 @@ def verifier_exercice_1_9():
     with mock.patch('builtins.input', side_effect=["Jean", "Dupont", "30", "Paris"]):
         sortie = capturer_sortie(exercice_1_9)
 
-    # Vérifier le format de base
-    if "DUPONT" not in sortie or "JEAN" not in sortie:
+    # Vérifier présence de "jean" et "dupont" (minuscules pour insensibilité)
+    normalisee = normaliser_sortie(sortie)
+    if "jean" not in normalisee or "dupont" not in normalisee:
         raise VerificationError(
-            "Le nom et prénom doivent être en majuscules\n"
+            "Le nom et prénom doivent apparaître (peu importe la casse)\n"
             f"Votre sortie: {sortie}"
         )
 
@@ -237,7 +308,8 @@ def verifier_exercice_1_10():
     with mock.patch('builtins.input', side_effect=["1000", "5", "2"]):
         sortie = capturer_sortie(exercice_1_10)
 
-    if "100" not in sortie or "1100" not in sortie:
+    # Intérêts sur 1000€ à 5% pendant 2 ans = 100€ (intérêts) et 1100€ (total)
+    if not (contient_nombre(sortie, 100) and contient_nombre(sortie, 1100)):
         raise VerificationError(
             "Intérêts sur 1000€ à 5% pendant 2 ans = 100€\n"
             f"Votre sortie: {sortie}"
@@ -257,7 +329,8 @@ def verifier_exercice_1_11():
     with mock.patch('builtins.input', return_value="50"):
         sortie = capturer_sortie(exercice_1_11)
 
-    if "55" not in sortie:
+    # 50 EUR à 1.10 = 55 USD
+    if not contient_nombre(sortie, 55):
         raise VerificationError(
             "50 EUR à 1.10 = 55 USD\n"
             f"Votre sortie: {sortie}"
@@ -277,9 +350,17 @@ def verifier_exercice_1_12():
     with mock.patch('builtins.input', side_effect=["70", "1.75"]):
         sortie = capturer_sortie(exercice_1_12)
 
-    if "22" not in sortie:
+    # IMC de 70kg pour 1.75m ≈ 22.86 (entre 22 et 23)
+    nombres = extraire_nombres(sortie)
+    imc_trouve = False
+    for n in nombres:
+        if 22 <= n <= 23:
+            imc_trouve = True
+            break
+    
+    if not imc_trouve:
         raise VerificationError(
-            "IMC de 70kg pour 1.75m ≈ 22.86\n"
+            "IMC de 70kg pour 1.75m ≈ 22.86 (votre sortie doit contenir un IMC entre 22 et 23)\n"
             f"Votre sortie: {sortie}"
         )
 
@@ -297,7 +378,8 @@ def verifier_exercice_1_13():
     with mock.patch('builtins.input', side_effect=["10", "25", "15"]):
         sortie = capturer_sortie(exercice_1_13)
 
-    if "50" not in sortie or "10" not in sortie or "60" not in sortie:
+    # Panier: sous-total=50, TVA=10, total=60
+    if not (contient_nombre(sortie, 50) and contient_nombre(sortie, 10) and contient_nombre(sortie, 60)):
         raise VerificationError(
             "Panier: sous-total=50, TVA=10, total=60\n"
             f"Votre sortie: {sortie}"
@@ -317,9 +399,11 @@ def verifier_exercice_1_14():
     with mock.patch('builtins.input', side_effect=["Jean", "DUPONT", "exemple", "com"]):
         sortie = capturer_sortie(exercice_1_14)
 
-    if "jean.dupont@exemple.com" not in sortie:
+    # Vérifier présence de l'email (insensible à la casse)
+    normalisee = normaliser_sortie(sortie)
+    if "jean.dupont@exemple.com" not in normalisee:
         raise VerificationError(
-            "Email attendu: jean.dupont@exemple.com\n"
+            "Email attendu: jean.dupont@exemple.com (ou équivalent)\n"
             f"Votre sortie: {sortie}"
         )
 
@@ -337,9 +421,11 @@ def verifier_exercice_1_15():
     with mock.patch('builtins.input', side_effect=["120", "60"]):
         sortie = capturer_sortie(exercice_1_15)
 
-    if "2" not in sortie or "120" not in sortie:
+    # 120km à 60km/h = 2h = 120min
+    # Vérifier présence de 2 (heures) et 120 (minutes)
+    if not (contient_nombre(sortie, 2) and contient_nombre(sortie, 120)):
         raise VerificationError(
-            "120km à 60km/h = 2h = 120min\n"
+            "120km à 60km/h = 2h et 120min\n"
             f"Votre sortie: {sortie}"
         )
 

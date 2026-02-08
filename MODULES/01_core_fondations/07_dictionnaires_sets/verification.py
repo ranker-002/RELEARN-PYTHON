@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 """
 CHAPITRE 7 - Script de Verification Automatique
 ==============================================
@@ -16,6 +17,48 @@ from unittest import mock
 class VerificationError(Exception):
     """Erreur lors de la verification."""
     pass
+
+
+
+# =============================================================================
+# FONCTIONS DE VÉRIFICATION FLEXIBLE
+# =============================================================================
+
+def normaliser_sortie(sortie):
+    """Normalise une sortie pour comparaison flexible."""
+    if not sortie:
+        return ""
+    resultat = sortie.lower()
+    resultat = re.sub(r'\s+', ' ', resultat)
+    resultat = re.sub(r'[.,;:!?]', '', resultat)
+    return resultat.strip()
+
+
+def contient_nombre(sortie, attendu, tolerance=0.01):
+    """Vérifie que la sortie contient le nombre attendu."""
+    if not sortie:
+        return False
+    pattern = r'-?\d+(?:\.\d+)?'
+    matches = re.findall(pattern, sortie)
+    for m in matches:
+        n = float(m) if '.' in m else int(m)
+        if isinstance(attendu, int):
+            if isinstance(n, float) and n.is_integer() and int(n) == attendu:
+                return True
+            if n == attendu:
+                return True
+        else:
+            if abs(n - attendu) < tolerance:
+                return True
+    return False
+
+
+def contient_terme(sortie, terme):
+    """Vérifie qu'un terme est présent (insensible à la casse)."""
+    if not sortie:
+        return False
+    normalisee = normaliser_sortie(sortie)
+    return terme.lower() in normalisee
 
 
 def capturer_sortie(func):
@@ -94,7 +137,7 @@ def verifier_exercice_7_7():
     """Verifie l'exercice 7.7: Appartenance."""
     from exercices import exercice_7_7
     sortie = capturer_sortie(exercice_7_7)
-    if "True" in sortie and "False" in sortie:
+    if contient_terme(sortie, "True") and contient_terme(sortie, "False"):
         print("✓ Exercice 7.7: Verification d'appartenance - CORRECT")
     else:
         raise VerificationError(f"True/False attendus\nSortie: {sortie}")
@@ -164,7 +207,7 @@ def verifier_exercice_7_14():
     """Verifie l'exercice 7.14: Jeu de cartes."""
     from exercices import exercice_7_14
     sortie = capturer_sortie(exercice_7_14)
-    if "52" in sortie:
+    if contient_nombre(sortie, 52):
         print("✓ Exercice 7.14: Jeu de cartes - CORRECT")
     else:
         raise VerificationError(f"52 cartes attendu\nSortie: {sortie}")

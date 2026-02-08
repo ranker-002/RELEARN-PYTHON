@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 """
 CHAPITRE 5 - Script de Verification Automatique
 ==============================================
@@ -16,6 +17,48 @@ from unittest import mock
 class VerificationError(Exception):
     """Erreur lors de la verification."""
     pass
+
+
+
+# =============================================================================
+# FONCTIONS DE VÉRIFICATION FLEXIBLE
+# =============================================================================
+
+def normaliser_sortie(sortie):
+    """Normalise une sortie pour comparaison flexible."""
+    if not sortie:
+        return ""
+    resultat = sortie.lower()
+    resultat = re.sub(r'\s+', ' ', resultat)
+    resultat = re.sub(r'[.,;:!?]', '', resultat)
+    return resultat.strip()
+
+
+def contient_nombre(sortie, attendu, tolerance=0.01):
+    """Vérifie que la sortie contient le nombre attendu."""
+    if not sortie:
+        return False
+    pattern = r'-?\d+(?:\.\d+)?'
+    matches = re.findall(pattern, sortie)
+    for m in matches:
+        n = float(m) if '.' in m else int(m)
+        if isinstance(attendu, int):
+            if isinstance(n, float) and n.is_integer() and int(n) == attendu:
+                return True
+            if n == attendu:
+                return True
+        else:
+            if abs(n - attendu) < tolerance:
+                return True
+    return False
+
+
+def contient_terme(sortie, terme):
+    """Vérifie qu'un terme est présent (insensible à la casse)."""
+    if not sortie:
+        return False
+    normalisee = normaliser_sortie(sortie)
+    return terme.lower() in normalisee
 
 
 def capturer_sortie(func):
@@ -44,7 +87,7 @@ def verifier_exercice_5_2():
     """Verifie l'exercice 5.2: Compteur a rebours."""
     from exercices import exercice_5_2
     sortie = capturer_sortie(exercice_5_2)
-    if "10" in sortie and "1" in sortie:
+    if contient_nombre(sortie, 10) and "1" in sortie:
         print("✓ Exercice 5.2: Compteur a rebours - CORRECT")
     else:
         raise VerificationError(f"10 a 1 attendus\nSortie: {sortie}")
@@ -54,7 +97,7 @@ def verifier_exercice_5_3():
     """Verifie l'exercice 5.3: Somme des nombres."""
     from exercices import exercice_5_3
     sortie = capturer_sortie(exercice_5_3)
-    if "5050" in sortie:
+    if contient_nombre(sortie, 5050):
         print("✓ Exercice 5.3: Somme des nombres - CORRECT")
     else:
         raise VerificationError(f"5050 attendu\nSortie: {sortie}")
@@ -104,7 +147,7 @@ def verifier_exercice_5_8():
     """Verifie l'exercice 5.8: Factorielle."""
     from exercices import exercice_5_8
     sortie = capturer_sortie(exercice_5_8)
-    if "120" in sortie:
+    if contient_nombre(sortie, 120):
         print("✓ Exercice 5.8: Factorielle - CORRECT")
     else:
         raise VerificationError(f"120 attendu\nSortie: {sortie}")
@@ -137,7 +180,7 @@ def verifier_exercice_5_11():
     from exercices import exercice_5_11
     with mock.patch('builtins.input', side_effect=["15", "3"]):
         sortie = capturer_sortie(exercice_5_11)
-    if "3" in sortie:
+    if contient_nombre(sortie, 3):
         print("✓ Exercice 5.11: Validation - CORRECT")
     else:
         raise VerificationError(f"3 attendu\nSortie: {sortie}")

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 """
 CHAPITRE 2 - Script de Vérification Automatique
 ==============================================
@@ -16,6 +17,48 @@ from unittest import mock
 class VerificationError(Exception):
     """Erreur lors de la vérification."""
     pass
+
+
+
+# =============================================================================
+# FONCTIONS DE VÉRIFICATION FLEXIBLE
+# =============================================================================
+
+def normaliser_sortie(sortie):
+    """Normalise une sortie pour comparaison flexible."""
+    if not sortie:
+        return ""
+    resultat = sortie.lower()
+    resultat = re.sub(r'\s+', ' ', resultat)
+    resultat = re.sub(r'[.,;:!?]', '', resultat)
+    return resultat.strip()
+
+
+def contient_nombre(sortie, attendu, tolerance=0.01):
+    """Vérifie que la sortie contient le nombre attendu."""
+    if not sortie:
+        return False
+    pattern = r'-?\d+(?:\.\d+)?'
+    matches = re.findall(pattern, sortie)
+    for m in matches:
+        n = float(m) if '.' in m else int(m)
+        if isinstance(attendu, int):
+            if isinstance(n, float) and n.is_integer() and int(n) == attendu:
+                return True
+            if n == attendu:
+                return True
+        else:
+            if abs(n - attendu) < tolerance:
+                return True
+    return False
+
+
+def contient_terme(sortie, terme):
+    """Vérifie qu'un terme est présent (insensible à la casse)."""
+    if not sortie:
+        return False
+    normalisee = normaliser_sortie(sortie)
+    return terme.lower() in normalisee
 
 
 def capturer_sortie(func):
@@ -46,7 +89,7 @@ def verifier_exercice_2_2():
     from exercices import exercice_2_2
     with mock.patch('builtins.input', return_value="77"):
         sortie = capturer_sortie(exercice_2_2)
-    if "25.0" in sortie and "77.0" in sortie:
+    if contient_nombre(sortie, 25.0) and "77.0" in sortie:
         print("✓ Exercice 2.2: Conversion de température - CORRECT")
     else:
         raise VerificationError(f"Attendu 25.0°C pour 77°F\nSortie: {sortie}")
@@ -57,7 +100,7 @@ def verifier_exercice_2_3():
     from exercices import exercice_2_3
     with mock.patch('builtins.input', side_effect=["10", "20", "30", "40"]):
         sortie = capturer_sortie(exercice_2_3)
-    if "25" in sortie:
+    if contient_nombre(sortie, 25):
         print("✓ Exercice 2.3: Calcul de moyenne - CORRECT")
     else:
         raise VerificationError(f"Attendu moyenne de 25\nSortie: {sortie}")
@@ -68,7 +111,7 @@ def verifier_exercice_2_4():
     from exercices import exercice_2_4
     with mock.patch('builtins.input', return_value="15"):
         sortie = capturer_sortie(exercice_2_4)
-    if "True" in sortie and "False" in sortie:
+    if contient_terme(sortie, "True") and contient_terme(sortie, "False"):
         print("✓ Exercice 2.4: Validation d'âge - CORRECT")
     else:
         raise VerificationError(f"Attendu True/False pour mineur/majeur\nSortie: {sortie}")
@@ -79,7 +122,7 @@ def verifier_exercice_2_5():
     from exercices import exercice_2_5
     with mock.patch('builtins.input', return_value="-7.5"):
         sortie = capturer_sortie(exercice_2_5)
-    if "float" in sortie and "7.5" in sortie:
+    if contient_terme(sortie, "float") and "7.5" in sortie:
         print("✓ Exercice 2.5: Analyseur de nombre - CORRECT")
     else:
         raise VerificationError(f"Type float et valeur abs 7.5 attendus\nSortie: {sortie}")
@@ -123,7 +166,7 @@ def verifier_exercice_2_9():
     from exercices import exercice_2_9
     with mock.patch('builtins.input', return_value="test@example.com"):
         sortie = capturer_sortie(exercice_2_9)
-    if "True" in sortie:
+    if contient_terme(sortie, "True"):
         print("✓ Exercice 2.9: Validateur d'email - CORRECT")
     else:
         raise VerificationError(f"Email valide attendu: True\nSortie: {sortie}")
@@ -145,7 +188,7 @@ def verifier_exercice_2_11():
     from exercices import exercice_2_11
     with mock.patch('builtins.input', side_effect=["1000", "5", "10"]):
         sortie = capturer_sortie(exercice_2_11)
-    if "1628" in sortie:
+    if contient_nombre(sortie, 1628):
         print("✓ Exercice 2.11: Intérêts composés - CORRECT")
     else:
         raise VerificationError(f"Capital final proche de 1628 attendu\nSortie: {sortie}")

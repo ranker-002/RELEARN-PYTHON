@@ -57,3 +57,5 @@ migrate_projects.py
 MIGRATION_RESUME.md
 test_verify.py
 migrate_remaining_projects.py
+update_verification.py
+fix_verification.py

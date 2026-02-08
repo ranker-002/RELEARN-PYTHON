@@ -5,6 +5,5 @@ EXERCICE : Ecrivez un code en python qui affiche a l'utilisateur :
 
 def run():
     """Fonction principale de l'exercice."""
-    #votre code ici
 
 run()

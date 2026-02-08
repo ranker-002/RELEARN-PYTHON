@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import re
 """
 CHAPITRE 4 - Script de Vérification Automatique
 ==============================================
@@ -16,6 +17,48 @@ from unittest import mock
 class VerificationError(Exception):
     """Erreur lors de la vérification."""
     pass
+
+
+
+# =============================================================================
+# FONCTIONS DE VÉRIFICATION FLEXIBLE
+# =============================================================================
+
+def normaliser_sortie(sortie):
+    """Normalise une sortie pour comparaison flexible."""
+    if not sortie:
+        return ""
+    resultat = sortie.lower()
+    resultat = re.sub(r'\s+', ' ', resultat)
+    resultat = re.sub(r'[.,;:!?]', '', resultat)
+    return resultat.strip()
+
+
+def contient_nombre(sortie, attendu, tolerance=0.01):
+    """Vérifie que la sortie contient le nombre attendu."""
+    if not sortie:
+        return False
+    pattern = r'-?\d+(?:\.\d+)?'
+    matches = re.findall(pattern, sortie)
+    for m in matches:
+        n = float(m) if '.' in m else int(m)
+        if isinstance(attendu, int):
+            if isinstance(n, float) and n.is_integer() and int(n) == attendu:
+                return True
+            if n == attendu:
+                return True
+        else:
+            if abs(n - attendu) < tolerance:
+                return True
+    return False
+
+
+def contient_terme(sortie, terme):
+    """Vérifie qu'un terme est présent (insensible à la casse)."""
+    if not sortie:
+        return False
+    normalisee = normaliser_sortie(sortie)
+    return terme.lower() in normalisee
 
 
 def capturer_sortie(func):
@@ -90,7 +133,7 @@ def verifier_exercice_4_6():
     from exercices import exercice_4_6
     with mock.patch('builtins.input', return_value="Python123"):
         sortie = capturer_sortie(exercice_4_6)
-    if "True" in sortie:
+    if contient_terme(sortie, "True"):
         print("✓ Exercice 4.6: Mot de passe - CORRECT")
     else:
         raise VerificationError(f"True attendu\nSortie: {sortie}")
@@ -169,7 +212,7 @@ def verifier_exercice_4_13():
     from exercices import exercice_4_13
     with mock.patch('builtins.input', return_value="50000"):
         sortie = capturer_sortie(exercice_4_13)
-    if "4000" in sortie:
+    if contient_nombre(sortie, 4000):
         print("✓ Exercice 4.13: Impôts - CORRECT")
     else:
         raise VerificationError(f"4000€ d'impôt attendu\nSortie: {sortie}")

@@ -22,8 +22,16 @@ soit 120 minutes
 
 def run():
     """Fonction principale de l'exercice."""
-    # VOTRE CODE ICI
-    pass
+    distance = float(input("Distance (km): "))
+    vitesse = float(input("Vitesse moyenne (km/h): "))
+    
+    temps_heures = distance / vitesse
+    temps_minutes = temps_heures * 60
+    
+    print()
+    print("Résultats:")
+    print(f"Temps de trajet: {temps_heures:.2f} heures")
+    print(f"soit {int(temps_minutes)} minutes")
 
 
 # Pour tests manuels

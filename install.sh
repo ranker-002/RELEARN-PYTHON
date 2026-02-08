@@ -133,7 +133,7 @@ main() {
     print_menu_item "6" "🔧" "Dev Tools" "pytest, black, ruff"
     echo ""
     print_menu_item "7" "✨" "TOUT INSTALLER" "Toutes les dépendances"
-    print_menu_item "8" "⚡" "MINIMAL" "Aucune optionnelle (par défaut)"
+    print_menu_item "8" "⚡" "MINIMAL" "fastapi + dépendances de base"
 
     echo ""
     echo -e "   ${PINK}┌──────────────────────────────────────────────────────────────────┐${RESET}"
@@ -152,7 +152,7 @@ main() {
         5) extra="ai"; name="Deep Learning" ;;
         6) extra="dev"; name="Dev Tools" ;;
         7) extra="core web automation data ai"; name="Installation complète" ;;
-        8|"") extra=""; name="Configuration minimale" ;;
+        8|"") extra="web"; name="Configuration minimale" ;;
         *) extra=""; name="Configuration minimale" ;;
     esac
 

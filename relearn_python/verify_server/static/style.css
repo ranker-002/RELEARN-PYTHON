@@ -765,13 +765,13 @@ main {
 }
 
 /* Syntax highlighting (One Dark theme) */
-.hljs-keyword { color: #C678DD; }
-.hljs-string { color: #98C379; }
-.hljs-number { color: #D19A66; }
-.hljs-function { color: #61AFEF; }
+.hljs-keyword, .k { color: #C678DD; }
+.hljs-string, .s { color: #98C379; }
+.hljs-number, .n { color: #D19A66; }
+.hljs-function, .f { color: #61AFEF; }
 .hljs-title { color: #61AFEF; }
 .hljs-params { color: #E06C75; }
-.hljs-comment { color: #5C6370; font-style: italic; }
+.hljs-comment, .c { color: #5C6370; font-style: italic; }
 .hljs-operator { color: #56B6C2; }
 .hljs-punctuation { color: #ABB2BF; }
 .hljs-variable { color: #E06C75; }

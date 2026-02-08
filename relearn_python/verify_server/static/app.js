@@ -3,6 +3,28 @@
  * Version ultra-épurée avec mode clair/sombre et vérification individuelle
  */
 
+console.log('[DEBUG] JavaScript file loaded');
+
+if (typeof document !== 'undefined') {
+  console.log('[DEBUG] Document is available');
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('[DEBUG] DOMContentLoaded fired');
+    try {
+      initializeTheme();
+      initializeElements();
+      setupEventListeners();
+      loadInitialData();
+      console.log('[DEBUG] Initialization complete');
+    } catch (error) {
+      console.error('[DEBUG] Initialization error:', error);
+      showGlobalError('Erreur d\'initialisation: ' + error.message);
+    }
+  });
+} else {
+  console.log('[DEBUG] Document not available');
+}
+
 // État global
 const appState = {
   chapterInfo: null,
@@ -19,10 +41,17 @@ const elements = {};
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', () => {
-  initializeTheme();
-  initializeElements();
-  setupEventListeners();
-  loadInitialData();
+  console.log('[DEBUG] DOMContentLoaded fired');
+  try {
+    initializeTheme();
+    initializeElements();
+    setupEventListeners();
+    loadInitialData();
+    console.log('[DEBUG] Initialization complete');
+  } catch (error) {
+    console.error('[DEBUG] Initialization error:', error);
+    showGlobalError('Erreur d\'initialisation: ' + error.message);
+  }
 });
 
 // Gestion du thème
@@ -55,6 +84,8 @@ function updateThemeButton() {
 
 // Initialisation des éléments DOM
 function initializeElements() {
+  console.log('[DEBUG] initializeElements called');
+  
   elements.chapterTitle = document.getElementById('chapter-title');
   elements.scorePassed = document.getElementById('score-passed');
   elements.scoreTotal = document.getElementById('score-total');
@@ -62,8 +93,16 @@ function initializeElements() {
   elements.loadingState = document.getElementById('loading-state');
   elements.emptyState = document.getElementById('empty-state');
   elements.exerciseDetail = document.getElementById('exercise-detail');
-  elements.globalError = document.getElementById('global-error');
-  elements.globalErrorMessage = document.getElementById('global-error-message');
+  
+  console.log('[DEBUG] Core elements:', {
+    chapterTitle: !!elements.chapterTitle,
+    scorePassed: !!elements.scorePassed,
+    scoreTotal: !!elements.scoreTotal,
+    exercisesList: !!elements.exercisesList,
+    loadingState: !!elements.loadingState,
+    emptyState: !!elements.emptyState,
+    exerciseDetail: !!elements.exerciseDetail
+  });
   
   // Detail view
   elements.detailTitle = document.getElementById('detail-title');
@@ -93,6 +132,8 @@ function initializeElements() {
   // Tabs
   elements.tabs = document.querySelectorAll('.tab');
   elements.panels = document.querySelectorAll('.content-panel');
+  
+  console.log('[DEBUG] All elements initialized');
 }
 
 // Écouteurs d'événements
@@ -132,52 +173,68 @@ function setupEventListeners() {
 
 // Charger les données initiales
 async function loadInitialData() {
+  console.log('[DEBUG] loadInitialData called');
   showLoading();
   
   try {
+    console.log('[DEBUG] Fetching chapter info...');
     const chapterResponse = await fetch('/api/chapter-info');
-    if (!chapterResponse.ok) throw new Error('Erreur chargement chapitre');
+    if (!chapterResponse.ok) throw new Error('Erreur chargement chapitre: ' + chapterResponse.status);
     appState.chapterInfo = await chapterResponse.json();
+    console.log('[DEBUG] Chapter info:', appState.chapterInfo);
     
-    elements.chapterTitle.textContent = appState.chapterInfo.title;
+    if (elements.chapterTitle) {
+      elements.chapterTitle.textContent = appState.chapterInfo.title;
+    }
     
+    console.log('[DEBUG] Running verification...');
     await runVerification();
+    console.log('[DEBUG] Verification complete, results:', appState.results);
     
   } catch (error) {
-    showGlobalError(error.message);
+    console.error('[DEBUG] Error:', error);
+    showGlobalError(error.message || String(error));
   }
 }
 
 // Vérification de tous les exercices
 async function runVerification() {
-  if (appState.isLoading) return;
+  if (appState.isLoading) {
+    console.log('[DEBUG] Already loading, skipping...');
+    return;
+  }
   
   appState.isLoading = true;
   showLoading();
   
   try {
+    console.log('[DEBUG] Fetching /api/verify...');
     const response = await fetch('/api/verify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     });
     
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error || 'Erreur de vérification');
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || 'Erreur de vérification: ' + response.status);
     }
     
     appState.results = await response.json();
+    console.log('[DEBUG] Verification results:', appState.results);
     
     updateScore();
     renderExercisesList();
     
-    if (appState.results.exercises.length > 0) {
+    if (appState.results.exercises && appState.results.exercises.length > 0) {
       const failedExercise = appState.results.exercises.find(ex => ex.status === 'failed');
       selectExercise(failedExercise || appState.results.exercises[0]);
+    } else {
+      console.log('[DEBUG] No exercises found in results');
     }
     
   } catch (error) {
-    showGlobalError(error.message);
+    console.error('[DEBUG] Verification error:', error);
+    showGlobalError(error.message || String(error));
   } finally {
     appState.isLoading = false;
   }
@@ -234,8 +291,14 @@ function updateScore() {
 
 // Afficher la liste des exercices
 function renderExercisesList() {
+  console.log('[DEBUG] renderExercisesList called, exercises:', appState.results?.exercises?.length);
   const list = elements.exercisesList;
   list.innerHTML = '';
+  
+  if (!appState.results || !appState.results.exercises) {
+    console.error('[DEBUG] No exercises to render');
+    return;
+  }
   
   appState.results.exercises.forEach((exercise, index) => {
     const card = document.createElement('div');
@@ -254,10 +317,12 @@ function renderExercisesList() {
     card.addEventListener('click', () => selectExercise(exercise));
     list.appendChild(card);
   });
+  console.log('[DEBUG] Rendered', list.children.length, 'exercises');
 }
 
 // Sélectionner un exercice
 async function selectExercise(exercise) {
+  console.log('[DEBUG] selectExercise called with:', exercise);
   appState.selectedExercise = exercise;
   appState.solutionVisible = false;
   
@@ -269,14 +334,15 @@ async function selectExercise(exercise) {
   if (activeCard) activeCard.classList.add('active');
   
   // Afficher le détail
-  elements.loadingState.style.display = 'none';
-  elements.emptyState.style.display = 'none';
-  elements.globalError.style.display = 'none';
-  elements.exerciseDetail.style.display = 'block';
+  if (elements.loadingState) elements.loadingState.style.display = 'none';
+  if (elements.emptyState) elements.emptyState.style.display = 'none';
+  if (elements.exerciseDetail) elements.exerciseDetail.style.display = 'block';
   
   // Mettre à jour les infos
-  elements.detailTitle.textContent = `Exercice ${exercise.num}`;
-  elements.detailSubtitle.textContent = exercise.name;
+  if (elements.detailTitle) elements.detailTitle.textContent = `Exercice ${exercise.num}`;
+  if (elements.detailSubtitle) elements.detailSubtitle.textContent = exercise.name;
+  
+  console.log('[DEBUG] Loading description, codes, and results...');
   
   // Charger les données
   await Promise.all([
@@ -285,22 +351,35 @@ async function selectExercise(exercise) {
     updateResultPanel(exercise)
   ]);
   
+  console.log('[DEBUG] All data loaded, switching to description tab');
+  
   // Réinitialiser l'onglet
   switchTab('description');
 }
 
 // Charger la description
 async function loadDescription(exerciseNum) {
+  console.log('[DEBUG] loadDescription called for:', exerciseNum);
   try {
     const response = await fetch(`/api/description/${exerciseNum}`);
+    console.log('[DEBUG] Description response status:', response.status);
     if (response.ok) {
       const description = await response.text();
-      elements.descriptionContent.innerHTML = formatDescription(description);
+      console.log('[DEBUG] Description loaded:', description.substring(0, 100));
+      if (elements.descriptionContent) {
+        elements.descriptionContent.innerHTML = formatDescription(description);
+      }
     } else {
-      elements.descriptionContent.innerHTML = '<p>Description non disponible</p>';
+      console.log('[DEBUG] Description not found');
+      if (elements.descriptionContent) {
+        elements.descriptionContent.innerHTML = '<p>Description non disponible</p>';
+      }
     }
   } catch (error) {
-    elements.descriptionContent.innerHTML = '<p>Erreur de chargement</p>';
+    console.error('[DEBUG] Error loading description:', error);
+    if (elements.descriptionContent) {
+      elements.descriptionContent.innerHTML = '<p>Erreur de chargement</p>';
+    }
   }
 }
 
@@ -315,61 +394,190 @@ function formatDescription(text) {
 
 // Charger les codes
 async function loadExerciseCodes(exerciseNum) {
+  console.log('[DEBUG] loadExerciseCodes CALLED for:', exerciseNum);
   try {
     // Code utilisateur
     const userResponse = await fetch(`/api/code/${exerciseNum}`);
+    console.log('[DEBUG] userResponse.status:', userResponse.status);
     if (userResponse.ok) {
       const code = await userResponse.text();
-      elements.userCode.textContent = code || '# Code non trouvé';
-      highlightCode(elements.userCode);
+      console.log('[DEBUG] code loaded:', code.substring(0, 50));
+      if (elements.userCode) {
+        renderCode(elements.userCode, code);
+      }
     }
     
     // Solution
     const solutionResponse = await fetch(`/api/solution/${exerciseNum}`);
+    console.log('[DEBUG] solutionResponse.status:', solutionResponse.status);
     if (solutionResponse.ok) {
       const solution = await solutionResponse.text();
-      elements.solutionCode.textContent = solution || '# Solution non disponible';
-      highlightCode(elements.solutionCode);
+      console.log('[DEBUG] solution loaded:', solution.substring(0, 50));
+      if (elements.solutionCode) {
+        renderCode(elements.solutionCode, solution);
+      }
     }
     
     // Cacher la solution par défaut
-    elements.solutionPanel.classList.add('hidden');
-    elements.btnShowSolution.innerHTML = '<span class="icon">👁</span> Voir la solution';
+    if (elements.solutionPanel) elements.solutionPanel.classList.add('hidden');
+    if (elements.btnShowSolution) {
+      elements.btnShowSolution.innerHTML = '<span class="icon">👁</span> Voir la solution';
+    }
     
   } catch (error) {
-    console.error('Erreur chargement code:', error);
+    console.error('[DEBUG] Error loading codes:', error);
   }
+}
+
+// Syntax highlighting - approche DOM directe
+function renderCode(element, code) {
+  if (!code) return;
+  
+  // Vider l'élément
+  element.innerHTML = '';
+  
+  // Parser le code ligne par ligne
+  const lines = code.split('\n');
+  
+  lines.forEach((line, lineIndex) => {
+    // Créer un conteneur pour chaque ligne
+    const lineDiv = document.createElement('div');
+    lineDiv.style.whiteSpace = 'pre';
+    lineDiv.style.fontFamily = 'var(--font-mono)';
+    lineDiv.style.fontSize = '14px';
+    lineDiv.style.lineHeight = '1.6';
+    lineDiv.style.marginBottom = '4px';
+    
+    // Parser la ligne pour les spans
+    let i = 0;
+    while (i < line.length) {
+      const char = line[i];
+      
+      // Commentaire
+      if (char === '#') {
+        const span = document.createElement('span');
+        span.className = 'c';
+        span.textContent = line.substring(i);
+        lineDiv.appendChild(span);
+        break;
+      }
+      
+      // String guillemets doubles
+      if (char === '"' && (i === 0 || line[i-1] !== '\\')) {
+        let str = char;
+        i++;
+        while (i < line.length && (line[i] !== '"' || line[i-1] === '\\')) {
+          str += line[i];
+          i++;
+        }
+        if (i < line.length) str += line[i];
+        i++;
+        const span = document.createElement('span');
+        span.className = 's';
+        span.textContent = str;
+        lineDiv.appendChild(span);
+        continue;
+      }
+      
+      // String guillemets simples
+      if (char === "'" && (i === 0 || line[i-1] !== '\\')) {
+        let str = char;
+        i++;
+        while (i < line.length && (line[i] !== "'" || line[i-1] === '\\')) {
+          str += line[i];
+          i++;
+        }
+        if (i < line.length) str += line[i];
+        i++;
+        const span = document.createElement('span');
+        span.className = 's';
+        span.textContent = str;
+        lineDiv.appendChild(span);
+        continue;
+      }
+      
+      // Mot-clé Python
+      const keywords = ['def', 'return', 'if', 'else', 'elif', 'for', 'while', 'in', 'import', 'from', 'as', 'try', 'except', 'class', 'pass', 'True', 'False', 'None', 'print', 'input', 'float', 'int', 'str'];
+      let match = false;
+      for (const kw of keywords) {
+        const regex = new RegExp('^' + kw + '\\b');
+        if (regex.test(line.substring(i))) {
+          const span = document.createElement('span');
+          span.className = 'k';
+          span.textContent = kw;
+          lineDiv.appendChild(span);
+          i += kw.length;
+          match = true;
+          break;
+        }
+      }
+      if (match) continue;
+      
+      // Nombre
+      const numRegex = /^(\d+(?:\.\d+)?)/;
+      const numMatch = line.substring(i).match(numRegex);
+      if (numMatch) {
+        const span = document.createElement('span');
+        span.className = 'n';
+        span.textContent = numMatch[1];
+        lineDiv.appendChild(span);
+        i += numMatch[1].length;
+        continue;
+      }
+      
+      // Caractère normal
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.color = 'inherit';
+      lineDiv.appendChild(span);
+      i++;
+    }
+    
+    element.appendChild(lineDiv);
+  });
 }
 
 // Mettre à jour le panneau de résultat
 function updateResultPanel(exercise) {
-  elements.statusCard.style.display = 'flex';
-  elements.statusCard.className = `status-card ${exercise.status}`;
+  console.log('[DEBUG] updateResultPanel called with:', exercise);
+  if (!exercise) {
+    console.log('[DEBUG] Exercise is null or undefined');
+    return;
+  }
+  
+  if (elements.statusCard) {
+    elements.statusCard.style.display = 'flex';
+    elements.statusCard.className = `status-card ${exercise.status}`;
+  }
   
   if (exercise.status === 'passed') {
-    elements.statusIcon.textContent = '✓';
-    elements.statusTitle.textContent = 'Exercice réussi !';
-    elements.statusTitle.style.color = 'var(--success)';
-    elements.statusMessage.textContent = 'Bravo, votre solution est correcte.';
-    elements.suggestionCard.style.display = 'none';
+    if (elements.statusIcon) elements.statusIcon.textContent = '✓';
+    if (elements.statusTitle) {
+      elements.statusTitle.textContent = 'Exercice réussi !';
+      elements.statusTitle.style.color = 'var(--success)';
+    }
+    if (elements.statusMessage) elements.statusMessage.textContent = 'Bravo, votre solution est correcte.';
+    if (elements.suggestionCard) elements.suggestionCard.style.display = 'none';
   } else {
-    elements.statusIcon.textContent = '✗';
-    elements.statusTitle.textContent = 'Exercice échoué';
-    elements.statusTitle.style.color = 'var(--error)';
-    elements.statusMessage.textContent = exercise.error_message || 'La solution ne produit pas le résultat attendu.';
+    if (elements.statusIcon) elements.statusIcon.textContent = '✗';
+    if (elements.statusTitle) {
+      elements.statusTitle.textContent = 'Exercice échoué';
+      elements.statusTitle.style.color = 'var(--error)';
+    }
+    if (elements.statusMessage) elements.statusMessage.textContent = exercise.error_message || 'La solution ne produit pas le résultat attendu.';
     
-    if (exercise.suggestion) {
+    if (exercise.suggestion && elements.suggestionCard) {
       elements.suggestionCard.style.display = 'block';
-      elements.suggestionText.textContent = exercise.suggestion;
-    } else {
+      if (elements.suggestionText) elements.suggestionText.textContent = exercise.suggestion;
+    } else if (elements.suggestionCard) {
       elements.suggestionCard.style.display = 'none';
     }
   }
   
-  if (exercise.output) {
+  if (exercise.output && elements.outputPanel) {
     elements.outputPanel.style.display = 'block';
-    elements.outputContent.textContent = exercise.output;
-  } else {
+    if (elements.outputContent) elements.outputContent.textContent = exercise.output;
+  } else if (elements.outputPanel) {
     elements.outputPanel.style.display = 'none';
   }
 }
@@ -419,48 +627,23 @@ async function copyToClipboard(elementId) {
   }
 }
 
-// Syntax highlighting simple
-function highlightCode(element) {
-  let code = element.textContent;
-  
-  // Échapper HTML
-  code = code.replace(/&/g, '&amp;')
-             .replace(/</g, '&lt;')
-             .replace(/>/g, '&gt;');
-  
-  // Keywords Python
-  const keywords = ['def', 'return', 'if', 'else', 'elif', 'for', 'while', 'in', 'import', 'from', 'as', 'try', 'except', 'class', 'pass', 'True', 'False', 'None', 'print', 'input', 'float', 'int', 'str'];
-  keywords.forEach(kw => {
-    const regex = new RegExp(`\\b${kw}\\b`, 'g');
-    code = code.replace(regex, `<span class="hljs-keyword">${kw}</span>`);
-  });
-  
-  // Strings
-  code = code.replace(/(".*?")/g, '<span class="hljs-string">$1</span>');
-  code = code.replace(/('.*?')/g, '<span class="hljs-string">$1</span>');
-  
-  // Nombres
-  code = code.replace(/\b(\d+(?:\.\d+)?)\b/g, '<span class="hljs-number">$1</span>');
-  
-  // Commentaires
-  code = code.replace(/(#.*$)/gm, '<span class="hljs-comment">$1</span>');
-  
-  element.innerHTML = code;
-}
-
 // Afficher l'état de chargement
 function showLoading() {
-  elements.loadingState.style.display = 'flex';
-  elements.emptyState.style.display = 'none';
-  elements.exerciseDetail.style.display = 'none';
-  elements.globalError.style.display = 'none';
+  if (elements.loadingState) elements.loadingState.style.display = 'flex';
+  if (elements.emptyState) elements.emptyState.style.display = 'none';
+  if (elements.exerciseDetail) elements.exerciseDetail.style.display = 'none';
 }
 
 // Afficher une erreur globale
 function showGlobalError(message) {
-  elements.loadingState.style.display = 'none';
-  elements.emptyState.style.display = 'none';
-  elements.exerciseDetail.style.display = 'none';
-  elements.globalError.style.display = 'block';
-  elements.globalErrorMessage.textContent = message;
+  if (elements.loadingState) elements.loadingState.style.display = 'none';
+  if (elements.emptyState) {
+    elements.emptyState.style.display = 'flex';
+    elements.emptyState.innerHTML = `
+      <div class="empty-icon" aria-hidden="true">❌</div>
+      <div class="empty-title">Erreur</div>
+      <div class="empty-text">${message}</div>
+    `;
+  }
+  if (elements.exerciseDetail) elements.exerciseDetail.style.display = 'none';
 }

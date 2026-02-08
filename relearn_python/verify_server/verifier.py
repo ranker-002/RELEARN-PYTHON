@@ -40,8 +40,8 @@ def detect_verification_pattern(verif_path: Path) -> str:
     """Détecte le pattern de vérification utilisé.
     
     Returns:
-        "pattern_a" si mock.patch présent (chapitres 1-16)
-        "pattern_b" sinon (chapitres 17-26)
+        "pattern_a" si mock.patch présent (chapitres avec input)
+        "pattern_b" sinon (chapitres sans input)
     """
     content = verif_path.read_text(encoding="utf-8")
     if "mock.patch" in content:
@@ -73,13 +73,14 @@ def get_chapter_info(chapter_path: Path) -> Dict[str, Any]:
     title = extract_chapter_title(readme_path)
     pattern = detect_verification_pattern(verif_path) if verif_path.exists() else "unknown"
     
-    # Compter le nombre d'exercices
-    exercises_count = 0
-    exercises_path = chapter_path / "exercices.py"
-    if exercises_path.exists():
-        content = exercises_path.read_text(encoding="utf-8")
-        # Compter les fonctions exercice_X_Y
-        exercises_count = len(re.findall(r"^def\s+exercice_\d+_\d+", content, re.MULTILINE))
+    exercises_dir = chapter_path / "exercices"
+    exercises_init = exercises_dir / "__init__.py"
+    
+    if exercises_init.exists():
+        init_content = exercises_init.read_text(encoding="utf-8")
+        exercises_count = len(re.findall(r"^from\s+\.\w+\s+import", init_content, re.MULTILINE))
+    else:
+        exercises_count = 0
     
     return {
         "chapter": chapter_path.name,

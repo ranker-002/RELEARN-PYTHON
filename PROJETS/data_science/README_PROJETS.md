@@ -4,7 +4,7 @@ Analysez et transformez des données comme un professionnel.
 
 ## Prérequis
 
-**Module 5 requis** : Chapitre 22
+**Module 5 requis** : Chapitre 21
 
 ## Projets Disponibles
 

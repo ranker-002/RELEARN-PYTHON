@@ -4,7 +4,7 @@ Extrayez et analysez des données du web automatiquement.
 
 ## Prérequis
 
-**Module 5 requis** : Chapitre 21
+**Module 5 requis** : Chapitre 20
 
 ## Projets Disponibles
 

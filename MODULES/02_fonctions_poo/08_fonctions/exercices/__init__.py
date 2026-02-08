@@ -20,7 +20,9 @@ from .ex_12_docstring import run as exercice_8_12
 from .ex_13_early_return import run as exercice_8_13
 from .ex_14_tri_avec_lambda import run as exercice_8_14
 from .ex_15_calculatrice_avec_fonctions import run as exercice_8_15
+from .ex_16_position_only import run as exercice_8_16
+from .ex_17_keyword_only import run as exercice_8_17
 
 __all__ = [
-    "exercice_8_1", "exercice_8_2", "exercice_8_3", "exercice_8_4", "exercice_8_5", "exercice_8_6", "exercice_8_7", "exercice_8_8", "exercice_8_9", "exercice_8_10", "exercice_8_11", "exercice_8_12", "exercice_8_13", "exercice_8_14", "exercice_8_15"
+    "exercice_8_1", "exercice_8_2", "exercice_8_3", "exercice_8_4", "exercice_8_5", "exercice_8_6", "exercice_8_7", "exercice_8_8", "exercice_8_9", "exercice_8_10", "exercice_8_11", "exercice_8_12", "exercice_8_13", "exercice_8_14", "exercice_8_15", "exercice_8_16", "exercice_8_17"
 ]

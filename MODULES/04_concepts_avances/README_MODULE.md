@@ -6,9 +6,9 @@ Maîtrisez les techniques expertes qui différencient un développeur intermédi
 
 | Chapitre | Titre | Objectif |
 |----------|-------|----------|
-| 17 | Décorateurs & Générateurs | Patterns avancés et optimisation mémoire |
-| 18 | Programmation Concurrente | Paralléliser les tâches (threading, asyncio) |
-| 19 | Type Hinting | Annotations de types pour un code robuste |
+| 16 | Décorateurs & Générateurs | Patterns avancés et optimisation mémoire |
+| 17 | Programmation Concurrente | Paralléliser les tâches (threading, asyncio) |
+| 18 | Type Hinting | Annotations de types pour un code robuste |
 
 ## Prérequis
 

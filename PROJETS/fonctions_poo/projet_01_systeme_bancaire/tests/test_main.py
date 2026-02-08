@@ -1,4 +1,5 @@
 """Tests for main module."""
+import sys
 import pytest
 from pathlib import Path
 

@@ -6,12 +6,11 @@ Apprenez à écrire du code réutilisable et à modéliser des objets du monde r
 
 | Chapitre | Titre | Objectif |
 |----------|-------|----------|
-| 08 | Fonctions | Créer des blocs de code réutilisables |
-| 09 | Arguments Avancés | Maîtriser les paramètres flexibles (*args, **kwargs) |
-| 10 | Modules & Packages | Organiser et importer du code |
-| 11 | Classes & Objets | Définir vos propres types de données |
-| 12 | Héritage & Polymorphisme | Créer des relations entre classes |
-| 13 | Propriétés & Méthodes Spéciales | Personnaliser le comportement des objets |
+| 08 | Fonctions | Créer des blocs de code réutilisables avec tous types d'arguments |
+| 09 | Modules & Packages | Organiser et importer du code |
+| 10 | Classes & Objets | Définir vos propres types de données |
+| 11 | Héritage & Polymorphisme | Créer des relations entre classes |
+| 12 | Propriétés & Méthodes Spéciales | Personnaliser le comportement des objets |
 
 ## Prérequis
 

@@ -4,7 +4,7 @@ Construisez des applications web avec Python.
 
 ## Prérequis
 
-**Module 5 requis** : Chapitre 24
+**Module 5 requis** : Chapitre 23
 
 ## Projets Disponibles
 

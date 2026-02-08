@@ -1,3 +1,6 @@
-"""Package for projet_02_analyseur_prix."""
+"""Models package for price analyzer."""
 
-__version__ = "1.0.0"
+from .produit import Produit, Prix, Disponibilite
+from .prix import Prix
+
+__all__ = ["Produit", "Prix", "Disponibilite"]

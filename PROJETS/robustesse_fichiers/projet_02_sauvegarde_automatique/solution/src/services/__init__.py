@@ -1,3 +1,3 @@
-"""Package for projet_02_sauvegarde_automatique."""
+"""Services package."""
 
-__version__ = "1.0.0"
+__all__ = []

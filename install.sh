@@ -1,104 +1,189 @@
 #!/bin/bash
 
 # =============================================================================
-# PYTHON MASTERY - Script d'Installation
+# RELEARN PYTHON - Script d'Installation
 # =============================================================================
 # Usage: ./install.sh
 # =============================================================================
 
 set -e
 
-echo "🐍 Python Mastery - Installation"
-echo "================================"
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+WHITE='\033[1;37m'
+PURPLE='\033[0;35m'
+PINK='\033[38;5;205m'
+GRAY='\033[0;90m'
+LIGHT_GREEN='\033[1;32m'
+VIOLET_BLUE='\033[38;5;141m'
+RESET='\033[0m'
 
-# Vérifier/Installer uv
-if ! command -v uv &> /dev/null; then
-    echo "[INFO] Installation de uv..."
-    curl -LsSf https://astral.sh/uv/install.sh | sh
-    export PATH="$HOME/.local/bin:$PATH"
+# Logo RE:PY
+LOGO="
+   ${LIGHT_GREEN}██████╗ ███████╗${RESET}${WHITE}╗${RESET}${VIOLET_BLUE}██████╗ ██╗   ██╗${RESET}
+   ${LIGHT_GREEN}██╔══██╗██╔════╝${RESET}${WHITE}║${RESET}${VIOLET_BLUE}██╔══██╗╚██╗ ██╔╝${RESET}
+   ${LIGHT_GREEN}██████╔╝█████╗  ${RESET}${WHITE}:${RESET}${VIOLET_BLUE}██████╔╝ ╚████╔╝ ${RESET}
+   ${LIGHT_GREEN}██╔══██╗██╔══╝  ${RESET}${WHITE}║${RESET}${VIOLET_BLUE}██╔═══╝   ╚██╔╝  ${RESET}
+   ${LIGHT_GREEN}██║  ██║███████╗${RESET}${WHITE}╝${RESET}${VIOLET_BLUE}██║        ██║   ${RESET}
+   ${LIGHT_GREEN}╚═╝  ╚═╝╚══════╝${RESET}${WHITE} ${RESET}${VIOLET_BLUE}╚═╝        ╚═╝   ${RESET}
+"
 
-    # Activer uv pour la session courante
-    for env_file in "$HOME/.local/bin/env" "$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.profile"; do
-        if [ -f "$env_file" ]; then
-            source "$env_file" 2>/dev/null || true
+# Print functions
+print_header() {
+    clear
+    echo -e "${LOGO}"
+    echo -e "${PURPLE}╔════════════════════════════════════════════════════════════╗${RESET}"
+    echo -e "${PURPLE}║${RESET}       ${WHITE}Apprentissage progressif et complet${RESET}           ${PURPLE}║${RESET}"
+    echo -e "${PURPLE}╚════════════════════════════════════════════════════════════╝${RESET}"
+    echo ""
+}
+
+print_step() {
+    local num=$1
+    local msg=$2
+
+    echo -e "   ${CYAN}▓${RESET}${GREEN}░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░${RESET} ${WHITE}${BOLD}$msg${RESET}"
+}
+
+print_success() {
+    echo -e "   ${GREEN}✓${RESET} ${GREEN}$1${RESET}"
+}
+
+print_info() {
+    echo -e "   ${BLUE}›${RESET} $1"
+}
+
+print_menu_item() {
+    local num=$1
+    local icon=$2
+    local label=$3
+    local desc=$4
+    printf "   ${WHITE}%2s${RESET}  %s ${WHITE}%s${RESET}   ${DIM}%s${RESET}\n" "$num" "$icon" "$label" "$desc"
+}
+
+print_divider() {
+    echo ""
+    echo -e "${GRAY}────────────────────────────────────────────────────────────────────────${RESET}"
+    echo ""
+}
+
+# Main
+main() {
+    print_header
+
+    echo -e "${WHITE}${BOLD} PREPARATION ${RESET}"
+    echo ""
+
+    # Step 0: uv
+    print_step "0" "Vérification de uv"
+    if ! command -v uv &> /dev/null; then
+        print_info "Installation de uv..."
+        curl -LsSf https://astral.sh/uv/install.sh  | sh > /dev/null 2>&1
+        export PATH="$HOME/.local/bin:$PATH"
+        print_success "uv installé"
+    else
+        print_success "uv $(uv --version | cut -d' ' -f2)"
+    fi
+
+    # Step 1: Python
+    echo ""
+    print_step "1" "Vérification de Python"
+    local py_version=$(python3 --version 2>&1 | cut -d' ' -f2)
+    print_success "Python $py_version"
+
+    # Step 2: venv
+    echo ""
+    print_step "2" "Configuration du virtual environment"
+
+    if [ -d ".venv" ]; then
+        print_info "Un venv existe déjà"
+        read -p "   Recréer ? [o/N]: " recreate
+        if [[ "$recreate" =~ ^[oO]$ ]]; then
+            rm -rf .venv
+            uv venv .venv
+            print_success "Virtual environment recréé"
+        else
+            print_success "Conservation du venv existant"
         fi
-    done
-fi
+    else
+        uv venv .venv
+        print_success "Virtual environment créé"
+    fi
 
-echo "[INFO] uv version: $(uv --version)"
-echo "[INFO] Python: $(python3 --version)"
+    # Step 3: sync
+    echo ""
+    print_step "3" "Synchronisation des dépendances"
 
-echo ""
-echo "📦 Installation des dépendances..."
+    print_divider
 
-uv venv 2>/dev/null || true
+    echo -e "${WHITE}┌──────────────────────────────────────────────────────────────────┐${RESET}"
+    echo -e "${WHITE}│${RESET}                     ${WHITE}${BOLD}INSTALLATION${RESET}                              ${WHITE}│${RESET}"
+    echo -e "${WHITE}└──────────────────────────────────────────────────────────────────┘${RESET}"
+    echo ""
 
-echo ""
-echo "════════════════════════════════════════════════════════════════════"
-echo "                    CHOIX D'INSTALLATION"
-echo "════════════════════════════════════════════════════════════════════"
-echo ""
-echo "📖 PHASE 1-4: FONDATIONS & STRUCTURES (aucune dépendance externe)"
-echo "   └── Inclus par défaut"
-echo ""
-echo "📊 PHASE 5-6: FICHIERS & CONCEPTS AVANCÉS"
-echo "   └── Inclus par défaut"
-echo ""
-echo "🌐 PHASE 7: DOMAINES SPÉCIALISÉS"
-echo ""
-echo "   [1] 📊 Data Science         → numpy, pandas, matplotlib (chapitres 22-23)"
-echo "       Utilisation: uv sync --extra core"
-echo ""
-echo "   [2] 🕸️  Web Dev              → flask, fastapi, jinja2, uvicorn (chapitre 24)"
-echo "       Utilisation: uv sync --extra web"
-echo ""
-echo "   [3] 🤖 Automation           → beautifulsoup4, selenium, webdriver-manager (chapitres 20-21)"
-echo "       Utilisation: uv sync --extra automation"
-echo ""
-echo "   [4] 📈 Machine Learning     → scikit-learn, openpyxl, pillow (chapitre 25)"
-echo "       Utilisation: uv sync --extra data"
-echo ""
-echo "   [5] 🧠 Deep Learning        → torch, torchvision (chapitre 26)"
-echo "       ⚠️  TRÈS LOURD (~1GB)"
-echo "       Utilisation: uv sync --extra ai"
-echo ""
-echo "   [6] 🔧 Outils Dev           → pytest, black, ruff"
-echo "       Utilisation: uv sync --extra dev"
-echo ""
-echo "   [7] ✅ TOUT INSTALLER       → Toutes les dépendances"
-echo "       ⚠️  TRÈS LONG (~2-5 GB)"
-echo ""
-echo "   [8] ❌ MINIMUM              → Aucune dépendance optionnelle"
-echo ""
-echo "════════════════════════════════════════════════════════════════════"
-echo ""
-read -p "Votre choix [1-8]: " choix
+    print_menu_item "1" "📊" "Data Science" "numpy, pandas, matplotlib"
+    print_menu_item "2" "🌐" "Web Dev" "flask, fastapi, uvicorn"
+    print_menu_item "3" "🤖" "Automation" "beautifulsoup4, selenium"
+    print_menu_item "4" "📈" "Machine Learning" "scikit-learn, pillow"
+    print_menu_item "5" "🧠" "Deep Learning" "torch, torchvision (~1.5 GB)"
+    print_menu_item "6" "🔧" "Dev Tools" "pytest, black, ruff"
+    echo ""
+    print_menu_item "7" "✨" "TOUT INSTALLER" "Toutes les dépendances"
+    print_menu_item "8" "⚡" "MINIMAL" "Aucune optionnelle (par défaut)"
 
-case $choix in
-    1) echo ""; echo "Installation de Data Science..."; uv sync --extra core ;;
-    2) echo ""; echo "Installation de Web Dev..."; uv sync --extra web ;;
-    3) echo ""; echo "Installation de Automation..."; uv sync --extra automation ;;
-    4) echo ""; echo "Installation de Machine Learning..."; uv sync --extra data ;;
-    5) echo ""; echo "Installation de Deep Learning (ceci peut prendre plusieurs minutes)..."; uv sync --extra ai ;;
-    6) echo ""; echo "Installation des outils de développement..."; uv sync --extra dev ;;
-    7) echo ""; echo "Installation complète (toutes les dépendances)..."; uv sync --extra core --extra web --extra automation --extra data --extra ai ;;
-    8) echo ""; echo "Installation minimale uniquement..."; uv sync ;;
-    *) echo "Choix invalide, installation minimale uniquement"; uv sync ;;
-esac
+    echo ""
+    echo -e "   ${PINK}┌──────────────────────────────────────────────────────────────────┐${RESET}"
+    echo -e "   ${PINK}│${RESET}  ${WHITE}Choisissez [1-8]${RESET}                                          ${PINK}│${RESET}"
+    echo -e "   ${PINK}└──────────────────────────────────────────────────────────────────┘${RESET}"
+    echo -ne "   ${CYAN}›${RESET}  "
+    read choix
 
-echo ""
-echo "═══════════════════════════════════════════════════════════════════"
-echo "✅ Installation terminée !"
-echo "═══════════════════════════════════════════════════════════════════"
-echo ""
-echo "📌 COMMANDES UTILES:"
-echo ""
-echo "   just install-dev    # Installer avec outils dev"
-echo "   just test           # Lancer les tests"
-echo "   just format         # Formatter le code"
-echo "   just lint           # Vérifier le code"
-echo "   just check          # Vérification complète"
-echo ""
-echo "   uv run python fichier.py     # Exécuter un script"
-echo ""
-echo "═══════════════════════════════════════════════════════════════════"
+    echo ""
+
+    case $choix in
+        1) extra="core"; name="Data Science" ;;
+        2) extra="web"; name="Web Development" ;;
+        3) extra="automation"; name="Automation" ;;
+        4) extra="data"; name="Machine Learning" ;;
+        5) extra="ai"; name="Deep Learning" ;;
+        6) extra="dev"; name="Dev Tools" ;;
+        7) extra="core web automation data ai"; name="Installation complète" ;;
+        8|"") extra=""; name="Configuration minimale" ;;
+        *) extra=""; name="Configuration minimale" ;;
+    esac
+
+    echo -e "   ${WHITE}›${RESET} ${BOLD}$name${RESET}"
+
+    if [ -z "$extra" ]; then
+        uv sync
+    else
+        # Installer core d'abord, puis les autres
+        uv sync --extra core
+        for e in $extra; do
+            if [ "$e" != "core" ]; then
+                uv pip install -e ".[$e]"
+            fi
+        done
+    fi
+
+    print_divider
+
+    echo -e "${GREEN}                    ✨  TERMINÉ  ✨${RESET}"
+    echo ""
+
+    echo -e "${WHITE}${BOLD}  Commandes:${RESET}"
+    echo ""
+    echo -e "    ${CYAN}uv run script.py${RESET}     Exécuter un script"
+    echo -e "    ${CYAN}just test${RESET}           Lancer les tests"
+    echo -e "    ${CYAN}just format${RESET}         Formatter"
+    echo -e "    ${CYAN}just lint${RESET}           Vérifier"
+    echo ""
+    echo -e "    ${DIM}cd MODULES && ls${RESET}     Accéder aux chapitres"
+    echo ""
+}
+
+main

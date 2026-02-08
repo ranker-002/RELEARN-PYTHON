@@ -1,3 +1,6 @@
-"""Package for projet_01_systeme_bancaire."""
+"""Utils package for banking system."""
 
-__version__ = "1.0.0"
+from utils.config import Config
+from utils.date_utils import DateUtils
+
+__all__ = ["Config", "DateUtils"]

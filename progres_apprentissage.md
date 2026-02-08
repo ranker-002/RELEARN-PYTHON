@@ -81,40 +81,32 @@ Cochez les chapitres terminés et notez vos observations.
 
 **Notes:**
 
-### Chapitre 9: Arguments Avancés
-- [ ] Lu README.md (`MODULES/02_fonctions_poo/09_arguments_avances/`)
+### Chapitre 09: Modules & Packages
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/09_modules_packages/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
 **Notes:**
 
-### Chapitre 10: Modules & Packages
-- [ ] Lu README.md (`MODULES/02_fonctions_poo/10_modules_packages/`)
+### Chapitre 10: Classes & Objets
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/10_classes_objets/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
 **Notes:**
 
-### Chapitre 11: Classes & Objets
-- [ ] Lu README.md (`MODULES/02_fonctions_poo/11_classes_objets/`)
+### Chapitre 11: Héritage & Polymorphisme
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/11_heritage_polymorphisme/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
 **Notes:**
 
-### Chapitre 12: Héritage & Polymorphisme
-- [ ] Lu README.md (`MODULES/02_fonctions_poo/12_heritage_polymorphisme/`)
-- [ ] Complété exercices.py
-- [ ] Compris les exemples
-- [ ] Validés avec verification.py
-
-**Notes:**
-
-### Chapitre 13: Propriétés & Méthodes Spéciales
-- [ ] Lu README.md (`MODULES/02_fonctions_poo/13_proprietes_methodes_speciales/`)
+### Chapitre 12: Propriétés & Méthodes Spéciales
+- [ ] Lu README.md (`MODULES/02_fonctions_poo/12_proprietes_methodes_speciales/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
@@ -127,24 +119,24 @@ Cochez les chapitres terminés et notez vos observations.
 
 **Prérequis**: Modules 1-2 | **Emplacement**: `MODULES/03_robustesse_fichiers/`
 
-### Chapitre 14: Exceptions
-- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/14_exceptions/`)
+### Chapitre 13: Exceptions
+- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/13_exceptions/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
 **Notes:**
 
-### Chapitre 15: Fichiers I/O
-- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/15_fichiers_io/`)
+### Chapitre 14: Fichiers I/O
+- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/14_fichiers_io/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
 **Notes:**
 
-### Chapitre 16: Sérialisation
-- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/16_serialisation/`)
+### Chapitre 15: Sérialisation
+- [ ] Lu README.md (`MODULES/03_robustesse_fichiers/15_serialisation/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
@@ -157,24 +149,24 @@ Cochez les chapitres terminés et notez vos observations.
 
 **Prérequis**: Modules 1-3 | **Emplacement**: `MODULES/04_concepts_avances/`
 
-### Chapitre 17: Décorateurs & Générateurs
-- [ ] Lu README.md (`MODULES/04_concepts_avances/17_decorateurs_generateurs/`)
+### Chapitre 16: Décorateurs & Générateurs
+- [ ] Lu README.md (`MODULES/04_concepts_avances/16_decorateurs_generateurs/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
 **Notes:**
 
-### Chapitre 18: Programmation Concurrente
-- [ ] Lu README.md (`MODULES/04_concepts_avances/18_programmation_concurrente/`)
+### Chapitre 17: Programmation Concurrente
+- [ ] Lu README.md (`MODULES/04_concepts_avances/17_programmation_concurrente/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
 **Notes:**
 
-### Chapitre 19: Type Hinting
-- [ ] Lu README.md (`MODULES/04_concepts_avances/19_type_hinting/`)
+### Chapitre 18: Type Hinting
+- [ ] Lu README.md (`MODULES/04_concepts_avances/18_type_hinting/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
@@ -187,44 +179,52 @@ Cochez les chapitres terminés et notez vos observations.
 
 **Prérequis**: Modules 1-4 | **Emplacement**: `MODULES/05_domaines_specifies/`
 
+### Chapitre 19: Web Scraping
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/19_web_scraping/`)
+- [ ] Complété exercices.py
+- [ ] Compris les exemples
+- [ ] Validés avec verification.py
+
+**Notes:**
+
 ### Chapitre 20: Automation
 - [ ] Lu README.md (`MODULES/05_domaines_specifies/20_automation_i/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-### Chapitre 21: Web Scraping
-- [ ] Lu README.md (`MODULES/05_domaines_specifies/21_web_scraping/`)
+### Chapitre 20: Web Scraping
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/19_web_scraping/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-### Chapitre 22: Data Science
-- [ ] Lu README.md (`MODULES/05_domaines_specifies/22_data_science/`)
+### Chapitre 21: Data Science
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/21_data_science/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-### Chapitre 23: Visualisation
-- [ ] Lu README.md (`MODULES/05_domaines_specifies/23_visualisation/`)
+### Chapitre 22: Visualisation
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/22_visualisation/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-### Chapitre 24: Web Dev
-- [ ] Lu README.md (`MODULES/05_domaines_specifies/24_web_dev/`)
+### Chapitre 23: Web Dev
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/23_web_dev/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-### Chapitre 25: Machine Learning
-- [ ] Lu README.md (`MODULES/05_domaines_specifies/25_machine_learning/`)
+### Chapitre 24: Machine Learning
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/24_machine_learning/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py
 
-### Chapitre 26: Deep Learning
-- [ ] Lu README.md (`MODULES/05_domaines_specifies/26_deep_learning/`)
+### Chapitre 25: Deep Learning
+- [ ] Lu README.md (`MODULES/05_domaines_specifies/25_deep_learning/`)
 - [ ] Complété exercices.py
 - [ ] Compris les exemples
 - [ ] Validés avec verification.py

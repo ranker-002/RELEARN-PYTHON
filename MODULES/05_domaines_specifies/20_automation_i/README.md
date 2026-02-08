@@ -185,7 +185,7 @@ fichier.write_text("Bonjour le monde!")
 
 ## `glob` : Recherche par Motif
 
-Le module `glob`寻找 les fichiers qui correspondent à un motif, comme dans un terminal.
+Le module `glob` recherche les fichiers qui correspondent à un motif, comme dans un terminal.
 
 ```python
 import glob
@@ -198,9 +198,9 @@ print(glob.glob("**/*.txt", recursive=True))
 
 # Caractères spéciaux :
 # *        = n'importe quelle séquence de caractères
-# ?        = un caractère cualquiera
+# ?        = un caractère quelconque
 # [abc]    = un caractère parmi a, b, ou c
-# [0-9]    = un chiffre cualquiera
+# [0-9]    = un chiffre quelconque
 
 # Exemples
 glob.glob("*.py")           # Fichiers .py
@@ -367,4 +367,4 @@ if __name__ == "__main__":
 
 ## Chapitre Suivant
 
-Maintenant que vous savez manipuler les fichiers et dossiers automatiquement, passons au [Chapitre 21: Web Scraping](21_web_scraping/README.md) où nous apprendrons à extraire des données du web automatiquement.
+Maintenant que vous savez manipuler les fichiers et dossiers automatiquement, passons au [Chapitre 19 : Web Scraping](19_web_scraping/README.md) où nous apprendrons à extraire des données du web automatiquement.

@@ -1,3 +1,7 @@
-"""Package for projet_02_gestionnaire_taches_cli."""
+"""Models package for task manager."""
 
-__version__ = "1.0.0"
+from .tache import Tache, StatutTache, PrioriteTache
+from .projet import Projet
+from .tag import Tag
+
+__all__ = ["Tache", "StatutTache", "PrioriteTache", "Projet", "Tag"]

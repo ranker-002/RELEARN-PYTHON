@@ -1,3 +1,8 @@
-"""Package for projet_02_analyseur_prix."""
+"""Services package for price analyzer."""
 
-__version__ = "1.0.0"
+from .scraper import PriceScraper
+from .comparator import PriceComparator
+from .alerter import PriceAlerter
+from .history import PriceHistory
+
+__all__ = ["PriceScraper", "PriceComparator", "PriceAlerter", "PriceHistory"]

@@ -4,7 +4,7 @@ Créez des graphiques professionnels et des rapports visuels.
 
 ## Prérequis
 
-**Module 5 requis** : Chapitre 23
+**Module 5 requis** : Chapitre 22
 
 ## Projets Disponibles
 

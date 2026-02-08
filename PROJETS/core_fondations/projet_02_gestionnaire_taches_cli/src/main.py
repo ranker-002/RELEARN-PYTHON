@@ -1,71 +1,90 @@
 #!/usr/bin/env python3
 """
-projet_02_gestionnaire_taches_cli
+Gestionnaire de Tâches CLI - Projet d'apprentissage.
 
-Projet du module core_fondations.
+ÉNONCÉ:
+--------
+Implémentez un gestionnaire de tâches en ligne de commande avec:
+- CRUD des tâches (créer, lister, modifier, supprimer)
+- Projets et tags pour organisation
+- Filtrage et recherche avancée
+- Export (JSON, CSV, Markdown)
+- Persistance des données
 
-Usage:
-    python src/main.py                    # Mode interactif
-    python src/main.py --help            # Aide
+TODO: Implémenter la logique du projet.
 """
 
-import sys
-from pathlib import Path
-from typing import Optional, List
-from datetime import datetime
+import argparse
+from typing import List, Optional
 
 
-class Colors:
-    RESET = "\033[0m"
-    BOLD = "\033[1m"
-    BLUE = "\033[94m"
-    GREEN = "\033[92m"
-    YELLOW = "\033[93m"
-    RED = "\033[91m"
+class Tache:
+    """Tâche à implémenter."""
+    
+    def __init__(self, titre: str):
+        self.id = ""
+        self.titre = titre
+        self.description = ""
+        self.statut = "todo"
+        self.priorite = "moyenne"
+        self.projet = ""
+        self.tags = []
+        self.date_echeance = None
+        self.date_creation = None
 
 
-class Projet02GestionnaireTachesCli:
-    """Application principale."""
+class GestionnaireTaches:
+    """Gestionnaire à implémenter."""
     
-    VERSION = "1.0.0"
+    def __init__(self, repertoire_donnees: str = "data"):
+        self.taches = []
+        self.projets = []
+        self.tags = []
     
-    def __init__(self):
-        """Initialise l'application."""
-        self.logger = self._setup_logging()
-        self.logger.info(f"Application initialisée")
+    def ajouter_tache(self, titre: str) -> Tache:
+        """Ajouter une tâche."""
+        raise NotImplementedError
     
-    def _setup_logging(self):
-        """Configure le logging."""
-        import logging
-        logging.basicConfig(
-            level=logging.INFO,
-            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        )
-        return logging.getLogger("core_fondations")
+    def lister_taches(self, filtre: str = None) -> List[Tache]:
+        """Lister les tâches."""
+        raise NotImplementedError
     
-    def _afficher_banniere(self):
-        """Affiche la bannière."""
-        print(f"\n{Colors.BOLD}{Colors.BLUE}")
-        print(f"╔══════════════════════════════════════════════════╗")
-        print(f"║           projet_02_gestionnaire_taches_cli     ║")
-        print(f"╚══════════════════════════════════════════════════╝")
-        print(f"{Colors.RESET}")
+    def marquer_terminee(self, tache_id: str) -> bool:
+        """Marquer une tâche comme terminée."""
+        raise NotImplementedError
     
-    def run(self):
-        """Point d'entrée."""
-        self._afficher_banniere()
-        print("\nTODO: Implémenter la logique du projet")
+    def supprimer_tache(self, tache_id: str) -> bool:
+        """Supprimer une tâche."""
+        raise NotImplementedError
+    
+    def get_statistiques(self) -> dict:
+        """Retourner les statistiques."""
+        raise NotImplementedError
 
 
 def main():
     """Point d'entrée."""
-    app = Projet02GestionnaireTachesCli()
-    try:
-        app.run()
-    except KeyboardInterrupt:
-        print("\n\n👋 Au revoir!")
-    except Exception as e:
-        print(f"\n{Colors.RED}Erreur: {e}{Colors.RESET}")
+    parser = argparse.ArgumentParser(description="Gestionnaire de Tâches CLI")
+    parser.add_argument("--list", action="store_true", help="Lister les tâches")
+    parser.add_argument("--add", metavar="TACHE", help="Ajouter une tâche")
+    parser.add_argument("--done", metavar="ID", help="Marquer comme terminée")
+    parser.add_argument("--stats", action="store_true", help="Afficher les statistiques")
+    
+    args = parser.parse_args()
+    
+    print("=== Gestionnaire de Tâches CLI ===")
+    print("TODO: Implémenter la logique")
+    
+    if args.list:
+        print("Liste des tâches...")
+    elif args.add:
+        print(f"Ajouter: {args.add}")
+    elif args.done:
+        print(f"Marquer comme faite: {args.done}")
+    elif args.stats:
+        print("Statistiques...")
+    else:
+        print("\nUtiliser --help pour voir les options")
 
 
 if __name__ == "__main__":

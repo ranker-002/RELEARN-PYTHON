@@ -40,3 +40,18 @@ agents/
 kilocode/
 
 
+
+# Migration scripts and utilities
+add_mermaid_diagrams.py
+create_scaffolds.py
+create_sample_data.py
+enrich_all_readmes.py
+enrich_readmes.py
+fix_tests.py
+generate_detailed_readmes.py
+GUIDE_PROJETS.md
+main.py
+migrate_chapter.py
+migrate_projects.py
+MIGRATION_RESUME.md
+test_verify.py

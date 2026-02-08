@@ -1,22 +1,22 @@
 # projet_01_systeme_bancaire
 
-L'automatisation permet de programmer des tâches répétitives.
+Système Bancaire CLI complet avec gestion des clients, comptes et transactions.
 
 ---
 
 ## Introduction
 
-Ce projet vous permet d'appliquer planification dans un projet réel et professionnel.
+Ce projet implements un système bancaire complet en Python avec une interface CLI moderne. Il permet de gérer des clients, des comptes bancaires, des transactions et offre des fonctionnalités de reporting.
 
-**Concepts clés:** Planification, Emails, APIs, Logs
+**Concepts clés:** POO, Héritage, Polymorphisme, Encapsulation, Classes abstraites
 
-**Outils:** jinja2, matplotlib, smtplib
+**Outils:** Python 3.10+, argparse, dataclasses, enum, json
 
 ---
 
 ## Prérequis
 
-- Module recommandé: Chapitres 20-26
+- Module recommandé: Chapitres 08-13 (Fonctions et POO)
 
 ---
 
@@ -25,12 +25,22 @@ Ce projet vous permet d'appliquer planification dans un projet réel et professi
 ```
 projet_01_systeme_bancaire/
 ├── src/
-│   ├── main.py
+│   ├── main.py                    # Point d'entrée CLI
 │   ├── models/
+│   │   └── __init__.py           # Client, Compte, Transaction, CarteBancaire, Pret
 │   ├── services/
+│   │   ├── __init__.py
+│   │   ├── gestionnaire_comptes.py    # Gestion clients et comptes
+│   │   └── service_transactions.py    # Gestion transactions
 │   └── utils/
+│       ├── __init__.py
+│       ├── config.py              # Configuration
+│       └── date_utils.py          # Utilitaires de date
 ├── tests/
-├── data/
+│   ├── test_main.py
+│   ├── test_models.py
+│   └── test_services.py
+├── data/                          # Stockage JSON
 └── README.md
 ```
 
@@ -38,93 +48,130 @@ projet_01_systeme_bancaire/
 
 ## Fonctionnalités
 
-### 1. Fonctionnalité principale
+### 1. Gestion des Clients
 
-- Implémentation de base
-- Tests associés
-- Documentation
+- Création de clients avec informations complètes
+- Recherche de clients par nom, prénom ou email
+- Liste de tous les clients
+
+### 2. Gestion des Comptes
+
+- Création de comptes (Courant, Epargne, Professionnel, Joint)
+- Gestion du découvert autorisé
+- Historique des opérations
+- Blocage/reactivation de comptes
+
+### 3. Transactions
+
+- Dépôts en espèces
+- Retraits
+- Suivi des transactions avec références uniques
+- Statistiques des transactions
+
+### 4. Rapports
+
+- Solde total des comptes
+- Statistiques détaillées (dépots, retraits, solde net)
 
 ---
 
 ## Modèle de Données
 
 ```python
-from dataclasses import dataclass
-from datetime import datetime
-from typing import Optional
-from enum import Enum
+# Types de comptes
+class TypeCompte(Enum):
+    COURANT = "courant"
+    EPARGNE = "epargne"
+    PROFESSIONNEL = "professionnel"
+    JOINT = "joint"
 
-class Status(Enum):
-    PENDING = "pending"
-    PROCESSING = "processing"
-    COMPLETED = "completed"
-    FAILED = "failed"
-
+# Client
 @dataclass
-class Item:
+class Client:
     id: str
-    name: str
-    status: Status = Status.PENDING
-    created_at: datetime = None
-    
-    def __post_init__(self):
-        if self.created_at is None:
-            self.created_at = datetime.now()
+    nom: str
+    prenom: str
+    email: str
+    telephone: str
+    adresse: str = ""
+    identifiant: str = ""  # Auto-généré: CLI-XXXXXXXX
+
+# Compte
+@dataclass
+class Compte:
+    id: str
+    numero: str              # 12 chiffres
+    client_id: str
+    type_compte: TypeCompte
+    solde: float = 0.0
+    decouvert_autorise: float = 0.0
+    taux_interet: float = 0.0
+    statut: StatutCompte = StatutCompte.ACTIF
+    historique: List[str] = field(default_factory=list)
+
+# Transaction
+@dataclass
+class Transaction:
+    id: str
+    compte_id: str
+    type_transaction: TypeTransaction
+    montant: float
+    reference: str = ""     # Auto-généré: TRX-XXXXXXXXXXXX
 ```
 
 ---
 
-## Indications
+## Utilisation
 
-### Niveau 1
+### Mode interactif
 
-```python
-class Project:
-    def __init__(self):
-        self.data = []
-    
-    def run(self):
-        pass
+```bash
+python src/main.py
+```
+
+### Commandes disponibles
+
+L'application offre un menu interactif complet :
+
+1. **Gestion des clients**
+   - Créer un nouveau client
+   - Lister les clients
+   - Rechercher un client
+
+2. **Gestion des comptes**
+   - Créer un compte pour un client
+   - Lister tous les comptes
+   - Effectuer un dépôt
+   - Effectuer un retrait
+   - Bloquer/reactiver un compte
+
+3. **Transactions**
+   - Effectuer un dépôt
+   - Effectuer un retrait
+   - Voir l'historique
+
+4. **Rapports**
+   - Solde total
+   - Statistiques détaillées
+
+---
+
+## Installation
+
+```bash
+# Lancer l'application
+python src/main.py
+
+# Exécuter les tests
+pytest tests/
+
+# Vérifier le projet
+python verification.py
 ```
 
 ---
 
-## Critères de Validation
-
-- [ ] Structure du projet
-- [ ] Fonctionnalités implémentées
-- [ ] Tests passent
-- [ ] Code documenté
-
----
-
-
----
-
-## Architecture et Diagrammes
-
-### Architecture du Projet
-
-```mermaid
-graph TD
-    subgraph src/
-        A[main.py] --> B[Services]
-        B --> C[Parser]
-        B --> D[Fetcher]
-        B --> E[Filter]
-        A --> F[Models]
-        F --> G[DataModel]
-        A --> H[Utils]
-    end
-    
-    subgraph data/
-        I[sample/data.csv] --> A
-    end
-    
-    subgraph tests/
-        J[test_*.py] --> A
-    end
-```
+## Architecture
 
 ### Flux de Données
 
@@ -134,75 +181,126 @@ sequenceDiagram
     participant C as CLI
     participant S as Services
     participant M as Models
-    participant D as Data
+    participant F as Fichiers (JSON)
     
     U->>C: Lancer l'application
     C->>S: Initialiser services
     S->>M: Charger modèles
-    M->>D: Lire données
-    D-->>M: Retourner données
+    M->>F: Lire données
+    F-->>M: Retourner données
     M-->>S: Modèles prêts
     S-->>C: Services prêts
     C->>U: Afficher menu
 ```
 
-### Modèle de Données
+### Modèle de Classes
 
 ```mermaid
 classDiagram
-    class DataModel {
+    class Client {
         +str id
-        +str name
-        +created_at: datetime
-        +save(): bool
-        +load(): bool
+        +str nom
+        +str prenom
+        +str email
+        +str telephone
+        +str identifiant
+        +nom_complet: property
     }
     
-    class Service {
-        +process(data: DataModel): dict
-        +validate(input: dict): bool
+    class Compte {
+        +str id
+        +str numero
+        +TypeCompte type_compte
+        +float solde
+        +float decouvert_autorise
+        +StatutCompte statut
+        +deposer() bool
+        +retirer() bool
     }
     
-    Service --> DataModel: utilise
+    class Transaction {
+        +str id
+        +str compte_id
+        +TypeTransaction type_transaction
+        +float montant
+        +str reference
+        +StatutTransaction statut
+    }
+    
+    class GestionnaireComptes {
+        +creer_client() Client
+        +creer_compte() Compte
+        +get_client() Optional[Client]
+        +get_comptes_client() List[Compte]
+    }
+    
+    class ServiceTransactions {
+        +creer_transaction() Transaction
+        +get_transactions_compte() List[Transaction]
+        +get_stats_transactions() Dict
+    }
+    
+    Client "1" --> "*" Compte : possède
+    Compte "1" --> "*" Transaction : génère
+    GestionnaireComptes --> Client : gère
+    GestionnaireComptes --> Compte : gère
+    ServiceTransactions --> Transaction : gère
 ```
 
-### Architecture Fonctionnelle
+---
 
-```mermaid
-flowchart LR
-    subgraph Input
-        A[CLI Arguments]
-        B[Config File]
-        C[User Input]
-    end
-    
-    subgraph Processing
-        D[Main App]
-        E[Services Layer]
-        F[Models Layer]
-    end
-    
-    subgraph Output
-        G[Console Display]
-        H[File Export]
-        I[Log Results]
-    end
-    
-    A --> D
-    B --> D
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    F --> H
-    F --> I
+## Exemple d'Utilisation
+
+```python
+from src.services.gestionnaire_comptes import GestionnaireComptes
+from src.services.service_transactions import ServiceTransactions
+from src.models import TypeCompte, TypeTransaction
+
+# Créer un gestionnaire
+gestionnaire = GestionnaireComptes()
+
+# Créer un client
+client = gestionnaire.creer_client(
+    nom="Dupont",
+    prenom="Jean",
+    email="jean.dupont@email.com",
+    telephone="0612345678"
+)
+print(f"Client créé: {client.identifiant}")
+
+# Créer un compte
+compte = gestionnaire.creer_compte(
+    client_id=client.id,
+    type_compte=TypeCompte.COURANT,
+    decouvert_autorise=500.0
+)
+print(f"Compte créé: {compte.numero}")
+
+# Effectuer des transactions
+transactions = ServiceTransactions()
+transactions.creer_transaction(
+    compte_id=compte.id,
+    type_transaction=TypeTransaction.DEPOT,
+    montant=1000.0,
+    description="Salaire"
+)
 ```
-## Installation
 
-```bash
-python src/main.py
-pytest tests/
-python verification.py
+---
+
+## Tests
+
+Les tests vérifient :
+- L'initialisation de l'application
+- La création de modèles
+- L'initialisation des services
+
+```python
+# Exemple de test
+def test_initialization():
+    from src.main import Projet01SystemeBancaireApplication
+    app = Projet01SystemeBancaireApplication()
+    assert app is not None
 ```
 
 ---
@@ -210,10 +308,12 @@ python verification.py
 ## Ressources
 
 - Documentation Python: https://docs.python.org/fr/3/
+- Documentation dataclasses: https://docs.python.org/fr/3/library/dataclasses.html
+- Documentation enum: https://docs.python.org/fr/3/library/enum.html
 
 ---
 
-*Durée estimée: 8-12 heures | Difficulté: Outils:*
+*Durée estimée: 6-8 heures | Difficulté: Intermédiaire | Version: 1.0.0*
 
 ---
 

@@ -1,3 +1,6 @@
-"""Package for projet_01_systeme_bancaire."""
+"""Services package for banking system."""
 
-__version__ = "1.0.0"
+from services.gestionnaire_comptes import GestionnaireComptes
+from services.service_transactions import ServiceTransactions
+
+__all__ = ["GestionnaireComptes", "ServiceTransactions"]

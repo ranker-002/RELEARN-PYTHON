@@ -4,7 +4,7 @@ Concevez des réseaux de neurones avec PyTorch.
 
 ## Prérequis
 
-**Module 5 requis** : Chapitre 26
+**Module 5 requis** : Chapitre 25
 
 ## Projets Disponibles
 

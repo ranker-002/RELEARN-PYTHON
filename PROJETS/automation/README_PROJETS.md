@@ -4,7 +4,7 @@ Automatisez des tâches répétitives avec Python.
 
 ## Prérequis
 
-**Module 5 requis** : Chapitre 20
+**Module 5 requis** : Chapitre 19
 
 ## Projets Disponibles
 

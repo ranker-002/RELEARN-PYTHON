@@ -1,3 +1,6 @@
-"""Package for projet_02_gestionnaire_taches_cli."""
+"""Utils package for task manager."""
 
-__version__ = "1.0.0"
+from .config import Config
+from .date_utils import DateUtils
+
+__all__ = ["Config", "DateUtils"]

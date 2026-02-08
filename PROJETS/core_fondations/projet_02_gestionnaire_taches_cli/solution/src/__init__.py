@@ -1,3 +1,3 @@
-"""Package for projet_02_gestionnaire_taches_cli."""
+"""Gestionnaire de Tâches CLI - Package principal."""
 
 __version__ = "1.0.0"

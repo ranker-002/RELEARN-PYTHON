@@ -1,3 +1,3 @@
-"""Package for projet_02_tableau_bord_analytique."""
+"""Utils package."""
 
-__version__ = "1.0.0"
+__all__ = []

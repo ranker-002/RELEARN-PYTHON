@@ -6,13 +6,13 @@ Appliquez Python dans des domaines professionnels : Automation, Data Science, We
 
 | Chapitre | Domaine | Contenu |
 |----------|---------|---------|
+| 19 | Web Scraping | BeautifulSoup, Scrapy, extraction de données |
 | 20 | Automation | Selenium, APIs, emails, scripts système |
-| 21 | Web Scraping | BeautifulSoup, Scrapy, extraction de données |
-| 22 | Data Science | NumPy, Pandas, analyse de données |
-| 23 | Visualisation | Matplotlib, Seaborn, graphiques |
-| 24 | Web Dev | Flask, FastAPI, développement REST |
-| 25 | Machine Learning | Scikit-learn, modèles prédictifs |
-| 26 | Deep Learning | PyTorch, réseaux de neurones |
+| 21 | Data Science | NumPy, Pandas, analyse de données |
+| 22 | Visualisation | Matplotlib, Seaborn, graphiques |
+| 23 | Web Dev | Flask, FastAPI, développement REST |
+| 24 | Machine Learning | Scikit-learn, modèles prédictifs |
+| 25 | Deep Learning | PyTorch, réseaux de neurones |
 
 ## Prérequis
 
@@ -54,41 +54,41 @@ uv sync --extra core --extra web --extra automation --extra data --extra ai
 
 ## Projets par Domaine
 
+### Web Scraping
+| Projet | Difficulté | Prérequis | Description |
+|--------|------------|-----------|-------------|
+| Agrégateur d'Actualités | Avancé | Chapitre 19 | Aggregation de flux multiples |
+| Analyseur de Prix | Avancé | Chapitre 19 | Suivi de prix e-commerce |
+
 ### Automation
 | Projet | Difficulté | Prérequis | Description |
 |--------|------------|-----------|-------------|
 | Automatisation Rapports | Avancé | Chapitre 20 | Génération et envoi automatique de rapports |
 | Suivi Compétitions | Avancé | Chapitre 20 | Surveillance de sites e-sport |
 
-### Web Scraping
-| Projet | Difficulté | Prérequis | Description |
-|--------|------------|-----------|-------------|
-| Agrégateur d'Actualités | Avancé | Chapitre 21 | Aggregation de flux multiples |
-| Analyseur de Prix | Avancé | Chapitre 21 | Suivi de prix e-commerce |
-
 ### Data Science
 | Projet | Difficulté | Prérequis | Description |
 |--------|------------|-----------|-------------|
-| Analyse Exploratoire | Avancé | Chapitre 22 | EDA sur dataset réel |
-| Dashboard Analytique | Expert | Chapitres 22-23 | Visualisation interactive |
+| Analyse Exploratoire | Avancé | Chapitre 21 | EDA sur dataset réel |
+| Dashboard Analytique | Expert | Chapitres 21-22 | Visualisation interactive |
 
 ### Web Development
 | Projet | Difficulté | Prérequis | Description |
 |--------|------------|-----------|-------------|
-| API REST | Avancé | Chapitre 24 | CRUD complet avec FastAPI |
-| Application Todo | Intermédiaire | Chapitre 24 | Todo list avec backend REST |
+| API REST | Avancé | Chapitre 23 | CRUD complet avec FastAPI |
+| Application Todo | Intermédiaire | Chapitre 23 | Todo list avec backend REST |
 
 ### Machine Learning
 | Projet | Difficulté | Prérequis | Description |
 |--------|------------|-----------|-------------|
-| Modèle Prédiction | Expert | Chapitre 25 | Prédiction sur données réelles |
-| Classification | Expert | Chapitre 25 | Classification multi-classes |
+| Modèle Prédiction | Expert | Chapitre 24 | Prédiction sur données réelles |
+| Classification | Expert | Chapitre 24 | Classification multi-classes |
 
 ### Deep Learning
 | Projet | Difficulté | Prérequis | Description |
 |--------|------------|-----------|-------------|
-| Réseau Neurones | Expert | Chapitre 26 | Architecture personnalisée |
-| Classification Images | Expert | Chapitre 26 | CNN pour images |
+| Réseau Neurones | Expert | Chapitre 25 | Architecture personnalisée |
+| Classification Images | Expert | Chapitre 25 | CNN pour images |
 
 Voir [PROJETS/](../../PROJETS/README_GLOBAL.md)
 

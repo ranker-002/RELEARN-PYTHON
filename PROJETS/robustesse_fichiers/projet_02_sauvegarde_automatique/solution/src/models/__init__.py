@@ -1,3 +1,77 @@
-"""Package for projet_02_sauvegarde_automatique."""
+#!/usr/bin/env python3
+"""
+Models for the project.
+"""
 
-__version__ = "1.0.0"
+from dataclasses import dataclass, field
+from datetime import datetime
+from typing import Optional, List
+from enum import Enum
+import uuid
+
+
+class Statut(Enum):
+    """Status enumeration."""
+    ACTIF = "actif"
+    INACTIF = "inactif"
+    EN_ATTENTE = "en_attente"
+    TERMINE = "termine"
+
+
+@dataclass
+class Sauvegarde:
+    """Represents a sauvegarde."""
+    id: str
+    nom: str
+    statut: Statut = Statut.ACTIF
+    date_creation: datetime = field(default_factory=datetime.now)
+    metadata: Optional[dict] = None
+
+    def __post_init__(self):
+        if not self.id:
+            self.id = str(uuid.uuid4())
+
+
+@dataclass
+class Planification:
+    """Represents a planification."""
+    id: str
+    nom: str
+    statut: Statut = Statut.ACTIF
+    date_creation: datetime = field(default_factory=datetime.now)
+    metadata: Optional[dict] = None
+
+    def __post_init__(self):
+        if not self.id:
+            self.id = str(uuid.uuid4())
+
+
+@dataclass
+class Fichier:
+    """Represents a fichier."""
+    id: str
+    nom: str
+    statut: Statut = Statut.ACTIF
+    date_creation: datetime = field(default_factory=datetime.now)
+    metadata: Optional[dict] = None
+
+    def __post_init__(self):
+        if not self.id:
+            self.id = str(uuid.uuid4())
+
+
+@dataclass
+class Restauration:
+    """Represents a restauration."""
+    id: str
+    nom: str
+    statut: Statut = Statut.ACTIF
+    date_creation: datetime = field(default_factory=datetime.now)
+    metadata: Optional[dict] = None
+
+    def __post_init__(self):
+        if not self.id:
+            self.id = str(uuid.uuid4())
+
+
+__all__ = ["Statut", "Sauvegarde", "Planification", "Fichier", "Restauration"]

@@ -1,4 +1,5 @@
 """Tests for main module."""
+import sys
 import pytest
 from pathlib import Path
 
@@ -11,8 +12,8 @@ class TestMain:
     
     def test_initialization(self):
         """Test application initialization."""
-        from src.main import Projet02ClassificationApplication
-        app = Projet02ClassificationApplication()
+        from src.main import Projet02Classification
+        app = Projet02Classification()
         assert app is not None
     
     def test_example(self):

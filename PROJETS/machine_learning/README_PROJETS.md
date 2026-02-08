@@ -4,7 +4,7 @@ Construisez et entraînez des modèles prédictifs.
 
 ## Prérequis
 
-**Module 5 requis** : Chapitre 25
+**Module 5 requis** : Chapitre 24
 
 ## Projets Disponibles
 

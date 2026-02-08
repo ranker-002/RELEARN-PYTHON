@@ -1,3 +1,7 @@
-"""Package for projet_02_gestionnaire_taches_cli."""
+"""Services package for task manager."""
 
-__version__ = "1.0.0"
+from services.gestionnaire import GestionnaireTaches
+from services.filtre import FiltreTache
+from services.exporteur import ExporteurTaches
+
+__all__ = ["GestionnaireTaches", "FiltreTache", "ExporteurTaches"]

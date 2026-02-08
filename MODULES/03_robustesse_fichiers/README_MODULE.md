@@ -6,9 +6,9 @@ Apprenez à gérer les erreurs gracieusement et à manipuler les entrées/sortie
 
 | Chapitre | Titre | Objectif |
 |----------|-------|----------|
-| 14 | Exceptions | Gérer les erreurs gracieusement |
-| 15 | Fichiers I/O | Lire et écrire des fichiers |
-| 16 | Sérialisation | Stocker et partager des données (JSON, CSV, Pickle) |
+| 13 | Exceptions | Gérer les erreurs gracieusement |
+| 14 | Fichiers I/O | Lire et écrire des fichiers |
+| 15 | Sérialisation | Stocker et partager des données (JSON, CSV, Pickle) |
 
 ## Prérequis
 

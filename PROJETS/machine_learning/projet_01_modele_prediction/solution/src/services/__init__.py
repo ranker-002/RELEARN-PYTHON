@@ -1,3 +1,3 @@
-"""Package for projet_01_modele_prediction."""
+"""Services package."""
 
-__version__ = "1.0.0"
+__all__ = []

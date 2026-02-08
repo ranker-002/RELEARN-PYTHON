@@ -1,219 +1,271 @@
-# projet_01_automatisation_rapports
+# Automatisation de Rapports
 
-L'automatisation permet de programmer des tâches répétitives.
-
----
-
-## Introduction
-
-Ce projet vous permet d'appliquer planification dans un projet réel et professionnel.
-
-**Concepts clés:** Planification, Emails, APIs, Logs
-
-**Outils:** jinja2, matplotlib, smtplib
+Système de génération automatique de rapports avec planification
 
 ---
 
-## Prérequis
+## 🎯 Objectif du Projet
 
-- Module recommandé: Chapitres 20-26
+Créer un système qui génère des rapports automatiquement à partir de sources de données diverses
 
----
-
-## Structure
-
-```
-projet_01_automatisation_rapports/
-├── src/
-│   ├── main.py
-│   ├── models/
-│   ├── services/
-│   └── utils/
-├── tests/
-├── data/
-└── README.md
-```
+Ce projet vous permettra de mettre en pratique :
+- La conception orientée objet (classes, héritage, encapsulation)
+- La persistance de données (JSON)
+- Les services et la séparation des responsabilités
+- L'interface en ligne de commande (CLI)
 
 ---
 
-## Fonctionnalités
+## 📋 Fonctionnalités à Implémenter
 
-### 1. Fonctionnalité principale
-
-- Implémentation de base
-- Tests associés
-- Documentation
+1. **Configuration des sources de données (CSV, JSON, API)**
+2. **Création de templates de rapports personnalisables**
+3. **Planification de la génération (quotidienne, hebdomadaire, mensuelle)**
+4. **Export des rapports en PDF, HTML, ou Markdown**
+5. **Envoi automatique par email des rapports générés**
+6. **Historique et versioning des rapports**
 
 ---
 
-## Modèle de Données
+## 🗂️ Modèles de Données
 
+Vous devez créer les classes suivantes dans `src/models/` :
+
+### Rapport
 ```python
-from dataclasses import dataclass
-from datetime import datetime
-from typing import Optional
-from enum import Enum
-
-class Status(Enum):
-    PENDING = "pending"
-    PROCESSING = "processing"
-    COMPLETED = "completed"
-    FAILED = "failed"
-
 @dataclass
-class Item:
-    id: str
-    name: str
-    status: Status = Status.PENDING
-    created_at: datetime = None
+class Rapport:
+    id, titre, contenu, template_id, date_generation, statut
     
-    def __post_init__(self):
-        if self.created_at is None:
-            self.created_at = datetime.now()
+    # Méthodes à implémenter :
+    # - __post_init__() : initialisation automatique
+    # - validation des données
+    # - conversion vers/depuis dict pour JSON
 ```
 
----
-
-## Indications
-
-### Niveau 1
-
+### SourceDonnees
 ```python
-class Project:
-    def __init__(self):
-        self.data = []
+@dataclass
+class SourceDonnees:
+    id, nom, type, chemin_url, configuration
     
-    def run(self):
-        pass
+    # Méthodes à implémenter :
+    # - __post_init__() : initialisation automatique
+    # - validation des données
+    # - conversion vers/depuis dict pour JSON
+```
+
+### Planification
+```python
+@dataclass
+class Planification:
+    id, rapport_id, frequence, heure_execution, actif
+    
+    # Méthodes à implémenter :
+    # - __post_init__() : initialisation automatique
+    # - validation des données
+    # - conversion vers/depuis dict pour JSON
+```
+
+### Template
+```python
+@dataclass
+class Template:
+    id, nom, contenu_html, variables
+    
+    # Méthodes à implémenter :
+    # - __post_init__() : initialisation automatique
+    # - validation des données
+    # - conversion vers/depuis dict pour JSON
 ```
 
 ---
 
-## Critères de Validation
+## ⚙️ Services à Développer
 
-- [ ] Structure du projet
-- [ ] Fonctionnalités implémentées
-- [ ] Tests passent
-- [ ] Code documenté
+Créez les services suivants dans `src/services/` :
+
+### Generateur Rapports
+**Description :** Génère les rapports à partir des sources
+
+**Fichier :** `src/services/generateur_rapports.py`
+
+**Méthodes principales :**
+- `generer_rapport()`
+- `appliquer_template()`
+- `exporter()`
+
+### Planificateur
+**Description :** Gère la planification des exécutions
+
+**Fichier :** `src/services/planificateur.py`
+
+**Méthodes principales :**
+- `planifier()`
+- `executer_planifie()`
+- `liste_planifications()`
 
 ---
 
+## 🚀 Workflow de Développement
 
----
-
-## Architecture et Diagrammes
-
-### Architecture du Projet
-
-```mermaid
-graph TD
-    subgraph src/
-        A[main.py] --> B[Services]
-        B --> C[Parser]
-        B --> D[Fetcher]
-        B --> E[Filter]
-        A --> F[Models]
-        F --> G[DataModel]
-        A --> H[Utils]
-    end
-    
-    subgraph data/
-        I[sample/data.csv] --> A
-    end
-    
-    subgraph tests/
-        J[test_*.py] --> A
-    end
+### Étape 1 : Analyse du scaffold
+Le projet contient une structure de base dans `src/` :
+```
+src/
+├── __init__.py
+├── main.py              ← Point d'entrée (squelette fourni)
+├── models/
+│   └── __init__.py      ← À compléter avec vos classes
+├── services/
+│   └── __init__.py      ← À compléter avec vos services
+└── utils/
+    └── __init__.py      ← Utilitaires optionnels
 ```
 
-### Flux de Données
+### Étape 2 : Implémentation
+1. **Commencez par les modèles** dans `src/models/__init__.py`
+   - Définissez vos dataclasses avec leurs attributs
+   - Ajoutez les méthodes `__post_init__`, validation, etc.
 
-```mermaid
-sequenceDiagram
-    participant U as Utilisateur
-    participant C as CLI
-    participant S as Services
-    participant M as Models
-    participant D as Data
-    
-    U->>C: Lancer l'application
-    C->>S: Initialiser services
-    S->>M: Charger modèles
-    M->>D: Lire données
-    D-->>M: Retourner données
-    M-->>S: Modèles prêts
-    S-->>C: Services prêts
-    C->>U: Afficher menu
-```
+2. **Développez les services** dans `src/services/`
+   - Implémentez la logique métier
+   - Gérez la persistance JSON
+   - Ajoutez les méthodes CRUD
 
-### Modèle de Données
+3. **Complétez l'interface** dans `src/main.py`
+   - Ajoutez les menus interactifs
+   - Connectez les services à l'UI
 
-```mermaid
-classDiagram
-    class DataModel {
-        +str id
-        +str name
-        +created_at: datetime
-        +save(): bool
-        +load(): bool
-    }
-    
-    class Service {
-        +process(data: DataModel): dict
-        +validate(input: dict): bool
-    }
-    
-    Service --> DataModel: utilise
-```
+### Étape 3 : Vérification
 
-### Architecture Fonctionnelle
-
-```mermaid
-flowchart LR
-    subgraph Input
-        A[CLI Arguments]
-        B[Config File]
-        C[User Input]
-    end
-    
-    subgraph Processing
-        D[Main App]
-        E[Services Layer]
-        F[Models Layer]
-    end
-    
-    subgraph Output
-        G[Console Display]
-        H[File Export]
-        I[Log Results]
-    end
-    
-    A --> D
-    B --> D
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    F --> H
-    F --> I
-```
-## Installation
-
+#### Option A : Vérification en ligne de commande
 ```bash
-python src/main.py
-pytest tests/
 python verification.py
 ```
+Cela vérifiera :
+- ✅ Structure du projet
+- ✅ Imports fonctionnels
+- ✅ Exécution sans erreur
+
+#### Option B : Interface Web de Vérification
+```bash
+python verify_server.py
+```
+Puis ouvrez votre navigateur sur `http://localhost:8000`
+
+L'interface web permet de :
+- Voir le statut de chaque test
+- Comparer votre code avec la solution
+- Visualiser les différences
+- Obtenir des indications
+
+#### Option C : Comparaison manuelle avec la solution
+La solution complète est disponible dans `solution/src/` :
+```bash
+# Comparez votre code avec la solution
+diff src/models/__init__.py solution/src/models/__init__.py
+diff src/services/ solution/src/services/
+```
+
+### Étape 4 : Tests
+```bash
+pytest tests/
+```
 
 ---
 
-## Ressources
+## 📁 Structure Finale Attendue
 
-- Documentation Python: https://docs.python.org/fr/3/
+```
+projet_XX_nom/
+├── src/
+│   ├── __init__.py
+│   ├── main.py              # Application CLI complète
+│   ├── models/
+│   │   ├── __init__.py      # Toutes vos classes
+│   │   └── [fichiers supplémentaires]
+│   ├── services/
+│   │   ├── __init__.py
+│   │   └── [vos_services].py
+│   └── utils/
+│       ├── __init__.py
+│       └── [utilitaires].py
+├── solution/                # Solution de référence
+│   └── src/                 # (Ne regardez que si bloqué !)
+├── tests/                   # Tests à compléter
+├── data/                    # Données JSON générées
+├── README.md               # Ce fichier
+├── requirements.txt        # Dépendances
+└── verification.py         # Script de vérification
+```
 
 ---
 
-*Durée estimée: 8-12 heures | Difficulté: Outils:*
+## 🎓 Conseils de Développement
+
+### Niveau 1 - Découverte
+- Commencez par implémenter un seul modèle
+- Testez la création et la persistance JSON
+- Utilisez `print()` pour déboguer
+
+### Niveau 2 - Approfondissement
+- Ajoutez la validation des données
+- Implémentez les relations entre modèles
+- Créez un service simple
+
+### Niveau 3 - Expert
+- Gérez les erreurs avec try/except
+- Ajoutez des logs
+- Optimisez les performances
+- Écrivez des tests unitaires
+
+---
+
+## ⚠️ Erreurs Courantes
+
+1. **ImportError** : Vérifiez que tous les `__init__.py` sont présents
+2. **JSON serialization** : Convertissez les enums et dates en string
+3. **Attributs manquants** : Utilisez `field(default_factory=list)` pour les listes
+4. **ID unique** : Générez les UUID dans `__post_init__`
+
+---
+
+## 📖 Ressources Utiles
+
+- [Documentation Python - dataclasses](https://docs.python.org/fr/3/library/dataclasses.html)
+- [Documentation Python - Pathlib](https://docs.python.org/fr/3/library/pathlib.html)
+- [Documentation Python - JSON](https://docs.python.org/fr/3/library/json.html)
+
+---
+
+## ✅ Checklist de Validation
+
+Avant de passer à la vérification, assurez-vous que :
+
+- [ ] Les modèles sont créés avec tous les attributs
+- [ ] Les méthodes `__post_init__` génèrent les IDs
+- [ ] Les services implémentent toutes les méthodes requises
+- [ ] La persistance JSON fonctionne
+- [ ] L'application CLI démarre sans erreur
+- [ ] Les tests unitaires passent (si écrits)
+
+---
+
+## 🏆 Critères de Réussite
+
+Le projet est réussi si :
+1. ✅ `python verification.py` affiche "Projet valide!"
+2. ✅ L'interface web montre tous les tests en vert
+3. ✅ Vous pouvez créer, lire, mettre à jour et supprimer des données
+4. ✅ Les données persistent après redémarrage
+5. ✅ L'interface CLI est fonctionnelle et intuitive
+
+---
+
+**Bonne chance ! N'oubliez pas : la solution est là pour vous aider si vous êtes bloqué.**
+
+*Durée estimée: 4-8 heures | Difficulté: Intermédiaire*
 
 ---
 

@@ -1,3 +1,3 @@
-"""Package for projet_01_generateur_rapports."""
+"""Services package."""
 
-__version__ = "1.0.0"
+__all__ = []
